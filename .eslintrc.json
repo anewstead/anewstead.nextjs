@@ -1,0 +1,13 @@
+{
+  "extends": ["react-app", "eslint-config-prettier"],
+  "plugins": ["react-hooks"],
+  "rules": {
+    "arrow-body-style": ["error", "always"],
+    "arrow-parens": ["error", "always"],
+    "no-confusing-arrow": ["error", { "allowParens": true }],
+    "no-mixed-operators": "error",
+    "prefer-template": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  }
+}

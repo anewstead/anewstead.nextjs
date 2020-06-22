@@ -1,0 +1,28 @@
+{
+  "extends": ["stylelint-config-standard", "stylelint-config-styled-components", "stylelint-config-prettier"],
+  "rules": {
+    "at-rule-no-unknown": [
+      true,
+      {
+        "severity": "error",
+        "ignoreAtRules": [
+          "include",
+          "mixin",
+          "if",
+          "else",
+          "for",
+          "function",
+          "return",
+          "content",
+          "each",
+          "debug",
+          "warn",
+          "use",
+          "forward",
+          "extend"
+        ]
+      }
+    ],
+    "declaration-empty-line-before": "never"
+  }
+}
