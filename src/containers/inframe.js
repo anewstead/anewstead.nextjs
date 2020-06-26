@@ -1,11 +1,9 @@
-import DOMPurify from 'dompurify';
-import React from 'react';
+import DOMPurify from 'isomorphic-dompurify';
 import adBlocker from 'just-detect-adblock';
 import parse from 'html-react-parser';
+import React, { useEffect, useRef } from 'react';
 import { Container, Paper, Typography, makeStyles } from '@material-ui/core';
 import { useSelector } from 'react-redux';
-
-import withLayout from '../../lib/withLayout';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -38,16 +36,30 @@ const InFrame = (props) => {
   });
 
   const iframeURL = `${baseContentURL}${data.view.href}`;
-  const stillURL = `${baseContentURL}${data.view.still}`;
+  const stillURL = `${baseContentURL}${data.view.poster}`;
   const alt = `${data.brand} ${data.project}`;
 
   // safelySetInnerHTML :)
   const info = parse(DOMPurify.sanitize(data.info));
 
-  let banner;
-  if (data.type === 'banner' && adBlocker.isDetected()) {
-    banner = (
+  let display;
+
+  if (process.browser && data.type === 'banner' && adBlocker.isDetected()) {
+    // because this rewrites server rendered content on page load if adblocker is detected
+    // we need to tell react the change is intentional by adding suppressHydrationWarning
+    display = (
       <>
+        <Paper
+          suppressHydrationWarning={true}
+          style={{
+            width: `${data.view.width}px`,
+            height: `${data.view.height}px`,
+          }}
+          className={classes.still}
+        >
+          <img src={stillURL} alt={alt} />
+        </Paper>
+
         <Paper
           className={classes.info}
           style={{
@@ -58,19 +70,10 @@ const InFrame = (props) => {
             Ad Blocker Detected, you will need to pause it to view full content
           </Typography>
         </Paper>
-        <Paper
-          style={{
-            width: `${data.view.width}px`,
-            height: `${data.view.height}px`,
-          }}
-          className={classes.still}
-        >
-          <img src={stillURL} alt={alt} />
-        </Paper>
       </>
     );
   } else {
-    banner = (
+    display = (
       <iframe
         title={alt}
         src={iframeURL}
@@ -82,9 +85,13 @@ const InFrame = (props) => {
   }
 
   return (
-    <Container className={classes.root} style={{ width: data.view.width }}>
-      {/* BANNER */}
-      {banner}
+    <Container
+      className={classes.root}
+      style={{ width: data.view.width }}
+      suppressHydrationWarning={true}
+    >
+      {/* DISPLAY */}
+      {display}
       <Paper
         className={classes.info}
         style={{
@@ -105,4 +112,4 @@ const InFrame = (props) => {
   );
 };
 
-export default withLayout(InFrame);
+export default InFrame;

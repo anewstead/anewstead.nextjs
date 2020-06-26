@@ -1,5 +1,3 @@
-// import "slick-carousel/slick/slick.css";
-
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import React from 'react';
 import Slider from 'react-slick';

@@ -17,11 +17,14 @@ const Footer = (props) => {
   const { brand } = props;
 
   const classes = useStyles();
-
+  const copyright = `© ${brand || 'Brand'} ${new Date().getFullYear()}`;
   return (
     <footer className={classes.footer}>
       <Container>
-        <p>© {brand || 'Brand'}</p>
+        <p>
+          {/* COPYRIGHT */}
+          {copyright}
+        </p>
       </Container>
     </footer>
   );

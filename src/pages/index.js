@@ -1,17 +1,35 @@
 import React from 'react';
+import ApolloClient, { gql } from 'apollo-boost';
 import { Button, Card, Container, Grid, makeStyles } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 
 import NextMuiLink from '../lib/nextMuiLink';
-import PageLayout from '../containers/PageLayout';
+import PageLayout from '../containers/page-layout';
 
-const dataURL =
-  'https://anewstead-content.netlify.app/.netlify/functions/alldata';
+const apolloClient = new ApolloClient({
+  uri: 'https://anewstead-content.netlify.app/graphql',
+});
 
 export const getStaticProps = async (context) => {
-  const res = await fetch(dataURL);
-  const data = await res.json();
-  return { props: { data } };
+  const thumbsQuery = gql`
+    query {
+      projects {
+        id
+        client
+        brand
+        project
+        type
+        thumb
+        view {
+          type
+        }
+      }
+    }
+  `;
+  const res = await apolloClient.query({
+    query: thumbsQuery,
+  });
+  return { props: { data: res.data.projects } };
 };
 
 const useStyles = makeStyles((theme) => {
@@ -42,13 +60,7 @@ const useStyles = makeStyles((theme) => {
 const Home = (props) => {
   const classes = useStyles();
 
-  // const mainData = useSelector((state) => {
-  //   return state.app.mainData;
-  // });
-
-  const mainData = props.data;
-
-  // console.log(mainData);
+  const { data } = props;
 
   const baseContentURL = useSelector((state) => {
     return state.app.baseContentURL;
@@ -73,8 +85,8 @@ const Home = (props) => {
   let displayData = [];
   let content = <></>;
 
-  if (mainData) {
-    displayData = mainData
+  if (data) {
+    displayData = data
       .filter((obj) => {
         return (
           (showSites && obj.type === 'site') ||

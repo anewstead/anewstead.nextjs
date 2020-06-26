@@ -62,7 +62,7 @@ const themes = {
         },
       },
     }),
-    { breakpoints: ['xs', 'sm'] }
+    { breakpoints: ['xs', 'sm'], factor: 2 }
   ),
   dark: responsiveFontSizes(
     createMuiTheme({

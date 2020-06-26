@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import Footer from '../components/footer/footer';
 import HeaderNavDetail from '../components/header-nav-detail/header-nav-detail';
 import HeaderNavMain from '../components/header-nav-main/header-nav-main';
-import PageWrapper from './PageWrapper';
+import PageWrapper from './page-wrapper';
 import { NAV_CHECKBOX_CHANGE, TOGGLE_THEME } from '../lib/store';
 
 const useStyles = makeStyles((theme) => {
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => {
 });
 
 const PageLayout = (props) => {
-  const { data, headerNav, children } = props;
+  const { data = {}, headerNav, children } = props;
 
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -38,6 +38,9 @@ const PageLayout = (props) => {
   const navCheckboxes = useSelector((state) => {
     return state.app.nav.checkboxes;
   });
+
+  const titleText = data.client || '';
+  const subtitleText = `${data.brand} - ${data.project}` || '';
 
   const backClick = () => {
     router.push('/');
@@ -67,7 +70,6 @@ const PageLayout = (props) => {
           onBrandClick={brandClick}
           onThemeClick={themeClick}
           onCheckboxChange={checkboxChange}
-          {...props}
         />
       );
       break;
@@ -78,7 +80,8 @@ const PageLayout = (props) => {
           brandName={navBrand}
           onBackClick={backClick}
           onThemeClick={themeClick}
-          {...props}
+          titleText={titleText}
+          subtitleText={subtitleText}
         />
       );
       break;
@@ -91,7 +94,7 @@ const PageLayout = (props) => {
       <div className={classes.mainAndFooterWrapper}>
         <main className={classes.main}>
           {/* DISPLAY */}
-          {props.children}
+          {children}
         </main>
         <Footer brand={navBrand} />
       </div>

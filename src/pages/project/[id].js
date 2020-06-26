@@ -1,113 +1,122 @@
-import Error from 'next/error';
 import React from 'react';
-import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
+import ApolloClient, { gql } from 'apollo-boost';
 
-import PageLayout from '../../containers/PageLayout';
+import Error from '../_error';
+import Gallery from '../../containers/gallery';
+import InFrame from '../../containers/inframe';
+import PageLayout from '../../containers/page-layout';
+import Video from '../../containers/video';
 
-// ===============================================
-// pre-get data and pre-render all pages (static).
-// better if a finite sensible amount of infrequently updated pages
-// as requires new build if data changes
-// note. can only be run from a page
-// ===============================================
-// export async function getStaticProps(context) {
-//   console.log('context');
-//   // Call an external API endpoint to get data
-//   const url =
-//     'https://anewstead-content.netlify.app/.netlify/functions/alldata';
-//   const res = await fetch(url);
-//   const data = await res.json();
+const apolloClient = new ApolloClient({
+  uri: 'https://anewstead-content.netlify.app/graphql',
+});
 
-//   return {
-//     props: { data }, // will be passed to the page component as props
-//   };
-// }
-
-// // This function gets called at build time
-// export async function getStaticPaths() {
-//   // Call an external API endpoint to get data
-//   const url =
-//     'https://anewstead-content.netlify.app/.netlify/functions/alldata';
-//   const res = await fetch(url);
-//   const data = await res.json();
-
-//   // Get the paths we want to pre-render based on data
-//   const paths = data.map((item) => {
-//     return {
-//       params: { id: item.id },
-//     };
+//==================================================
+// SSR per request
+//==================================================
+// export async function getServerSideProps(context) {
+//   const id = context.params.id;
+//   const projectQuery = gql`
+//     query {
+//       project(id:${id}) {
+//         id
+//         client
+//         brand
+//         project
+//         type
+//         thumb
+//         view {
+//           type
+//         }
+//       }
+//     }
+//   `;
+//   const res = await apolloClient.query({
+//     query: projectQuery,
 //   });
-
-//   // We'll pre-render only these paths at build time.
-//   // { fallback: false } means other routes should 404.
-//   return { paths, fallback: false };
+//   return { props: { data: res.data.project } };
 // }
-// ===============================================
+//==================================================
 
-// ===============================================
-// get data and render page on each request (SSR).
-// better if there are lots/frequently changed
-// note. can only be run from a page
-// ===============================================
-export async function getServerSideProps() {
-  const url =
-    'https://anewstead-content.netlify.app/.netlify/functions/alldata';
-  // Fetch data from external API
-  const res = await fetch(url);
-  const data = await res.json();
+//==================================================
+// Pre render static pages
+//==================================================
+export const getStaticProps = async (context) => {
+  const id = context.params.id;
+  const projectQuery = gql`
+    query {
+      project(id:${id}) {
+        client
+        brand
+        project
+        type
+        info
+        view {
+          type
+          width
+          height
+          href
+          poster
+          stills
+        }
+      }
+    }
+  `;
+  const res = await apolloClient.query({
+    query: projectQuery,
+  });
+  return { props: { data: res.data.project } };
+};
 
-  // Pass data to the page via props
-  return { props: { data } };
-}
-// ===============================================
-
-// const dataURL =
-//   'https://anewstead-content.netlify.app/.netlify/functions/alldata';
-
-// export const getStaticProps = async (context) => {
-//   const res = await fetch(dataURL);
-//   const data = await res.json();
-//   return { props: { data } };
-// };
-
-// export const getStaticPaths = async (props) => {
-//   const res = await fetch(dataURL);
-//   const data = await res.json();
-//   const paths = data.map((item) => {
-//     return {
-//       params: { id: item.id },
-//     };
-//   });
-//   return { paths, fallback: false };
-// };
+export const getStaticPaths = async (props) => {
+  const projectsQuery = gql`
+    query {
+      projects {
+        id
+      }
+    }
+  `;
+  const res = await apolloClient.query({
+    query: projectsQuery,
+  });
+  const paths = res.data.projects.map((item) => {
+    return {
+      params: { id: item.id },
+    };
+  });
+  return { paths, fallback: false };
+};
+//==================================================
 
 const Project = (props) => {
   const { data } = props;
 
-  const router = useRouter();
-  const { id } = router.query;
-  // console.log('router:', router);
-
-  // const mainData = useSelector((state) => {
-  //   return state.app.mainData;
-  // });
-  const mainData = data;
+  const pageProps = {
+    titleText: data.client,
+    subtitleText: `${data.brand} - ${data.project}`,
+    data,
+    ...props,
+  };
 
   let content = <></>;
-  if (mainData) {
-    if (mainData[id]) {
-      // console.log('mainData:', mainData);
-      content = `project ${id}`;
-    } else {
-      // console.log('error:', mainData);
-      // content = <Error statusCode={404} />;
-    }
-  } else {
-    // console.log('nodata:', mainData);
-  }
 
-  // console.log('Project:', mainData);
+  switch (data.view.type) {
+    case 'gallery':
+      content = <Gallery {...pageProps} />;
+      break;
+
+    case 'video':
+      content = <Video {...pageProps} />;
+      break;
+
+    case 'iframe':
+      content = <InFrame {...pageProps} />;
+      break;
+
+    default:
+      const msg = `"unknown page template type: ${data.view.type}"`;
+      return <Error statusCode={msg}></Error>;
+  }
 
   return (
     <PageLayout headerNav="detail" data={data}>

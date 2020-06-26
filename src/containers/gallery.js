@@ -1,11 +1,10 @@
-import DOMPurify from 'dompurify';
+import DOMPurify from 'isomorphic-dompurify';
 import React from 'react';
 import parse from 'html-react-parser';
 import { Container, Paper, Typography, makeStyles } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 
 import Carousel from '../components/carousel/carousel';
-import withLayout from '../app/withLayout';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -56,4 +55,4 @@ const Gallery = (props) => {
   );
 };
 
-export default withLayout(Gallery);
+export default Gallery;

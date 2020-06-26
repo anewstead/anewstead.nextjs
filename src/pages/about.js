@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Paper, Typography, makeStyles } from '@material-ui/core';
 
-import PageLayout from '../containers/PageLayout';
+import PageLayout from '../containers/page-layout';
 
 const useStyles = makeStyles((theme) => {
   return {

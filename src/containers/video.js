@@ -1,10 +1,8 @@
-import DOMPurify from 'dompurify';
+import DOMPurify from 'isomorphic-dompurify';
 import React from 'react';
 import parse from 'html-react-parser';
 import { Container, Paper, Typography, makeStyles } from '@material-ui/core';
 import { useSelector } from 'react-redux';
-
-import withLayout from '../app/withLayout';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -65,4 +63,4 @@ const Video = (props) => {
   );
 };
 
-export default withLayout(Video);
+export default Video;
