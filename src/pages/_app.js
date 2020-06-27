@@ -1,6 +1,7 @@
 //global css import
 import 'slick-carousel/slick/slick.css';
 
+import Head from 'next/head';
 import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 
@@ -15,6 +16,9 @@ const App = (props) => {
 
   return (
     <Provider store={store}>
+      <Head>
+        <title>Andrew Newstead</title>
+      </Head>
       <Component {...pageProps} />
     </Provider>
   );

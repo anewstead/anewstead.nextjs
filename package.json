@@ -36,6 +36,7 @@
     "isomorphic-dompurify": "^0.4.0",
     "just-detect-adblock": "^1.0.0",
     "next": "latest",
+    "next-pwa": "^2.6.3",
     "prettier": "^2.0.5",
     "prettier-plugin-import-sort": "0.0.4",
     "react": "^16.13.1",

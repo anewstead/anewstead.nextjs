@@ -40,7 +40,15 @@ const PageLayout = (props) => {
   });
 
   const titleText = data.client || '';
-  const subtitleText = `${data.brand} - ${data.project}` || '';
+
+  let subtitleText = '';
+  if (data.brand && data.project) {
+    subtitleText = `${data.brand} - ${data.project}`;
+  } else if (data.brand) {
+    subtitleText = data.brand;
+  } else if (data.project) {
+    subtitleText = data.project;
+  }
 
   const backClick = () => {
     router.push('/');

@@ -14,11 +14,15 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-const About = (props) => {
+const About = () => {
   const classes = useStyles();
 
+  const data = {
+    brand: 'Andrew Newstead',
+  };
+
   return (
-    <PageLayout headerNav="detail">
+    <PageLayout headerNav="detail" data={data}>
       <Container className={classes.root}>
         <Paper className={classes.paper}>
           <Typography variant="h4" component="h2">
@@ -38,13 +42,13 @@ const About = (props) => {
               hands-on input as a senior team member.
             </p>
             <p>
-              This site was written in React and Redux (hooks) as a single page
-              application using Create-React-App for a webpack setup and
-              Material-UI components for a quick start, in my commercial work
+              This site was written in React (hooks) with Next.js to enable
+              server-side rendering and GraphQL and Apollo for data. Material-UI
+              components have been used for a quick start, in my commercial work
               everything is typically created bespoke from scratch. <br />
               You are welcome to view the source code at this{' '}
               <a
-                href="https://github.com/anewstead/anewstead.cra-mui"
+                href="https://github.com/anewstead/anewstead.nextjs"
                 target="_blank"
                 rel="noopener noreferrer"
               >

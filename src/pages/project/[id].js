@@ -91,26 +91,19 @@ export const getStaticPaths = async (props) => {
 const Project = (props) => {
   const { data } = props;
 
-  const pageProps = {
-    titleText: data.client,
-    subtitleText: `${data.brand} - ${data.project}`,
-    data,
-    ...props,
-  };
-
   let content = <></>;
 
   switch (data.view.type) {
     case 'gallery':
-      content = <Gallery {...pageProps} />;
+      content = <Gallery data={data} />;
       break;
 
     case 'video':
-      content = <Video {...pageProps} />;
+      content = <Video data={data} />;
       break;
 
     case 'iframe':
-      content = <InFrame {...pageProps} />;
+      content = <InFrame data={data} />;
       break;
 
     default:
