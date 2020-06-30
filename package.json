@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
+    "postbuild": "next-on-netlify",
     "start": "next start",
     "lint:js": "eslint --fix $PWD/'/src/**/*.{js,jsx,ts,tsx,json}'; prettier --write $PWD/'/src/**/*.{js,jsx,ts,tsx,json}'",
     "lint:style": "stylelint --fix $PWD/'/src/**/*.{css,scss,js,jsx,ts,tsx}'",
@@ -36,6 +37,7 @@
     "isomorphic-dompurify": "^0.4.0",
     "just-detect-adblock": "^1.0.0",
     "next": "latest",
+    "next-on-netlify": "^2.3.0",
     "next-pwa": "^2.6.3",
     "prettier": "^2.0.5",
     "prettier-plugin-import-sort": "0.0.4",

@@ -7,4 +7,5 @@ module.exports = withPWA({
     // disable: process.env.NODE_ENV === 'development',
     // register: false,
   },
+  target: 'serverless',
 });
