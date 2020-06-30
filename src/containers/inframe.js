@@ -1,7 +1,7 @@
 import DOMPurify from 'isomorphic-dompurify';
+import React from 'react';
 import adBlocker from 'just-detect-adblock';
 import parse from 'html-react-parser';
-import React, { useEffect, useRef } from 'react';
 import { Container, Paper, Typography, makeStyles } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 

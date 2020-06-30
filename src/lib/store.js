@@ -1,25 +1,6 @@
-import {
-  configureStore,
-  createAsyncThunk,
-  createSlice,
-} from '@reduxjs/toolkit';
+import { configureStore, createSlice } from '@reduxjs/toolkit';
 
 import { detectColorTheme, toggleColorTheme } from './themes';
-
-// export const FETCH_MAIN_DATA = createAsyncThunk(
-//   'fetchJsonData',
-//   async (url) => {
-//     // session cache to avoid lots of calls to API during dev
-//     const lsData = sessionStorage.getItem('data');
-//     if (lsData) {
-//       return JSON.parse(lsData);
-//     }
-//     const response = await fetch(url);
-//     const data = await response.json();
-//     sessionStorage.setItem('data', JSON.stringify(data));
-//     return data;
-//   }
-// );
 
 // ReduxToolKit createSlice() creates state, actions and reducers from one object
 // remember to export reducer functions as slice.actions
@@ -27,7 +8,6 @@ const slice = createSlice({
   name: 'app',
   initialState: {
     baseContentURL: 'https://anewstead-content.netlify.app/',
-    mainData: null,
     theme: 'light',
     nav: {
       brand: 'Andrew Newstead',
@@ -58,12 +38,10 @@ const slice = createSlice({
     INIT_THEME: (state, action) => {
       state.theme = detectColorTheme();
     },
-    // INIT_DATA: (state, action) => {
-    //   state.mainData = action.payload;
-    // },
     TOGGLE_THEME: (state, action) => {
       state.theme = toggleColorTheme();
     },
+
     NAV_CHECKBOX_CHANGE: (state, action) => {
       const checkbox = state.nav.checkboxes.find((obj) => {
         return obj.id === action.payload.id;
@@ -71,17 +49,6 @@ const slice = createSlice({
       checkbox.checked = action.payload.checked;
     },
   },
-  // extraReducers: {
-  //   [FETCH_MAIN_DATA.pending]: (state, action) => {
-  //     // state.theme = detectColorTheme(); //TODO move to own reducer
-  //   },
-  //   [FETCH_MAIN_DATA.fulfilled]: (state, action) => {
-  //     state.mainData = action.payload;
-  //   },
-  //   [FETCH_MAIN_DATA.rejected]: (state, action) => {
-  //     state.mainData = 'rejected';
-  //   },
-  // },
 });
 
 const store = configureStore({
@@ -92,8 +59,9 @@ const store = configureStore({
 
 export const {
   INIT_THEME,
-  // INIT_DATA,
   TOGGLE_THEME,
+  INIT_THUMBS,
   NAV_CHECKBOX_CHANGE,
 } = slice.actions;
+
 export default store;

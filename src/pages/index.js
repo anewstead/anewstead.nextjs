@@ -57,49 +57,52 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-const Home = (props) => {
-  const classes = useStyles();
+const thumbHelper = (allThumbs, checkboxes) => {
+  const showSites = checkboxes.find((cb) => {
+    return cb.id === 'site';
+  }).checked;
 
+  const showApps = checkboxes.find((cb) => {
+    return cb.id === 'app';
+  }).checked;
+
+  const showAds = checkboxes.find((cb) => {
+    return cb.id === 'banner';
+  }).checked;
+
+  return allThumbs
+    .filter((obj) => {
+      return (
+        (showSites && obj.type === 'site') ||
+        (showApps && obj.type === 'app') ||
+        (showAds && obj.type === 'banner')
+      );
+    })
+    .sort((a, b) => {
+      return Number(b.id) - Number(a.id);
+    });
+};
+
+const Home = (props) => {
   const { data } = props;
 
-  const baseContentURL = useSelector((state) => {
-    return state.app.baseContentURL;
-  });
+  const classes = useStyles();
 
   const checkboxes = useSelector((state) => {
     return state.app.nav.checkboxes;
   });
 
-  const showSites = checkboxes.find((obj) => {
-    return obj.id === 'site';
-  }).checked;
+  const displayThumbs = thumbHelper(data, checkboxes);
 
-  const showApps = checkboxes.find((obj) => {
-    return obj.id === 'app';
-  }).checked;
+  const baseContentURL = useSelector((state) => {
+    return state.app.baseContentURL;
+  });
 
-  const showAds = checkboxes.find((obj) => {
-    return obj.id === 'banner';
-  }).checked;
-
-  let displayData = [];
   let content = <></>;
 
-  if (data) {
-    displayData = data
-      .filter((obj) => {
-        return (
-          (showSites && obj.type === 'site') ||
-          (showApps && obj.type === 'app') ||
-          (showAds && obj.type === 'banner')
-        );
-      })
-      .sort((a, b) => {
-        return Number(b.id) - Number(a.id);
-      });
-
-    if (displayData.length) {
-      content = displayData.map((obj, i) => {
+  if (displayThumbs) {
+    if (displayThumbs.length) {
+      content = displayThumbs.map((obj, i) => {
         const url = `${baseContentURL}img/thumbs/${obj.thumb}`;
         const alt = `${obj.client} - ${obj.brand} - ${obj.project}`;
         return (

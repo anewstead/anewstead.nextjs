@@ -43,9 +43,9 @@ const About = () => {
             </p>
             <p>
               This site was written in React (hooks) with Next.js to enable
-              server-side rendering and GraphQL and Apollo for data. Material-UI
-              components have been used for a quick start, in my commercial work
-              everything is typically created bespoke from scratch. <br />
+              server-side rendering and GraphQL for data. Material-UI components
+              have been used for a quick start, in my commercial work everything
+              is typically created bespoke from scratch. <br />
               You are welcome to view the source code at this{' '}
               <a
                 href="https://github.com/anewstead/anewstead.nextjs"
