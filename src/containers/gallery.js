@@ -8,7 +8,7 @@ import Carousel from '../components/carousel/carousel';
 
 const useStyles = makeStyles((theme) => {
   return {
-    root: {
+    galleryroot: {
       marginTop: theme.spacing(4),
       marginBottom: theme.spacing(3),
     },
@@ -38,7 +38,10 @@ const Gallery = (props) => {
   const info = parse(DOMPurify.sanitize(data.info));
 
   return (
-    <Container className={classes.root} style={{ maxWidth: data.view.width }}>
+    <Container
+      className={classes.galleryroot}
+      style={{ maxWidth: data.view.width }}
+    >
       <Carousel slides={slides} />
       <Paper className={classes.info}>
         <Typography

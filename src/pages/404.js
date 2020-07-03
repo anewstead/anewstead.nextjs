@@ -12,7 +12,7 @@ import PageLayout from '../containers/page-layout';
 
 const useStyles = makeStyles((theme) => {
   return {
-    root: {
+    f04root: {
       marginTop: theme.spacing(4),
     },
     paper: {
@@ -29,7 +29,7 @@ const NoMatch = (props) => {
 
   return (
     <PageLayout>
-      <Container className={classes.root}>
+      <Container className={classes.f04root}>
         <Paper className={classes.paper}>
           <Typography variant="h3">404 - Page Not Found</Typography>
           <Typography variant="h4">

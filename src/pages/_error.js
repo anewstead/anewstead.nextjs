@@ -12,7 +12,7 @@ import PageLayout from '../containers/page-layout';
 
 const useStyles = makeStyles((theme) => {
   return {
-    root: {
+    errorroot: {
       marginTop: theme.spacing(4),
     },
     paper: {
@@ -30,7 +30,7 @@ const Error = ({ statusCode }) => {
 
   return (
     <PageLayout>
-      <Container className={classes.root}>
+      <Container className={classes.errorroot}>
         <Paper className={classes.paper}>
           <Typography variant="h5">
             {statusCode

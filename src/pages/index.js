@@ -34,7 +34,7 @@ export const getStaticProps = async (context) => {
 
 const useStyles = makeStyles((theme) => {
   return {
-    root: {
+    indexroot: {
       paddingTop: theme.spacing(4),
       paddingBottom: theme.spacing(3),
     },
@@ -127,7 +127,7 @@ const Home = (props) => {
 
   return (
     <PageLayout headerNav="main">
-      <Container className={classes.root}>
+      <Container className={classes.indexroot}>
         <Grid container spacing={2} justify="center">
           {/* CONTENT */}
           {content}

@@ -7,7 +7,7 @@ import themes from '../lib/themes';
 
 const useStyles = makeStyles((theme) => {
   return {
-    root: {
+    wrapperroot: {
       minHeight: '100vh',
       /* mobile viewport bug fix */
       minHeight: '-webkit-fill-available',
@@ -40,7 +40,7 @@ const PageWrapper = (props) => {
   return (
     <ThemeProvider theme={themes[theme]}>
       <CssBaseline />
-      <Box className={classes.root}>
+      <Box className={classes.wrapperroot}>
         {/* DISPLAY */}
         {children}
       </Box>
