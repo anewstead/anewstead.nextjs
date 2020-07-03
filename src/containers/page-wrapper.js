@@ -8,7 +8,9 @@ import themes from '../lib/themes';
 const useStyles = makeStyles((theme) => {
   return {
     root: {
-      height: '100vh',
+      minHeight: '100vh',
+      /* mobile viewport bug fix */
+      minHeight: '-webkit-fill-available',
       minWidth: '320px',
       overflow: 'hidden',
       display: 'flex',
