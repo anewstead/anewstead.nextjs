@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => {
   return {
-    root: {
+    inFrameRoot: {
       marginTop: theme.spacing(4),
       marginBottom: theme.spacing(3),
       padding: 0,
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => {
 });
 
 const InFrame = (props) => {
-  const { data } = props;
+  const { projectData } = props;
 
   const classes = useStyles();
 
@@ -36,35 +36,38 @@ const InFrame = (props) => {
     return state.app.baseContentURL;
   });
 
-  const iframeURL = `${baseContentURL}${data.view.href}`;
-  const stillURL = `${baseContentURL}${data.view.poster}`;
-  const alt = `${data.brand} ${data.project}`;
+  const iframeURL = `${baseContentURL}${projectData.view.href}`;
+  const stillURL = `${baseContentURL}${projectData.view.poster}`;
+  const alt = `${projectData.brand} ${projectData.project}`;
 
   // safelySetInnerHTML :)
-  const info = parse(DOMPurify.sanitize(data.info));
+  const info = parse(DOMPurify.sanitize(projectData.info));
 
-  let display;
+  let mainContent;
 
-  if (process.browser && data.type === 'banner' && adBlocker.isDetected()) {
+  if (
+    process.browser &&
+    projectData.type === 'banner' &&
+    adBlocker.isDetected()
+  ) {
     // because this rewrites server rendered content on page load if adblocker is detected
     // we need to tell react the change is intentional by adding suppressHydrationWarning
-    display = (
+    mainContent = (
       <>
         <Paper
           suppressHydrationWarning={true}
           style={{
-            width: `${data.view.width}px`,
-            height: `${data.view.height}px`,
+            width: `${projectData.view.width}px`,
+            height: `${projectData.view.height}px`,
           }}
           className={classes.still}
         >
           <img src={stillURL} alt={alt} />
         </Paper>
-
         <Paper
           className={classes.info}
           style={{
-            width: `${data.view.width}px`,
+            width: `${projectData.view.width}px`,
           }}
         >
           <Typography variant="body2" gutterBottom component="div">
@@ -74,12 +77,12 @@ const InFrame = (props) => {
       </>
     );
   } else {
-    display = (
+    mainContent = (
       <iframe
         title={alt}
         src={iframeURL}
-        width={data.view.width}
-        height={data.view.height}
+        width={projectData.view.width}
+        height={projectData.view.height}
         className={classes.iframe}
       />
     );
@@ -87,16 +90,16 @@ const InFrame = (props) => {
 
   return (
     <Container
-      className={classes.root}
-      style={{ width: data.view.width }}
+      className={classes.inFrameRoot}
+      style={{ width: `${projectData.view.width}px` }}
       suppressHydrationWarning={true}
     >
-      {/* DISPLAY */}
-      {display}
+      {/* MAIN CONTENT */}
+      {mainContent}
       <Paper
         className={classes.info}
         style={{
-          width: `${data.view.width}px`,
+          width: `${projectData.view.width}px`,
         }}
       >
         <Typography

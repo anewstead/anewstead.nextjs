@@ -8,7 +8,7 @@ import Carousel from '../components/carousel/carousel';
 
 const useStyles = makeStyles((theme) => {
   return {
-    galleryroot: {
+    galleryRoot: {
       marginTop: theme.spacing(4),
       marginBottom: theme.spacing(3),
     },
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => {
 });
 
 const Gallery = (props) => {
-  const { data } = props;
+  const { projectData } = props;
 
   const classes = useStyles();
 
@@ -27,20 +27,20 @@ const Gallery = (props) => {
     return state.app.baseContentURL;
   });
 
-  const alt = `${data.brand} ${data.project}`;
+  const alt = `${projectData.brand} ${projectData.project}`;
 
-  const slides = data.view.stills.map((obj, i) => {
+  const slides = projectData.view.stills.map((obj, i) => {
     const url = `${baseContentURL}img/gallery/${obj}`;
     return <img src={url} alt={`${alt} ${i}`} key={obj} />;
   });
 
   // safelySetInnerHTML :)
-  const info = parse(DOMPurify.sanitize(data.info));
+  const info = parse(DOMPurify.sanitize(projectData.info));
 
   return (
     <Container
-      className={classes.galleryroot}
-      style={{ maxWidth: data.view.width }}
+      className={classes.galleryRoot}
+      style={{ maxWidth: `${projectData.view.width}px` }}
     >
       <Carousel slides={slides} />
       <Paper className={classes.info}>

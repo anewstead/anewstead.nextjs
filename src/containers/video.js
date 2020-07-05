@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => {
   return {
-    videoroot: {
+    videoRoot: {
       marginTop: theme.spacing(4),
       marginBottom: theme.spacing(3),
     },
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => {
 });
 
 const Video = (props) => {
-  const { data } = props;
+  const { projectData } = props;
 
   const classes = useStyles();
 
@@ -28,16 +28,16 @@ const Video = (props) => {
     return state.app.baseContentURL;
   });
 
-  const videoURL = `//drive.google.com/uc?export=download&id=${data.view.href}`;
-  const posterURL = `${baseContentURL}img/poster/${data.view.poster}`;
+  const videoURL = `//drive.google.com/uc?export=download&id=${projectData.view.href}`;
+  const posterURL = `${baseContentURL}img/poster/${projectData.view.poster}`;
 
   // safelySetInnerHTML :)
-  const info = parse(DOMPurify.sanitize(data.info));
+  const info = parse(DOMPurify.sanitize(projectData.info));
 
   return (
     <Container
-      className={classes.videoroot}
-      style={{ maxWidth: data.view.width }}
+      className={classes.videoRoot}
+      style={{ maxWidth: `${projectData.view.width}px` }}
     >
       <video
         className={classes.reactPlayer}

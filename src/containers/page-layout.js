@@ -1,112 +1,64 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core';
-import { useDispatch, useSelector } from 'react-redux';
-import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
+import { Box, CssBaseline, makeStyles } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/core/styles';
+import { useSelector } from 'react-redux';
 
 import Footer from '../components/footer/footer';
-import HeaderNavDetail from '../components/header-nav-detail/header-nav-detail';
-import HeaderNavMain from '../components/header-nav-main/header-nav-main';
-import PageWrapper from './page-wrapper';
-import { NAV_CHECKBOX_CHANGE, TOGGLE_THEME } from '../lib/store';
+import HeaderNav from './header-nav';
+import themes from '../lib/themes';
 
 const useStyles = makeStyles((theme) => {
   return {
+    layoutRoot: {
+      minHeight: '100vh',
+      /* mobile viewport bug fix */
+      minHeight: '-webkit-fill-available',
+      minWidth: '320px',
+      overflow: 'hidden',
+      display: 'flex',
+      flexDirection: 'column',
+    },
     main: {
       flexGrow: 1,
       display: 'flex',
-    },
-    mainAndFooterWrapper: {
-      overflow: 'auto',
-      flexGrow: 1,
-      display: 'flex',
-      flexDirection: 'column',
     },
   };
 });
 
 const PageLayout = (props) => {
-  const { data = {}, headerNav, children } = props;
+  const { projectData = {}, headerNavType = 'main', children } = props;
 
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const router = useRouter();
+
+  const theme = useSelector((state) => {
+    return state.app.theme;
+  });
 
   const navBrand = useSelector((state) => {
     return state.app.nav.brand;
   });
 
-  const navCheckboxes = useSelector((state) => {
-    return state.app.nav.checkboxes;
-  });
-
-  const titleText = data.client || '';
-
-  let subtitleText = '';
-  if (data.brand && data.project) {
-    subtitleText = `${data.brand} - ${data.project}`;
-  } else if (data.brand) {
-    subtitleText = data.brand;
-  } else if (data.project) {
-    subtitleText = data.project;
-  }
-
-  const backClick = () => {
-    router.push('/');
-  };
-
-  const brandClick = (e) => {
-    e.stopPropagation();
-    router.push('/about');
-  };
-
-  const themeClick = () => {
-    dispatch(TOGGLE_THEME());
-  };
-
-  const checkboxChange = (e) => {
-    const payload = { id: e.target.id, checked: e.target.checked };
-    dispatch(NAV_CHECKBOX_CHANGE(payload));
-  };
-
-  let nav;
-  switch (headerNav) {
-    case 'main':
-      nav = (
-        <HeaderNavMain
-          brandName={navBrand}
-          checkboxData={navCheckboxes}
-          onBrandClick={brandClick}
-          onThemeClick={themeClick}
-          onCheckboxChange={checkboxChange}
-        />
-      );
-      break;
-
-    default:
-      nav = (
-        <HeaderNavDetail
-          brandName={navBrand}
-          onBackClick={backClick}
-          onThemeClick={themeClick}
-          titleText={titleText}
-          subtitleText={subtitleText}
-        />
-      );
-      break;
-  }
+  //https://github.com/mui-org/material-ui/tree/master/examples/nextjs
+  useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles) {
+      jssStyles.parentElement.removeChild(jssStyles);
+    }
+  }, []);
 
   return (
-    <PageWrapper data={data}>
-      {/* NAV */}
-      {nav}
-      <div className={classes.mainAndFooterWrapper}>
+    <ThemeProvider theme={themes[theme]}>
+      <CssBaseline />
+      <Box className={classes.layoutRoot}>
+        <HeaderNav projectData={projectData} navType={headerNavType} />
         <main className={classes.main}>
           {/* DISPLAY */}
           {children}
         </main>
         <Footer brand={navBrand} />
-      </div>
-    </PageWrapper>
+      </Box>
+    </ThemeProvider>
   );
 };
 
