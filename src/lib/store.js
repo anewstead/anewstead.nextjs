@@ -41,7 +41,6 @@ const slice = createSlice({
     TOGGLE_THEME: (state, action) => {
       state.theme = toggleColorTheme();
     },
-
     NAV_CHECKBOX_CHANGE: (state, action) => {
       const checkbox = state.nav.checkboxes.find((obj) => {
         return obj.id === action.payload.id;
@@ -57,11 +56,6 @@ const store = configureStore({
   },
 });
 
-export const {
-  INIT_THEME,
-  TOGGLE_THEME,
-  INIT_THUMBS,
-  NAV_CHECKBOX_CHANGE,
-} = slice.actions;
+export const { INIT_THEME, TOGGLE_THEME, NAV_CHECKBOX_CHANGE } = slice.actions;
 
 export default store;

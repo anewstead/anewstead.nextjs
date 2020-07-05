@@ -1,40 +1,45 @@
 import React from 'react';
-import ApolloClient, { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 import { Button, Card, Container, Grid, makeStyles } from '@material-ui/core';
+import { useQuery } from '@apollo/react-hooks';
 import { useSelector } from 'react-redux';
 
-import NextMuiLink from '../lib/nextMuiLink';
+import NextMuiLink from '../lib/next-mui-link';
 import PageLayout from '../containers/page-layout';
+import { initializeApollo } from '../lib/apollo-client';
 
-const apolloClient = new ApolloClient({
-  uri: 'https://anewstead-content.netlify.app/graphql',
-});
-
-export const getStaticProps = async (context) => {
-  const thumbsQuery = gql`
-    query {
-      projects {
-        id
-        client
-        brand
-        project
+const THUMB_QUERY = gql`
+  query {
+    projects {
+      id
+      client
+      brand
+      project
+      type
+      thumb
+      view {
         type
-        thumb
-        view {
-          type
-        }
       }
     }
-  `;
-  const res = await apolloClient.query({
-    query: thumbsQuery,
+  }
+`;
+
+export const getStaticProps = async (ctx) => {
+  const apolloClient = initializeApollo();
+  await apolloClient.query({
+    query: THUMB_QUERY,
   });
-  return { props: { data: res.data.projects } };
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+    },
+    unstable_revalidate: 1,
+  };
 };
 
 const useStyles = makeStyles((theme) => {
   return {
-    indexroot: {
+    indexRoot: {
       paddingTop: theme.spacing(4),
       paddingBottom: theme.spacing(3),
     },
@@ -84,7 +89,8 @@ const thumbHelper = (allThumbs, checkboxes) => {
 };
 
 const Home = (props) => {
-  const { data } = props;
+  // this initial query cached to apollo by server code above
+  const { data } = useQuery(THUMB_QUERY);
 
   const classes = useStyles();
 
@@ -92,7 +98,7 @@ const Home = (props) => {
     return state.app.nav.checkboxes;
   });
 
-  const displayThumbs = thumbHelper(data, checkboxes);
+  const displayThumbs = thumbHelper(data.projects, checkboxes);
 
   const baseContentURL = useSelector((state) => {
     return state.app.baseContentURL;
@@ -127,7 +133,7 @@ const Home = (props) => {
 
   return (
     <PageLayout headerNav="main">
-      <Container className={classes.indexroot}>
+      <Container className={classes.indexRoot}>
         <Grid container spacing={2} justify="center">
           {/* CONTENT */}
           {content}

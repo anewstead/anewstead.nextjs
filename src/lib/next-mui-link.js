@@ -25,13 +25,13 @@ import { useRouter } from 'next/router';
 const NextComposed = React.forwardRef(function NextComposed(props, ref) {
   const { as, href, ...other } = props;
 
-  /* eslint-disable jsx-a11y/anchor-has-content */
   return (
+    /* eslint-disable jsx-a11y/anchor-has-content */
     <NextLink href={href} as={as}>
       <a ref={ref} {...other} />
     </NextLink>
+    /* eslint-enable jsx-a11y/anchor-has-content */
   );
-  /* eslint-enable jsx-a11y/anchor-has-content */
 });
 
 NextComposed.propTypes = {

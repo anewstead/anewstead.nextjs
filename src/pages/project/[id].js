@@ -1,21 +1,25 @@
 import React from 'react';
-import ApolloClient, { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
+import { useRouter } from 'next/router';
 
 import Error from '../_error';
 import Gallery from '../../containers/gallery';
 import InFrame from '../../containers/in-frame';
 import PageLayout from '../../containers/page-layout';
 import Video from '../../containers/video';
+import { initializeApollo } from '../../lib/apollo-client';
 
-const apolloClient = new ApolloClient({
-  uri: 'https://anewstead-content.netlify.app/graphql',
-});
+const PROJECTS_QUERY = gql`
+  query {
+    projects {
+      id
+    }
+  }
+`;
 
-// SSR
-//==================================================
-export const getStaticProps = async (context) => {
-  const id = context.params.id;
-  const projectQuery = gql`
+const PROJECT_QUERY = (id) => {
+  return gql`
     query {
       project(id:${id}) {
         client
@@ -34,22 +38,27 @@ export const getStaticProps = async (context) => {
       }
     }
   `;
-  const res = await apolloClient.query({
-    query: projectQuery,
-  });
-  return { props: { projectData: res.data.project } };
 };
 
-export const getStaticPaths = async (props) => {
-  const projectsQuery = gql`
-    query {
-      projects {
-        id
-      }
-    }
-  `;
+// server side
+//==================================================
+export const getStaticProps = async (ctx) => {
+  const apolloClient = initializeApollo();
+  const id = ctx.params.id;
+  await apolloClient.query({
+    query: PROJECT_QUERY(id),
+  });
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+    },
+  };
+};
+
+export const getStaticPaths = async () => {
+  const apolloClient = initializeApollo();
   const res = await apolloClient.query({
-    query: projectsQuery,
+    query: PROJECTS_QUERY,
   });
   const paths = res.data.projects.map((item) => {
     return {
@@ -61,7 +70,12 @@ export const getStaticPaths = async (props) => {
 //==================================================
 
 const Project = (props) => {
-  const { projectData } = props;
+  const router = useRouter();
+  const { id } = router.query;
+
+  // this initial query cached to apollo by server code above
+  const { data } = useQuery(PROJECT_QUERY(id));
+  const projectData = data.project;
 
   let content = <></>;
 
