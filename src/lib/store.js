@@ -7,7 +7,7 @@ import { detectColorTheme, toggleColorTheme } from './themes';
 const slice = createSlice({
   name: 'app',
   initialState: {
-    baseContentURL: 'https://anewstead-content.netlify.app/',
+    baseContentURL: 'https://anewstead-content.netlify.app',
     theme: 'light',
     nav: {
       brand: 'Andrew Newstead',

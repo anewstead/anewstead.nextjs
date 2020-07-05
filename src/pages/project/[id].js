@@ -34,6 +34,7 @@ const PROJECT_QUERY = (id) => {
           href
           poster
           stills
+          adblock
         }
       }
     }

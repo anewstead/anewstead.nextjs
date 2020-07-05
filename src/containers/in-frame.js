@@ -37,7 +37,7 @@ const InFrame = (props) => {
   });
 
   const iframeURL = `${baseContentURL}${projectData.view.href}`;
-  const stillURL = `${baseContentURL}${projectData.view.poster}`;
+  const stillURL = `${baseContentURL}${projectData.view.adblock}`;
   const alt = `${projectData.brand} ${projectData.project}`;
 
   // safelySetInnerHTML :)

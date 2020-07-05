@@ -29,9 +29,9 @@ const Gallery = (props) => {
 
   const alt = `${projectData.brand} ${projectData.project}`;
 
-  const slides = projectData.view.stills.map((obj, i) => {
-    const url = `${baseContentURL}img/gallery/${obj}`;
-    return <img src={url} alt={`${alt} ${i}`} key={obj} />;
+  const slides = projectData.view.stills.map((item, i) => {
+    const url = `${baseContentURL}${item}`;
+    return <img src={url} alt={`${alt} ${i}`} key={item} />;
   });
 
   // safelySetInnerHTML :)

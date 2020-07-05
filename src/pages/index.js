@@ -109,7 +109,7 @@ const Home = (props) => {
   if (displayThumbs) {
     if (displayThumbs.length) {
       content = displayThumbs.map((obj, i) => {
-        const url = `${baseContentURL}img/thumbs/${obj.thumb}`;
+        const url = `${baseContentURL}${obj.thumb}`;
         const alt = `${obj.client} - ${obj.brand} - ${obj.project}`;
         return (
           <Grid item key={i} className={classes.gridItem}>

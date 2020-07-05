@@ -29,7 +29,7 @@ const Video = (props) => {
   });
 
   const videoURL = `//drive.google.com/uc?export=download&id=${projectData.view.href}`;
-  const posterURL = `${baseContentURL}img/poster/${projectData.view.poster}`;
+  const posterURL = `${baseContentURL}${projectData.view.poster}`;
 
   // safelySetInnerHTML :)
   const info = parse(DOMPurify.sanitize(projectData.info));
