@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-const HeaderNavMain = (props) => {
+const HeaderNavThumbs = (props) => {
   const {
     brandName,
     checkboxData,
@@ -203,4 +203,4 @@ const HeaderNavMain = (props) => {
   );
 };
 
-export default HeaderNavMain;
+export default HeaderNavThumbs;

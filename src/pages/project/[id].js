@@ -77,6 +77,17 @@ const Project = (props) => {
   const { data } = useQuery(PROJECT_QUERY(id));
   const projectData = data.project;
 
+  const titleText = projectData.client;
+
+  let subtitleText = '';
+  if (projectData.brand && projectData.project) {
+    subtitleText = `${projectData.brand} - ${projectData.project}`;
+  } else if (projectData.brand) {
+    subtitleText = projectData.brand;
+  } else if (projectData.project) {
+    subtitleText = projectData.project;
+  }
+
   let content = <></>;
 
   switch (projectData.view.type) {
@@ -98,7 +109,11 @@ const Project = (props) => {
   }
 
   return (
-    <PageLayout headerNavType="detail" projectData={projectData}>
+    <PageLayout
+      headerNavType="detail"
+      headerNavTitle={titleText}
+      headerNavSubtitle={subtitleText}
+    >
       {/* CONTENT */}
       {content}
     </PageLayout>

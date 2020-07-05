@@ -132,7 +132,7 @@ const Home = (props) => {
   }
 
   return (
-    <PageLayout headerNav="main">
+    <PageLayout headerNavType="thumbs">
       <Container className={classes.indexRoot}>
         <Grid container spacing={2} justify="center">
           {/* CONTENT */}

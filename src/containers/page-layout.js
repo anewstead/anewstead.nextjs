@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => {
 });
 
 const PageLayout = (props) => {
-  const { projectData = {}, headerNavType = 'main', children } = props;
+  const { headerNavType, headerNavTitle, headerNavSubtitle, children } = props;
 
   const classes = useStyles();
 
@@ -51,7 +51,11 @@ const PageLayout = (props) => {
     <ThemeProvider theme={themes[theme]}>
       <CssBaseline />
       <Box className={classes.layoutRoot}>
-        <HeaderNav projectData={projectData} navType={headerNavType} />
+        <HeaderNav
+          navType={headerNavType}
+          titleText={headerNavTitle}
+          subtitleText={headerNavSubtitle}
+        />
         <main className={classes.main}>
           {/* DISPLAY */}
           {children}

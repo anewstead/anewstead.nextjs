@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
 import HeaderNavDetail from '../components/header-nav-detail/header-nav-detail';
-import HeaderNavMain from '../components/header-nav-main/header-nav-main';
+import HeaderNavThumbs from '../components/header-nav-thumbs/header-nav-thumbs';
 import { NAV_CHECKBOX_CHANGE, TOGGLE_THEME } from '../lib/store';
 
 const HeaderNav = (props) => {
-  const { projectData = {}, navType = 'main' } = props;
+  const { navType, titleText, subtitleText } = props;
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -19,17 +19,6 @@ const HeaderNav = (props) => {
   const navCheckboxes = useSelector((state) => {
     return state.app.nav.checkboxes;
   });
-
-  const titleText = projectData.client;
-
-  let subtitleText = '';
-  if (projectData.brand && projectData.project) {
-    subtitleText = `${projectData.brand} - ${projectData.project}`;
-  } else if (projectData.brand) {
-    subtitleText = projectData.brand;
-  } else if (projectData.project) {
-    subtitleText = projectData.project;
-  }
 
   const backClick = () => {
     router.push('/');
@@ -51,9 +40,9 @@ const HeaderNav = (props) => {
 
   let nav;
   switch (navType) {
-    case 'main':
+    case 'thumbs':
       nav = (
-        <HeaderNavMain
+        <HeaderNavThumbs
           brandName={navBrand}
           checkboxData={navCheckboxes}
           onBrandClick={brandClick}
