@@ -2,12 +2,12 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SettingsBrightnessIcon from '@material-ui/icons/SettingsBrightness';
 import React, { useState } from 'react';
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   AppBar,
   Button,
   Checkbox,
-  ExpansionPanel,
-  ExpansionPanelDetails,
-  ExpansionPanelSummary,
   FormControlLabel,
   FormGroup,
   Grid,
@@ -130,13 +130,13 @@ const HeaderNavThumbs = (props) => {
           <Grid container justify="space-between" className={classes.gridRoot}>
             <Hidden smUp>
               <Grid item xs={10}>
-                <ExpansionPanel
+                <Accordion
                   square
                   expanded={expanded === 'panel1'}
                   onChange={expansionPanelOnChange('panel1')}
                   className={classes.expansionPanel}
                 >
-                  <ExpansionPanelSummary
+                  <AccordionSummary
                     classes={{
                       root: classes.expansionPanelSummaryRoot,
                       content: classes.expansionPanelSummaryContent,
@@ -158,16 +158,16 @@ const HeaderNavThumbs = (props) => {
                       {/* BRAND */}
                       {brand}
                     </Grid>
-                  </ExpansionPanelSummary>
-                  <ExpansionPanelDetails>
+                  </AccordionSummary>
+                  <AccordionDetails>
                     <Grid item xs={12}>
                       <FormGroup>
                         {/* CHECKBOXES */}
                         {checkboxes}
                       </FormGroup>
                     </Grid>
-                  </ExpansionPanelDetails>
-                </ExpansionPanel>
+                  </AccordionDetails>
+                </Accordion>
               </Grid>
             </Hidden>
 
