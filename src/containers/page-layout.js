@@ -3,7 +3,7 @@ import { Box, CssBaseline, makeStyles } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
 
-import Footer from '../components/footer/footer';
+import Footer from '../components/footer';
 import HeaderNav from './header-nav';
 import themes from '../lib/themes';
 

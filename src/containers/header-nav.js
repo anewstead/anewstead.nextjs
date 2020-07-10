@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 
-import HeaderNavDetail from '../components/header-nav-detail/header-nav-detail';
-import HeaderNavThumbs from '../components/header-nav-thumbs/header-nav-thumbs';
+import HeaderNavDetail from '../components/header-nav-detail';
+import HeaderNavThumbs from '../components/header-nav-thumbs';
 import { NAV_CHECKBOX_CHANGE, TOGGLE_THEME } from '../lib/store';
 
 const HeaderNav = (props) => {

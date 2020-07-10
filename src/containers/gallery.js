@@ -4,7 +4,7 @@ import parse from 'html-react-parser';
 import { Container, Paper, Typography, makeStyles } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 
-import Carousel from '../components/carousel/carousel';
+import Carousel from '../components/carousel';
 
 const useStyles = makeStyles((theme) => {
   return {
