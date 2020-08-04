@@ -38,7 +38,7 @@ const About = () => {
             <p>Frontend/UI/UX developer</p>
             <p>
               This portfolio shows some of the productions I have had
-              significant hand on involvement either as sole developer, lead
+              significant hands on involvement either as sole developer, lead
               developer or as a senior team member.
             </p>
             <p>

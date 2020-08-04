@@ -33,12 +33,18 @@ const globalOverrides = (theme) => {
     MuiCssBaseline: {
       '@global': {
         html: {
+          height: '100%',
           fontSmoothing: 'auto',
-
           fontSize: 16,
           [theme.breakpoints.up('sm')]: {
             fontSize: 18,
           },
+        },
+        body: {
+          height: '100%',
+        },
+        '#__next': {
+          height: '100%',
         },
         img: {
           display: 'block',
