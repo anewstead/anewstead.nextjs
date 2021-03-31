@@ -6,7 +6,7 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
-import { Link as NextLink } from 'next/link';
+import { Link } from 'next/link';
 
 import PageLayout from '../containers/page-layout';
 
@@ -39,7 +39,7 @@ const Error = ({ statusCode }) => {
           </Typography>
 
           <Button
-            component={NextLink}
+            component={Link}
             href="/"
             className={classes.button}
             size="large"

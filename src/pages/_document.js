@@ -15,7 +15,6 @@ export default class MyDocument extends Document {
           <meta name="format-detection" content="telephone=no" />
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="theme-color" content="#000000" />
-          <meta name="viewport" content="width=device-width,initial-scale=1" />
 
           <link rel="manifest" href="/manifest.json" />
           <link rel="icon" href="/favicon.ico" />

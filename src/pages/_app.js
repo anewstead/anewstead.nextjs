@@ -20,6 +20,7 @@ const App = (props) => {
   return (
     <Provider store={store}>
       <Head>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
         <title>Andrew Newstead</title>
       </Head>
       <ApolloProvider client={apolloClient}>
