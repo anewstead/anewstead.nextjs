@@ -2,6 +2,7 @@ import DOMPurify from 'isomorphic-dompurify';
 import React from 'react';
 import parse from 'html-react-parser';
 import { Container, Paper, Typography, makeStyles } from '@material-ui/core';
+import { Image } from 'next';
 import { useSelector } from 'react-redux';
 
 import Carousel from '../components/carousel';
@@ -31,7 +32,7 @@ const Gallery = (props) => {
 
   const slides = projectData.view.stills.map((item, i) => {
     const url = `${baseContentURL}${item}`;
-    return <img src={url} alt={`${alt} ${i}`} key={item} />;
+    return <Image src={url} alt={`${alt} ${i}`} key={item} />;
   });
 
   // safelySetInnerHTML :)

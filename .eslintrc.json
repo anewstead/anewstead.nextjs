@@ -1,5 +1,5 @@
 {
-  "extends": ["react-app", "eslint-config-prettier"],
+  "extends": ["next/core-web-vitals", "eslint-config-prettier"],
   "plugins": ["react-hooks"],
   "rules": {
     "arrow-body-style": ["error", "always"],

@@ -1,6 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { Button, Card, Container, Grid, makeStyles } from '@material-ui/core';
+import { Image } from 'next';
 import { useQuery } from '@apollo/react-hooks';
 import { useSelector } from 'react-redux';
 
@@ -120,7 +121,7 @@ const Home = (props) => {
                 as={`/project/${obj.id}`}
                 className={classes.gridItemButton}
               >
-                <img src={url} alt={alt} />
+                <Image src={url} alt={alt} />
               </Button>
             </Card>
           </Grid>
