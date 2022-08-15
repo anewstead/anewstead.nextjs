@@ -1,9 +1,9 @@
 import DOMPurify from 'isomorphic-dompurify';
+import Image from 'next/image';
 import React from 'react';
 import adBlocker from 'just-detect-adblock';
 import parse from 'html-react-parser';
 import { Container, Paper, Typography, makeStyles } from '@material-ui/core';
-import { Image } from 'next';
 import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => {
@@ -63,7 +63,12 @@ const InFrame = (props) => {
           }}
           className={classes.still}
         >
-          <Image src={stillURL} alt={alt} />
+          <Image
+            src={stillURL}
+            alt={alt}
+            width={projectData.view.width}
+            height={projectData.view.height}
+          />
         </Paper>
         <Paper
           className={classes.info}
