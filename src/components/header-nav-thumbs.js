@@ -127,7 +127,11 @@ const HeaderNavThumbs = (props) => {
     <nav>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar variant={isSM ? 'dense' : 'regular'}>
-          <Grid container justify="space-between" className={classes.gridRoot}>
+          <Grid
+            container
+            justifyContent="space-between"
+            className={classes.gridRoot}
+          >
             <Hidden smUp>
               <Grid item xs={10}>
                 <Accordion
@@ -152,7 +156,7 @@ const HeaderNavThumbs = (props) => {
                       item
                       xs
                       container
-                      justify="center"
+                      justifyContent="center"
                       className={classes.gridBrand}
                     >
                       {/* BRAND */}
@@ -190,7 +194,7 @@ const HeaderNavThumbs = (props) => {
               sm={1}
               md
               container
-              justify="flex-start"
+              justifyContent="flex-start"
               className={classes.gridToggle}
             >
               {/* TOGGLE BUTTON */}

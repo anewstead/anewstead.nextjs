@@ -7,4 +7,7 @@ module.exports = withPWA({
     // disable: process.env.NODE_ENV === 'development',
     // register: false,
   },
+  images: {
+    domains: ['anewstead-content.netlify.app'],
+  },
 });

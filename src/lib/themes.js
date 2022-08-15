@@ -1,5 +1,5 @@
 import { blueGrey, grey } from '@material-ui/core/colors';
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
 // remember preference for next time user visits
 const storeColorTheme = (themeName) => {
@@ -59,7 +59,7 @@ const globalOverrides = (theme) => {
 
 const themes = {
   light: responsiveFontSizes(
-    createMuiTheme({
+    createTheme({
       palette: {
         type: 'light',
         background: {
@@ -71,7 +71,7 @@ const themes = {
     { breakpoints: ['xs', 'sm'], factor: 2 }
   ),
   dark: responsiveFontSizes(
-    createMuiTheme({
+    createTheme({
       palette: {
         type: 'dark',
         background: {
