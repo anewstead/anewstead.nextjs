@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
+    "@babel/eslint-parser": "^7.18.9",
     "@emotion/cache": "^11.10.1",
     "@emotion/react": "^11.10.0",
     "@emotion/server": "^11.10.0",
@@ -26,7 +27,6 @@
     "@reduxjs/toolkit": "^1.8.4",
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.33.1",
-    "babel-eslint": "^10.1.0",
     "eslint": "^8.22.0",
     "eslint-config-next": "^12.2.5",
     "eslint-config-prettier": "^8.5.0",
