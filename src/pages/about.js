@@ -1,9 +1,10 @@
 import React from 'react';
-import { Container, Paper, Typography, makeStyles } from '@material-ui/core';
+import { Container, Paper, Typography } from '@mui/material';
+import { makeStyles } from 'tss-react/mui';
 
 import PageLayout from '../containers/page-layout';
 
-const useStyles = makeStyles((theme) => {
+const useStyles = makeStyles()((theme) => {
   return {
     aboutroot: {
       marginTop: theme.spacing(4),
@@ -15,7 +16,7 @@ const useStyles = makeStyles((theme) => {
 });
 
 const About = () => {
-  const classes = useStyles();
+  const { classes } = useStyles();
 
   const data = {
     brand: 'Andrew Newstead',

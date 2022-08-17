@@ -15,7 +15,7 @@ https://github.com/mui-org/material-ui/blob/master/examples/nextjs/src/Link.js
 </ListItem>
  */
 
-import MuiLink from '@material-ui/core/Link';
+import MuiLink from '@mui/material/Link';
 import NextLink from 'next/link';
 import PropTypes from 'prop-types';
 import React from 'react';

@@ -1,16 +1,11 @@
 import React from 'react';
-import {
-  Button,
-  Container,
-  Paper,
-  Typography,
-  makeStyles,
-} from '@material-ui/core';
+import { Button, Container, Paper, Typography } from '@mui/material';
 import { Link as NextLink } from 'next/link';
+import { makeStyles } from 'tss-react/mui';
 
 import PageLayout from '../containers/page-layout';
 
-const useStyles = makeStyles((theme) => {
+const useStyles = makeStyles()((theme) => {
   return {
     f04root: {
       marginTop: theme.spacing(4),
@@ -25,7 +20,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 const NoMatch = (props) => {
-  const classes = useStyles();
+  const { classes } = useStyles();
 
   return (
     <PageLayout>

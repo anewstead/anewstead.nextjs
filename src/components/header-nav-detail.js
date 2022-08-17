@@ -1,6 +1,6 @@
-import HomeIcon from '@material-ui/icons/Home';
+import HomeIcon from '@mui/icons-material/Home';
 import React from 'react';
-import SettingsBrightnessIcon from '@material-ui/icons/SettingsBrightness';
+import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
 import {
   AppBar,
   Grid,
@@ -8,10 +8,11 @@ import {
   Toolbar,
   Typography,
   useMediaQuery,
-} from '@material-ui/core';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+} from '@mui/material';
+import { makeStyles } from 'tss-react/mui';
+import { useTheme } from '@mui/material/styles';
 
-const useStyles = makeStyles((theme) => {
+const useStyles = makeStyles()((theme) => {
   return {
     appBar: {
       backgroundColor: theme.palette.background.paper,
@@ -50,18 +51,23 @@ const useStyles = makeStyles((theme) => {
 const HeaderNavDetail = (props) => {
   const { onThemeClick, onBackClick, titleText, subtitleText } = props;
 
-  const classes = useStyles();
+  const { classes } = useStyles();
   const theme = useTheme();
-  const isXS = useMediaQuery(theme.breakpoints.down('xs'));
+  const isXS = useMediaQuery(theme.breakpoints.down('sm'));
 
   const backButton = (
-    <IconButton edge="end" aria-label="back" onClick={onBackClick}>
+    <IconButton edge="end" aria-label="back" onClick={onBackClick} size="large">
       <HomeIcon fontSize="large" />
     </IconButton>
   );
 
   const toggleButton = (
-    <IconButton edge="start" aria-label="theme" onClick={onThemeClick}>
+    <IconButton
+      edge="start"
+      aria-label="theme"
+      onClick={onThemeClick}
+      size="large"
+    >
       <SettingsBrightnessIcon fontSize="large" />
     </IconButton>
   );
@@ -84,13 +90,10 @@ const HeaderNavDetail = (props) => {
         <Toolbar variant={isXS ? 'dense' : 'regular'}>
           <Grid container className={classes.gridRoot}>
             <Grid item xs={1} className={classes.gridBack}>
-              {/* BACK BUTTON */}
               {backButton}
             </Grid>
             <Grid item xs={11} sm={10} className={classes.gridTitle}>
-              {/* TITLE */}
               {title}
-              {/* SUBTITLE */}
               {subtitle}
             </Grid>
 
@@ -98,7 +101,6 @@ const HeaderNavDetail = (props) => {
               ''
             ) : (
               <Grid item xs={1} className={classes.gridToggle}>
-                {/* TOGGLE BUTTON */}
                 {toggleButton}
               </Grid>
             )}

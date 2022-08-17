@@ -1,13 +1,14 @@
 import DOMPurify from 'isomorphic-dompurify';
-import Image from 'next/image';
+// import Image from 'next/image';
 import React from 'react';
 import parse from 'html-react-parser';
-import { Container, Paper, Typography, makeStyles } from '@material-ui/core';
+import { Container, Paper, Typography } from '@mui/material';
+import { makeStyles } from 'tss-react/mui';
 import { useSelector } from 'react-redux';
 
 import Carousel from '../components/carousel';
 
-const useStyles = makeStyles((theme) => {
+const useStyles = makeStyles()((theme) => {
   return {
     galleryRoot: {
       marginTop: theme.spacing(4),
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => {
 const Gallery = (props) => {
   const { projectData } = props;
 
-  const classes = useStyles();
+  const { classes } = useStyles();
 
   const baseContentURL = useSelector((state) => {
     return state.app.baseContentURL;
@@ -32,6 +33,7 @@ const Gallery = (props) => {
 
   const slides = projectData.view.stills.map((item, i) => {
     const url = `${baseContentURL}${item}`;
+    // eslint-disable-next-line @next/next/no-img-element
     return <img src={url} alt={`${alt} ${i}`} key={item} />;
   });
 
@@ -51,7 +53,6 @@ const Gallery = (props) => {
           component="div"
           align="justify"
         >
-          {/* INFO */}
           {info}
         </Typography>
       </Paper>

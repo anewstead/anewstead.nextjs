@@ -1,5 +1,5 @@
 import React from 'react';
-import gql from 'graphql-tag';
+import { gql } from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
 
@@ -115,7 +115,6 @@ const Project = (props) => {
       headerNavTitle={titleText}
       headerNavSubtitle={subtitleText}
     >
-      {/* CONTENT */}
       {content}
     </PageLayout>
   );

@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
-import { Box, CssBaseline, makeStyles } from '@material-ui/core';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { Box, CssBaseline } from '@mui/material';
+import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
+import { makeStyles } from 'tss-react/mui';
 import { useSelector } from 'react-redux';
 
 import Footer from '../components/footer';
 import HeaderNav from './header-nav';
 import themes from '../lib/themes';
 
-const useStyles = makeStyles((theme) => {
+const useStyles = makeStyles()((theme) => {
   return {
     layoutRoot: {
       /*
@@ -40,7 +41,7 @@ const useStyles = makeStyles((theme) => {
 const PageLayout = (props) => {
   const { headerNavType, headerNavTitle, headerNavSubtitle, children } = props;
 
-  const classes = useStyles();
+  const { classes } = useStyles();
 
   const theme = useSelector((state) => {
     return state.app.theme;
@@ -60,21 +61,20 @@ const PageLayout = (props) => {
   }, []);
 
   return (
-    <ThemeProvider theme={themes[theme]}>
-      <CssBaseline />
-      <Box className={classes.layoutRoot}>
-        <HeaderNav
-          navType={headerNavType}
-          titleText={headerNavTitle}
-          subtitleText={headerNavSubtitle}
-        />
-        <main className={classes.main}>
-          {/* DISPLAY */}
-          {children}
-        </main>
-        <Footer brand={navBrand} />
-      </Box>
-    </ThemeProvider>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={themes[theme]}>
+        <CssBaseline />
+        <Box className={classes.layoutRoot}>
+          <HeaderNav
+            navType={headerNavType}
+            titleText={headerNavTitle}
+            subtitleText={headerNavSubtitle}
+          />
+          <main className={classes.main}>{children}</main>
+          <Footer brand={navBrand} />
+        </Box>
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
 };
 
