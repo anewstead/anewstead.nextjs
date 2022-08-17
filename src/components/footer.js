@@ -1,7 +1,8 @@
 import React from 'react';
-import { Container, makeStyles } from '@material-ui/core';
+import { Container } from '@mui/material';
+import { makeStyles } from 'tss-react/mui';
 
-const useStyles = makeStyles((theme) => {
+const useStyles = makeStyles()((theme) => {
   return {
     footer: {
       backgroundColor: theme.palette.background.paper,
@@ -16,15 +17,12 @@ const useStyles = makeStyles((theme) => {
 const Footer = (props) => {
   const { brand } = props;
 
-  const classes = useStyles();
+  const { classes } = useStyles();
   const copyright = `© ${brand || 'Brand'} ${new Date().getFullYear()}`;
   return (
     <footer className={classes.footer}>
       <Container>
-        <p>
-          {/* COPYRIGHT */}
-          {copyright}
-        </p>
+        <p>{copyright}</p>
       </Container>
     </footer>
   );

@@ -1,10 +1,11 @@
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import React from 'react';
 import Slider from 'react-slick';
-import { IconButton, makeStyles, useTheme } from '@material-ui/core';
+import { IconButton, useTheme } from '@mui/material';
 import { isMobile } from 'react-device-detect';
+import { makeStyles } from 'tss-react/mui';
 
-const useStyles = makeStyles((theme) => {
+const useStyles = makeStyles()((theme) => {
   return {
     root: {
       position: 'relative',
@@ -80,7 +81,7 @@ const useStyles = makeStyles((theme) => {
       '&:hover, &:focus-within': {
         opacity: `${isMobile ? '0' : '1'}`,
       },
-      '& div:first-child': {
+      '& div:first-of-type': {
         position: 'absolute',
         backgroundColor: theme.palette.background.default,
         top: '0',
@@ -110,7 +111,7 @@ const useStyles = makeStyles((theme) => {
 
 const PrevNextButton = (props) => {
   const { direction, onClick } = props;
-  const classes = useStyles();
+  const { classes } = useStyles();
   return (
     <div
       className={`${classes.prevNextButton} ${
@@ -119,7 +120,7 @@ const PrevNextButton = (props) => {
       onClick={onClick}
     >
       <div />
-      <IconButton aria-label={`${direction}`}>
+      <IconButton aria-label={`${direction}`} size="large">
         <ArrowBackIcon fontSize="large" />
       </IconButton>
     </div>
@@ -130,7 +131,7 @@ const PrevNextButton = (props) => {
 const Carousel = (props) => {
   const { slides, settings } = props;
   const theme = useTheme();
-  const classes = useStyles();
+  const { classes } = useStyles();
 
   const defaults = {
     dots: true,
@@ -151,7 +152,6 @@ const Carousel = (props) => {
   return (
     <div className={classes.root} style={{ marginBottom: bmargin }}>
       <Slider {...config} className={classes.slider}>
-        {/* SLIDES */}
         {slides}
       </Slider>
     </div>

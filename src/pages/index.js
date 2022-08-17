@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import React from 'react';
-import gql from 'graphql-tag';
-import { Button, Card, Container, Grid, makeStyles } from '@material-ui/core';
+import { Button, Card, Container, Grid, Link } from '@mui/material';
+import { gql } from 'graphql-tag';
+import { makeStyles } from 'tss-react/mui';
 import { useQuery } from '@apollo/react-hooks';
 import { useSelector } from 'react-redux';
 
@@ -38,7 +39,7 @@ export const getStaticProps = async (ctx) => {
   };
 };
 
-const useStyles = makeStyles((theme) => {
+const useStyles = makeStyles()((theme) => {
   return {
     indexRoot: {
       paddingTop: theme.spacing(4),
@@ -93,7 +94,7 @@ const Home = (props) => {
   // this initial query cached to apollo by server code above
   const { data } = useQuery(THUMB_QUERY);
 
-  const classes = useStyles();
+  const { classes } = useStyles();
 
   const checkboxes = useSelector((state) => {
     return state.app.nav.checkboxes;
@@ -117,8 +118,7 @@ const Home = (props) => {
             <Card elevation={6}>
               <Button
                 component={NextMuiLink}
-                href={`/project/[id]`}
-                as={`/project/${obj.id}`}
+                href={`/project/${obj.id}`}
                 className={classes.gridItemButton}
               >
                 <Image src={url} alt={alt} width={128} height={128} />
@@ -136,7 +136,6 @@ const Home = (props) => {
     <PageLayout headerNavType="thumbs">
       <Container className={classes.indexRoot}>
         <Grid container spacing={2} justifyContent="center">
-          {/* CONTENT */}
           {content}
         </Grid>
       </Container>

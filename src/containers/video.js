@@ -1,10 +1,11 @@
 import DOMPurify from 'isomorphic-dompurify';
 import React from 'react';
 import parse from 'html-react-parser';
-import { Container, Paper, Typography, makeStyles } from '@material-ui/core';
+import { Container, Paper, Typography } from '@mui/material';
+import { makeStyles } from 'tss-react/mui';
 import { useSelector } from 'react-redux';
 
-const useStyles = makeStyles((theme) => {
+const useStyles = makeStyles()((theme) => {
   return {
     videoRoot: {
       marginTop: theme.spacing(4),
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => {
 const Video = (props) => {
   const { projectData } = props;
 
-  const classes = useStyles();
+  const { classes } = useStyles();
 
   const baseContentURL = useSelector((state) => {
     return state.app.baseContentURL;
@@ -58,7 +59,6 @@ const Video = (props) => {
           component="div"
           align="justify"
         >
-          {/* INFO */}
           {info}
         </Typography>
       </Paper>

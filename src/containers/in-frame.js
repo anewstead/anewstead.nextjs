@@ -3,10 +3,11 @@ import Image from 'next/image';
 import React from 'react';
 import adBlocker from 'just-detect-adblock';
 import parse from 'html-react-parser';
-import { Container, Paper, Typography, makeStyles } from '@material-ui/core';
+import { Container, Paper, Typography } from '@mui/material';
+import { makeStyles } from 'tss-react/mui';
 import { useSelector } from 'react-redux';
 
-const useStyles = makeStyles((theme) => {
+const useStyles = makeStyles()((theme) => {
   return {
     inFrameRoot: {
       marginTop: theme.spacing(4),
@@ -31,7 +32,7 @@ const useStyles = makeStyles((theme) => {
 const InFrame = (props) => {
   const { projectData } = props;
 
-  const classes = useStyles();
+  const { classes } = useStyles();
 
   const baseContentURL = useSelector((state) => {
     return state.app.baseContentURL;
@@ -100,7 +101,6 @@ const InFrame = (props) => {
       style={{ width: `${projectData.view.width}px` }}
       suppressHydrationWarning={true}
     >
-      {/* MAIN CONTENT */}
       {mainContent}
       <Paper
         className={classes.info}
@@ -114,7 +114,6 @@ const InFrame = (props) => {
           component="div"
           align="justify"
         >
-          {/* INFO */}
           {info}
         </Typography>
       </Paper>

@@ -1,5 +1,5 @@
-import MenuIcon from '@material-ui/icons/Menu';
-import SettingsBrightnessIcon from '@material-ui/icons/SettingsBrightness';
+import MenuIcon from '@mui/icons-material/Menu';
+import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
 import React, { useState } from 'react';
 import {
   Accordion,
@@ -16,10 +16,11 @@ import {
   Toolbar,
   Typography,
   useMediaQuery,
-} from '@material-ui/core';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+} from '@mui/material';
+import { makeStyles } from 'tss-react/mui';
+import { useTheme } from '@mui/material/styles';
 
-const useStyles = makeStyles((theme) => {
+const useStyles = makeStyles()((theme) => {
   return {
     appBar: {
       backgroundColor: theme.palette.background.paper,
@@ -71,9 +72,9 @@ const HeaderNavThumbs = (props) => {
     onCheckboxChange,
   } = props;
 
-  const classes = useStyles();
+  const { classes } = useStyles();
   const theme = useTheme();
-  const isSM = useMediaQuery(theme.breakpoints.down('sm'));
+  const isSM = useMediaQuery(theme.breakpoints.down('md'));
 
   const checkboxes = checkboxData.map((cb, i) => {
     return (
@@ -105,13 +106,23 @@ const HeaderNavThumbs = (props) => {
   );
 
   const menuButton = (
-    <IconButton edge="start" className={classes.menuButton} aria-label="menu">
+    <IconButton
+      edge="start"
+      className={classes.menuButton}
+      aria-label="menu"
+      size="large"
+    >
       <MenuIcon fontSize="large" />
     </IconButton>
   );
 
   const toggleButton = (
-    <IconButton edge="start" aria-label="theme" onClick={onThemeClick}>
+    <IconButton
+      edge="start"
+      aria-label="theme"
+      onClick={onThemeClick}
+      size="large"
+    >
       <SettingsBrightnessIcon fontSize="large" />
     </IconButton>
   );
@@ -148,10 +159,7 @@ const HeaderNavThumbs = (props) => {
                     aria-controls="panel1d-content"
                     id="panel1d-header"
                   >
-                    <Grid item>
-                      {/* MENU BUTTON */}
-                      {menuButton}
-                    </Grid>
+                    <Grid item>{menuButton}</Grid>
                     <Grid
                       item
                       xs
@@ -159,32 +167,24 @@ const HeaderNavThumbs = (props) => {
                       justifyContent="center"
                       className={classes.gridBrand}
                     >
-                      {/* BRAND */}
                       {brand}
                     </Grid>
                   </AccordionSummary>
                   <AccordionDetails>
                     <Grid item xs={12}>
-                      <FormGroup>
-                        {/* CHECKBOXES */}
-                        {checkboxes}
-                      </FormGroup>
+                      <FormGroup>{checkboxes}</FormGroup>
                     </Grid>
                   </AccordionDetails>
                 </Accordion>
               </Grid>
             </Hidden>
 
-            <Hidden xsDown>
+            <Hidden smDown>
               <Grid item sm={3} md className={classes.gridBrand}>
-                {/* BRAND */}
                 {brand}
               </Grid>
               <Grid item sm md={5} className={classes.gridCheckboxesOpen}>
-                <FormGroup row>
-                  {/* CHECKBOXES */}
-                  {checkboxes}
-                </FormGroup>
+                <FormGroup row>{checkboxes}</FormGroup>
               </Grid>
             </Hidden>
 
@@ -197,7 +197,6 @@ const HeaderNavThumbs = (props) => {
               justifyContent="flex-start"
               className={classes.gridToggle}
             >
-              {/* TOGGLE BUTTON */}
               {toggleButton}
             </Grid>
           </Grid>
