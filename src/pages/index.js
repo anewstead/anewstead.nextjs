@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import { Button, Card, Container, Grid, Link } from '@mui/material';
-import { gql } from 'graphql-tag';
+import { gql } from '@apollo/client';
 import { makeStyles } from 'tss-react/mui';
 import { useQuery } from '@apollo/react-hooks';
 import { useSelector } from 'react-redux';

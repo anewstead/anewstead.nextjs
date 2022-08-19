@@ -1,5 +1,10 @@
 {
-  "extends": ["stylelint-config-standard", "stylelint-config-styled-components", "stylelint-config-prettier"],
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-styled-components",
+    "stylelint-config-prettier"
+  ],
+  "customSyntax": "postcss-jsx",
   "rules": {
     "at-rule-no-unknown": [
       true,
@@ -23,6 +28,8 @@
         ]
       }
     ],
-    "declaration-empty-line-before": "never"
+    "declaration-empty-line-before": "never",
+    "no-empty-source": null,
+    "no-missing-end-of-source-newline": null
   }
 }
