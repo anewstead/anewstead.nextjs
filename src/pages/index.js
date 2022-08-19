@@ -6,7 +6,7 @@ import { makeStyles } from 'tss-react/mui';
 import { useQuery } from '@apollo/react-hooks';
 import { useSelector } from 'react-redux';
 
-import NextMuiLink from '../lib/next-mui-link';
+import NextLinkComposed from '../lib/next-mui-link';
 import PageLayout from '../containers/page-layout';
 import { initializeApollo } from '../lib/apollo-client';
 
@@ -117,7 +117,7 @@ const Home = (props) => {
           <Grid item key={i} className={classes.gridItem}>
             <Card elevation={6}>
               <Button
-                component={NextMuiLink}
+                component={NextLinkComposed}
                 href={`/project/${obj.id}`}
                 className={classes.gridItemButton}
               >
