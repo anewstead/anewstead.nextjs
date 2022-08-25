@@ -5,16 +5,13 @@
 
 /** @type {import('next').NextConfig} */
 
-const withPWA = require('next-pwa');
-const isDev = process.env.NODE_ENV === 'development';
-
-const pwa = {
+const withPWA = require('next-pwa')({
   dest: 'public',
   disable: true,
   register: false,
-};
+});
 
-const next = {
+const nextConfig = {
   images: {
     domains: ['anewstead-content.netlify.app'],
   },
@@ -22,4 +19,4 @@ const next = {
   swcMinify: true,
 };
 
-module.exports = isDev ? next : withPWA({ pwa, ...next });
+module.exports = withPWA(nextConfig);
