@@ -1,14 +1,14 @@
-import Image from 'next/image';
-import React from 'react';
-import { Button, Card, Container, Grid, Link } from '@mui/material';
-import { gql } from '@apollo/client';
-import { makeStyles } from 'tss-react/mui';
-import { useQuery } from '@apollo/react-hooks';
-import { useSelector } from 'react-redux';
+import { gql } from "@apollo/client";
+import { useQuery } from "@apollo/react-hooks";
+import { Button, Card, Container, Grid, Link } from "@mui/material";
+import Image from "next/image";
+import React from "react";
+import { useSelector } from "react-redux";
+import { makeStyles } from "tss-react/mui";
 
-import NextLinkComposed from '../lib/next-mui-link';
-import PageLayout from '../containers/page-layout';
-import { initializeApollo } from '../lib/apollo-client';
+import PageLayout from "../containers/page-layout";
+import { initializeApollo } from "../lib/apollo-client";
+import NextLinkComposed from "../lib/next-mui-link";
 
 const THUMB_QUERY = gql`
   query {
@@ -46,10 +46,10 @@ const useStyles = makeStyles()((theme) => {
       paddingBottom: theme.spacing(3),
     },
     gridItem: {
-      '& img': {
+      "& img": {
         width: 80,
         height: 80,
-        [theme.breakpoints.up('sm')]: {
+        [theme.breakpoints.up("sm")]: {
           width: 128,
           height: 128,
         },
@@ -66,23 +66,23 @@ const useStyles = makeStyles()((theme) => {
 
 const thumbHelper = (allThumbs, checkboxes) => {
   const showSites = checkboxes.find((cb) => {
-    return cb.id === 'site';
+    return cb.id === "site";
   }).checked;
 
   const showApps = checkboxes.find((cb) => {
-    return cb.id === 'app';
+    return cb.id === "app";
   }).checked;
 
   const showAds = checkboxes.find((cb) => {
-    return cb.id === 'banner';
+    return cb.id === "banner";
   }).checked;
 
   return allThumbs
     .filter((obj) => {
       return (
-        (showSites && obj.type === 'site') ||
-        (showApps && obj.type === 'app') ||
-        (showAds && obj.type === 'banner')
+        (showSites && obj.type === "site") ||
+        (showApps && obj.type === "app") ||
+        (showAds && obj.type === "banner")
       );
     })
     .sort((a, b) => {

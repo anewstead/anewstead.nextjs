@@ -1,24 +1,24 @@
 //global css import
-import 'slick-carousel/slick/slick.css';
+import "slick-carousel/slick/slick.css";
 
-import Head from 'next/head';
-import React, { useEffect } from 'react';
-import { ApolloProvider } from '@apollo/react-hooks';
+import { ApolloProvider } from "@apollo/react-hooks";
 import {
   CssBaseline,
   StyledEngineProvider,
   ThemeProvider,
-} from '@mui/material';
-import { Provider } from 'react-redux';
-import { createEmotionSsrAdvancedApproach } from 'tss-react/nextJs';
-import { useSelector } from 'react-redux';
+} from "@mui/material";
+import Head from "next/head";
+import React, { useEffect } from "react";
+import { Provider } from "react-redux";
+import { useSelector } from "react-redux";
+import { createEmotionSsrAdvancedApproach } from "tss-react/nextJs";
 
-import store, { INIT_THEME } from '../lib/store';
-import themes, { useThemeDetector } from '../lib/themes';
-import { useApollo } from '../lib/apollo-client';
+import { useApollo } from "../lib/apollo-client";
+import store, { INIT_THEME } from "../lib/store";
+import themes, { useThemeDetector } from "../lib/themes";
 
 const { EmotionCacheProvider, withEmotionCache } =
-  createEmotionSsrAdvancedApproach({ key: 'css' });
+  createEmotionSsrAdvancedApproach({ key: "css" });
 export { withEmotionCache };
 
 const App = (props) => {
@@ -37,7 +37,7 @@ const App = (props) => {
       </Head>
       <EmotionCacheProvider>
         <StyledEngineProvider injectFirst>
-          <ThemeProvider theme={themes['light']}>
+          <ThemeProvider theme={themes["light"]}>
             <CssBaseline />
             <ApolloProvider client={apolloClient}>
               <Component {...pageProps} />

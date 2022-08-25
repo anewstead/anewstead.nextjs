@@ -1,6 +1,5 @@
-import MenuIcon from '@mui/icons-material/Menu';
-import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
-import React, { useState } from 'react';
+import MenuIcon from "@mui/icons-material/Menu";
+import SettingsBrightnessIcon from "@mui/icons-material/SettingsBrightness";
 import {
   Accordion,
   AccordionDetails,
@@ -16,9 +15,10 @@ import {
   Toolbar,
   Typography,
   useMediaQuery,
-} from '@mui/material';
-import { makeStyles } from 'tss-react/mui';
-import { useTheme } from '@mui/material/styles';
+} from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import React, { useState } from "react";
+import { makeStyles } from "tss-react/mui";
 
 const useStyles = makeStyles()((theme) => {
   return {
@@ -33,32 +33,32 @@ const useStyles = makeStyles()((theme) => {
       // textAlign: "left",
     },
     gridBrand: {
-      display: 'flex',
-      alignItems: 'center',
+      display: "flex",
+      alignItems: "center",
     },
     gridRoot: {
-      minHeight: '80px',
+      minHeight: "80px",
     },
     gridToggle: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'flex-end',
-      maxHeight: '80px',
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-end",
+      maxHeight: "80px",
     },
     gridCheckboxesOpen: {
-      display: 'flex',
-      justifyContent: 'center',
+      display: "flex",
+      justifyContent: "center",
     },
     expansionPanel: {
-      backgroundColor: 'unset',
-      boxShadow: 'unset',
-      width: '100%',
+      backgroundColor: "unset",
+      boxShadow: "unset",
+      width: "100%",
     },
     expansionPanelSummaryContent: {
-      margin: '0 !important',
+      margin: "0 !important",
     },
     expansionPanelSummaryRoot: {
-      minHeight: '80px !important',
+      minHeight: "80px !important",
     },
   };
 });
@@ -74,7 +74,7 @@ const HeaderNavThumbs = (props) => {
 
   const { classes } = useStyles();
   const theme = useTheme();
-  const isSM = useMediaQuery(theme.breakpoints.down('md'));
+  const isSM = useMediaQuery(theme.breakpoints.down("md"));
 
   const checkboxes = checkboxData.map((cb, i) => {
     return (
@@ -137,7 +137,7 @@ const HeaderNavThumbs = (props) => {
   return (
     <nav>
       <AppBar position="static" className={classes.appBar}>
-        <Toolbar variant={isSM ? 'dense' : 'regular'}>
+        <Toolbar variant={isSM ? "dense" : "regular"}>
           <Grid
             container
             justifyContent="space-between"
@@ -147,8 +147,8 @@ const HeaderNavThumbs = (props) => {
               <Grid item xs={10}>
                 <Accordion
                   square
-                  expanded={expanded === 'panel1'}
-                  onChange={expansionPanelOnChange('panel1')}
+                  expanded={expanded === "panel1"}
+                  onChange={expansionPanelOnChange("panel1")}
                   className={classes.expansionPanel}
                 >
                   <AccordionSummary

@@ -42,6 +42,7 @@
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "graphql": "^16.6.0",
     "html-react-parser": "^3.0.4",
+    "import-sort-style-module": "^6.0.0",
     "import-sort-style-renke": "^6.0.0",
     "isomorphic-dompurify": "^0.22.0",
     "just-detect-adblock": "^1.1.0",

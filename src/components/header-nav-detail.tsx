@@ -1,6 +1,5 @@
-import HomeIcon from '@mui/icons-material/Home';
-import React from 'react';
-import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
+import HomeIcon from "@mui/icons-material/Home";
+import SettingsBrightnessIcon from "@mui/icons-material/SettingsBrightness";
 import {
   AppBar,
   Grid,
@@ -8,9 +7,10 @@ import {
   Toolbar,
   Typography,
   useMediaQuery,
-} from '@mui/material';
-import { makeStyles } from 'tss-react/mui';
-import { useTheme } from '@mui/material/styles';
+} from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import React from "react";
+import { makeStyles } from "tss-react/mui";
 
 const useStyles = makeStyles()((theme) => {
   return {
@@ -19,31 +19,31 @@ const useStyles = makeStyles()((theme) => {
       color: theme.palette.text.primary,
     },
     brand: {
-      display: 'flex',
-      alignItems: 'center',
+      display: "flex",
+      alignItems: "center",
     },
     gridRoot: {
-      minHeight: '80px',
+      minHeight: "80px",
     },
     gridBack: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'flex-start',
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-start",
     },
     gridTitle: {
-      display: 'flex',
-      alignItems: 'flex-end',
+      display: "flex",
+      alignItems: "flex-end",
       flexGrow: 4,
-      justifyContent: 'center',
-      flexDirection: 'column',
-      [theme.breakpoints.up('sm')]: {
-        alignItems: 'center',
+      justifyContent: "center",
+      flexDirection: "column",
+      [theme.breakpoints.up("sm")]: {
+        alignItems: "center",
       },
     },
     gridToggle: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'flex-end',
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-end",
     },
   };
 });
@@ -53,7 +53,7 @@ const HeaderNavDetail = (props) => {
 
   const { classes } = useStyles();
   const theme = useTheme();
-  const isXS = useMediaQuery(theme.breakpoints.down('sm'));
+  const isXS = useMediaQuery(theme.breakpoints.down("sm"));
 
   const backButton = (
     <IconButton edge="end" aria-label="back" onClick={onBackClick} size="large">
@@ -73,13 +73,13 @@ const HeaderNavDetail = (props) => {
   );
 
   const title = (
-    <Typography variant={isXS ? 'h6' : 'h5'} component="h2">
+    <Typography variant={isXS ? "h6" : "h5"} component="h2">
       {titleText}
     </Typography>
   );
 
   const subtitle = (
-    <Typography variant={isXS ? 'h6' : 'h5'} component="h3">
+    <Typography variant={isXS ? "h6" : "h5"} component="h3">
       {subtitleText}
     </Typography>
   );
@@ -87,7 +87,7 @@ const HeaderNavDetail = (props) => {
   return (
     <nav>
       <AppBar position="static" className={classes.appBar}>
-        <Toolbar variant={isXS ? 'dense' : 'regular'}>
+        <Toolbar variant={isXS ? "dense" : "regular"}>
           <Grid container className={classes.gridRoot}>
             <Grid item xs={1} className={classes.gridBack}>
               {backButton}
@@ -98,7 +98,7 @@ const HeaderNavDetail = (props) => {
             </Grid>
 
             {isXS ? (
-              ''
+              ""
             ) : (
               <Grid item xs={1} className={classes.gridToggle}>
                 {toggleButton}

@@ -1,15 +1,15 @@
 // https://github.com/vercel/next.js/blob/canary/examples/with-apollo/lib/apolloClient.js
 
-import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
-import { useMemo } from 'react';
+import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
+import { useMemo } from "react";
 
 let apolloClient;
 
 function createApolloClient() {
   return new ApolloClient({
-    ssrMode: typeof window === 'undefined',
+    ssrMode: typeof window === "undefined",
     link: new HttpLink({
-      uri: 'https://anewstead-content.netlify.app/graphql', // Server URL (must be absolute)
+      uri: "https://anewstead-content.netlify.app/graphql", // Server URL (must be absolute)
       // credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
     }),
     cache: new InMemoryCache(),
@@ -26,7 +26,7 @@ export function initializeApollo(initialState = null) {
     _apolloClient.cache.restore(initialState);
   }
   // For SSG and SSR always create a new Apollo Client
-  if (typeof window === 'undefined') return _apolloClient;
+  if (typeof window === "undefined") return _apolloClient;
   // Create the Apollo Client once in the client
   if (!apolloClient) apolloClient = _apolloClient;
 

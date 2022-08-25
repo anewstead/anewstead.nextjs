@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
-import { Box, CssBaseline } from '@mui/material';
-import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
-import { makeStyles } from 'tss-react/mui';
-import { useSelector } from 'react-redux';
+import { Box, CssBaseline } from "@mui/material";
+import { StyledEngineProvider, ThemeProvider } from "@mui/material/styles";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { makeStyles } from "tss-react/mui";
 
-import Footer from '../components/footer';
-import HeaderNav from './header-nav';
-import themes from '../lib/themes';
+import Footer from "../components/footer";
+import themes from "../lib/themes";
+import HeaderNav from "./header-nav";
 
 const useStyles = makeStyles()((theme) => {
   return {
@@ -21,19 +21,19 @@ const useStyles = makeStyles()((theme) => {
       on mobile we need to set min-height 100.1%
       so any short pages can still be pulled-to-refresh in chrome mobile
       */
-      minHeight: '100.1%',
-      [theme.breakpoints.up('sm')]: {
-        minHeight: '100%',
+      minHeight: "100.1%",
+      [theme.breakpoints.up("sm")]: {
+        minHeight: "100%",
       },
 
-      minWidth: '320px',
-      overflow: 'hidden',
-      display: 'flex',
-      flexDirection: 'column',
+      minWidth: "320px",
+      overflow: "hidden",
+      display: "flex",
+      flexDirection: "column",
     },
     main: {
       flexGrow: 1,
-      display: 'flex',
+      display: "flex",
     },
   };
 });
@@ -54,7 +54,7 @@ const PageLayout = (props) => {
   //https://github.com/mui-org/material-ui/tree/master/examples/nextjs
   useEffect(() => {
     // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector('#jss-server-side');
+    const jssStyles = document.querySelector("#jss-server-side");
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }

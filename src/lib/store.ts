@@ -1,30 +1,30 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-import { detectColorTheme, toggleColorTheme } from './themes';
+import { detectColorTheme, toggleColorTheme } from "./themes";
 
 // ReduxToolKit createSlice() creates state, actions and reducers from one object
 // remember to export reducer functions as slice.actions
 const slice = createSlice({
-  name: 'app',
+  name: "app",
   initialState: {
-    baseContentURL: 'https://anewstead-content.netlify.app',
-    theme: 'light',
+    baseContentURL: "https://anewstead-content.netlify.app",
+    theme: "light",
     nav: {
-      brand: 'Andrew Newstead',
+      brand: "Andrew Newstead",
       checkboxes: [
         {
-          id: 'site',
-          label: 'Websites',
+          id: "site",
+          label: "Websites",
           checked: true,
         },
         {
-          id: 'app',
-          label: 'Apps',
+          id: "app",
+          label: "Apps",
           checked: true,
         },
         {
-          id: 'banner',
-          label: 'Adverts',
+          id: "banner",
+          label: "Adverts",
           checked: true,
         },
       ],

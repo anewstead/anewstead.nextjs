@@ -1,14 +1,14 @@
-import React from 'react';
-import { gql } from '@apollo/client';
-import { useQuery } from '@apollo/react-hooks';
-import { useRouter } from 'next/router';
+import { gql } from "@apollo/client";
+import { useQuery } from "@apollo/react-hooks";
+import { useRouter } from "next/router";
+import React from "react";
 
-import Error from '../_error';
-import Gallery from '../../containers/gallery';
-import InFrame from '../../containers/in-frame';
-import PageLayout from '../../containers/page-layout';
-import Video from '../../containers/video';
-import { initializeApollo } from '../../lib/apollo-client';
+import Gallery from "../../containers/gallery";
+import InFrame from "../../containers/in-frame";
+import PageLayout from "../../containers/page-layout";
+import Video from "../../containers/video";
+import { initializeApollo } from "../../lib/apollo-client";
+import Error from "../_error";
 
 const PROJECTS_QUERY = gql`
   query {
@@ -80,7 +80,7 @@ const Project = (props) => {
 
   const titleText = projectData.client;
 
-  let subtitleText = '';
+  let subtitleText = "";
   if (projectData.brand && projectData.project) {
     subtitleText = `${projectData.brand} - ${projectData.project}`;
   } else if (projectData.brand) {
@@ -92,15 +92,15 @@ const Project = (props) => {
   let content = <></>;
 
   switch (projectData.view.type) {
-    case 'gallery':
+    case "gallery":
       content = <Gallery projectData={projectData} />;
       break;
 
-    case 'video':
+    case "video":
       content = <Video projectData={projectData} />;
       break;
 
-    case 'iframe':
+    case "iframe":
       content = <InFrame projectData={projectData} />;
       break;
 

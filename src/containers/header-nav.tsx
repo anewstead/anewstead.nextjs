@@ -1,10 +1,10 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import HeaderNavDetail from '../components/header-nav-detail';
-import HeaderNavThumbs from '../components/header-nav-thumbs';
-import { NAV_CHECKBOX_CHANGE, TOGGLE_THEME } from '../lib/store';
+import HeaderNavDetail from "../components/header-nav-detail";
+import HeaderNavThumbs from "../components/header-nav-thumbs";
+import { NAV_CHECKBOX_CHANGE, TOGGLE_THEME } from "../lib/store";
 
 const HeaderNav = (props) => {
   const { navType, titleText, subtitleText } = props;
@@ -21,12 +21,12 @@ const HeaderNav = (props) => {
   });
 
   const backClick = () => {
-    router.push('/');
+    router.push("/");
   };
 
   const brandClick = (e) => {
     e.stopPropagation();
-    router.push('/about');
+    router.push("/about");
   };
 
   const themeClick = () => {
@@ -40,7 +40,7 @@ const HeaderNav = (props) => {
 
   let nav;
   switch (navType) {
-    case 'thumbs':
+    case "thumbs":
       nav = (
         <HeaderNavThumbs
           brandName={navBrand}

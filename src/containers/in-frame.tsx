@@ -1,11 +1,11 @@
-import DOMPurify from 'isomorphic-dompurify';
-import Image from 'next/image';
-import React from 'react';
-import adBlocker from 'just-detect-adblock';
-import parse from 'html-react-parser';
-import { Container, Paper, Typography } from '@mui/material';
-import { makeStyles } from 'tss-react/mui';
-import { useSelector } from 'react-redux';
+import { Container, Paper, Typography } from "@mui/material";
+import parse from "html-react-parser";
+import DOMPurify from "isomorphic-dompurify";
+import adBlocker from "just-detect-adblock";
+import Image from "next/image";
+import React from "react";
+import { useSelector } from "react-redux";
+import { makeStyles } from "tss-react/mui";
 
 const useStyles = makeStyles()((theme) => {
   return {
@@ -23,7 +23,7 @@ const useStyles = makeStyles()((theme) => {
     },
     iframe: {
       marginBottom: theme.spacing(3),
-      border: 'none',
+      border: "none",
       backgroundColor: theme.palette.background.paper,
     },
   };
@@ -49,7 +49,7 @@ const InFrame = (props) => {
 
   if (
     process.browser &&
-    projectData.type === 'banner' &&
+    projectData.type === "banner" &&
     adBlocker.isDetected()
   ) {
     // because this rewrites server rendered content on page load if adblocker is detected

@@ -1,12 +1,12 @@
-import DOMPurify from 'isomorphic-dompurify';
+import { Container, Paper, Typography } from "@mui/material";
+import parse from "html-react-parser";
+import DOMPurify from "isomorphic-dompurify";
 // import Image from 'next/image';
-import React from 'react';
-import parse from 'html-react-parser';
-import { Container, Paper, Typography } from '@mui/material';
-import { makeStyles } from 'tss-react/mui';
-import { useSelector } from 'react-redux';
+import React from "react";
+import { useSelector } from "react-redux";
+import { makeStyles } from "tss-react/mui";
 
-import Carousel from '../components/carousel';
+import Carousel from "../components/carousel";
 
 const useStyles = makeStyles()((theme) => {
   return {

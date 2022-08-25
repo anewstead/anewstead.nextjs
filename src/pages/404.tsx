@@ -1,9 +1,9 @@
-import React from 'react';
-import { Button, Container, Paper, Typography } from '@mui/material';
-import { Link as NextLink } from 'next/link';
-import { makeStyles } from 'tss-react/mui';
+import { Button, Container, Paper, Typography } from "@mui/material";
+import { Link as NextLink } from "next/link";
+import React from "react";
+import { makeStyles } from "tss-react/mui";
 
-import PageLayout from '../containers/page-layout';
+import PageLayout from "../containers/page-layout";
 
 const useStyles = makeStyles()((theme) => {
   return {

@@ -1,8 +1,8 @@
-import React from 'react';
-import { Container, Paper, Typography } from '@mui/material';
-import { makeStyles } from 'tss-react/mui';
+import { Container, Paper, Typography } from "@mui/material";
+import React from "react";
+import { makeStyles } from "tss-react/mui";
 
-import PageLayout from '../containers/page-layout';
+import PageLayout from "../containers/page-layout";
 
 const useStyles = makeStyles()((theme) => {
   return {
@@ -19,7 +19,7 @@ const About = () => {
   const { classes } = useStyles();
 
   const data = {
-    brand: 'Andrew Newstead',
+    brand: "Andrew Newstead",
   };
 
   return (
@@ -49,7 +49,7 @@ const About = () => {
               components are typically created bespoke from scratch. <br />
             </p>
             <p>
-              You can view the source code at this{' '}
+              You can view the source code at this{" "}
               <a
                 href="https://github.com/anewstead/anewstead.nextjs"
                 target="_blank"
