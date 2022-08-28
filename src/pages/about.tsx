@@ -1,8 +1,9 @@
-import React from 'react';
-import { Container, Paper, Typography } from '@mui/material';
-import { makeStyles } from 'tss-react/mui';
+import { Container, Paper, Typography } from "@mui/material";
+import { NextPage } from "next/types";
+import React from "react";
+import { makeStyles } from "tss-react/mui";
 
-import PageLayout from '../containers/page-layout';
+import PageLayout from "../containers/page-layout";
 
 const useStyles = makeStyles()((theme) => {
   return {
@@ -15,15 +16,11 @@ const useStyles = makeStyles()((theme) => {
   };
 });
 
-const About = () => {
+const About: NextPage = () => {
   const { classes } = useStyles();
 
-  const data = {
-    brand: 'Andrew Newstead',
-  };
-
   return (
-    <PageLayout headerNav="detail" data={data}>
+    <PageLayout headerNavType="detail">
       <Container className={classes.aboutroot}>
         <Paper className={classes.paper}>
           <Typography variant="h4" component="h2">
@@ -49,7 +46,7 @@ const About = () => {
               components are typically created bespoke from scratch. <br />
             </p>
             <p>
-              You can view the source code at this{' '}
+              You can view the source code at this{" "}
               <a
                 href="https://github.com/anewstead/anewstead.nextjs"
                 target="_blank"

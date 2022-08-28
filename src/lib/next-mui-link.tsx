@@ -13,28 +13,31 @@ https://github.com/mui/material-ui/blob/6ba3522921da7cd3bef8065954f62456e1b73fed
   <ListItemText primary="About" />
 </ListItem>
  */
-import * as React from 'react';
-import clsx from 'clsx';
-import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link';
-import NextLink, { LinkProps as NextLinkProps } from 'next/link';
-import { styled } from '@mui/material/styles';
-import { useRouter } from 'next/router';
+
+import MuiLink, { LinkProps as MuiLinkProps } from "@mui/material/Link";
+import { styled } from "@mui/material/styles";
+import clsx from "clsx";
+import NextLink, { LinkProps as NextLinkProps } from "next/link";
+import { useRouter } from "next/router";
+import * as React from "react";
 
 // Add support for the sx prop for consistency with the other branches.
-const Anchor = styled('a')({});
+const Anchor = styled("a")({});
 
-// interface NextLinkComposedProps
-//   extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
-//     Omit<NextLinkProps, 'href' | 'as' | 'onClick' | 'onMouseEnter' | 'onTouchStart'> {
-//   to: NextLinkProps['href'];
-//   linkAs?: NextLinkProps['as'];
-// }
+interface NextLinkComposedProps
+  extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href">,
+    Omit<
+      NextLinkProps,
+      "href" | "as" | "onClick" | "onMouseEnter" | "onTouchStart"
+    > {
+  to: NextLinkProps["href"];
+  linkAs?: NextLinkProps["as"];
+}
 
-// export const NextLinkComposed = React.forwardRef<HTMLAnchorElement, NextLinkComposedProps>(
-export const NextLinkComposed = React.forwardRef(function NextLinkComposed(
-  props,
-  ref
-) {
+export const NextLinkComposed = React.forwardRef<
+  HTMLAnchorElement,
+  NextLinkComposedProps
+>((props, ref) => {
   const { to, linkAs, replace, scroll, shallow, prefetch, locale, ...other } =
     props;
 
@@ -53,22 +56,22 @@ export const NextLinkComposed = React.forwardRef(function NextLinkComposed(
     </NextLink>
   );
 });
+NextLinkComposed.displayName = "NextLinkComposed";
 
-// export type LinkProps = {
-//   activeClassName?: string;
-//   as?: NextLinkProps['as'];
-//   href: NextLinkProps['href'];
-//   linkAs?: NextLinkProps['as']; // Useful when the as prop is shallow by styled().
-//   noLinkStyle?: boolean;
-// } & Omit<NextLinkComposedProps, 'to' | 'linkAs' | 'href'> &
-//   Omit<MuiLinkProps, 'href'>;
+export type LinkProps = {
+  activeClassName?: string;
+  as?: NextLinkProps["as"];
+  href: NextLinkProps["href"];
+  linkAs?: NextLinkProps["as"]; // Useful when the as prop is shallow by styled().
+  noLinkStyle?: boolean;
+} & Omit<NextLinkComposedProps, "to" | "linkAs" | "href"> &
+  Omit<MuiLinkProps, "href">;
 
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/api-reference/next/link
-// const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props, ref) {
-const Link = React.forwardRef(function Link(props, ref) {
+const Link = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
   const {
-    activeClassName = 'active',
+    activeClassName = "active",
     as,
     className: classNameProps,
     href,
@@ -84,14 +87,14 @@ const Link = React.forwardRef(function Link(props, ref) {
   } = props;
 
   const router = useRouter();
-  const pathname = typeof href === 'string' ? href : href.pathname;
+  const pathname = typeof href === "string" ? href : href.pathname;
   const className = clsx(classNameProps, {
     [activeClassName]: router.pathname === pathname && activeClassName,
   });
 
   const isExternal =
-    typeof href === 'string' &&
-    (href.indexOf('http') === 0 || href.indexOf('mailto:') === 0);
+    typeof href === "string" &&
+    (href.indexOf("http") === 0 || href.indexOf("mailto:") === 0);
 
   if (isExternal) {
     if (noLinkStyle) {
@@ -133,5 +136,6 @@ const Link = React.forwardRef(function Link(props, ref) {
     />
   );
 });
+Link.displayName = "Link";
 
 export default Link;

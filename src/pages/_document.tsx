@@ -1,7 +1,7 @@
-import React from 'react';
-import Document, { Head, Html, Main, NextScript } from 'next/document';
+import Document, { Head, Html, Main, NextScript } from "next/document";
+import React from "react";
 
-import { withEmotionCache } from './_app';
+import { withEmotionCache } from "./_app";
 
 class MyDocument extends Document {
   render() {

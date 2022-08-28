@@ -1,14 +1,16 @@
-import Image from 'next/image';
-import React from 'react';
-import { Button, Card, Container, Grid, Link } from '@mui/material';
-import { gql } from '@apollo/client';
-import { makeStyles } from 'tss-react/mui';
-import { useQuery } from '@apollo/react-hooks';
-import { useSelector } from 'react-redux';
+import { gql } from "@apollo/client";
+import { useQuery } from "@apollo/react-hooks";
+import { Button, Card, Container, Grid } from "@mui/material";
+import Image from "next/image";
+import { GetStaticProps, NextPage } from "next/types";
+import React from "react";
+import { makeStyles } from "tss-react/mui";
 
-import NextLinkComposed from '../lib/next-mui-link';
-import PageLayout from '../containers/page-layout';
-import { initializeApollo } from '../lib/apollo-client';
+import PageLayout from "../containers/page-layout";
+import { initializeApollo } from "../lib/apollo-client";
+import { NextLinkComposed } from "../lib/next-mui-link";
+import { useAppSelector } from "../lib/store";
+import { ICheckbox, IRootState, IThumb } from "../lib/types";
 
 const THUMB_QUERY = gql`
   query {
@@ -26,7 +28,7 @@ const THUMB_QUERY = gql`
   }
 `;
 
-export const getStaticProps = async (ctx) => {
+export const getStaticProps: GetStaticProps = async () => {
   const apolloClient = initializeApollo();
   await apolloClient.query({
     query: THUMB_QUERY,
@@ -46,10 +48,10 @@ const useStyles = makeStyles()((theme) => {
       paddingBottom: theme.spacing(3),
     },
     gridItem: {
-      '& img': {
+      "& img": {
         width: 80,
         height: 80,
-        [theme.breakpoints.up('sm')]: {
+        [theme.breakpoints.up("sm")]: {
           width: 128,
           height: 128,
         },
@@ -64,25 +66,28 @@ const useStyles = makeStyles()((theme) => {
   };
 });
 
-const thumbHelper = (allThumbs, checkboxes) => {
+const thumbHelper = (
+  allThumbs: IThumb[],
+  checkboxes: ICheckbox[]
+): IThumb[] => {
   const showSites = checkboxes.find((cb) => {
-    return cb.id === 'site';
-  }).checked;
+    return cb.id === "site";
+  })?.checked;
 
   const showApps = checkboxes.find((cb) => {
-    return cb.id === 'app';
-  }).checked;
+    return cb.id === "app";
+  })?.checked;
 
   const showAds = checkboxes.find((cb) => {
-    return cb.id === 'banner';
-  }).checked;
+    return cb.id === "banner";
+  })?.checked;
 
   return allThumbs
     .filter((obj) => {
       return (
-        (showSites && obj.type === 'site') ||
-        (showApps && obj.type === 'app') ||
-        (showAds && obj.type === 'banner')
+        (showSites && obj.type === "site") ||
+        (showApps && obj.type === "app") ||
+        (showAds && obj.type === "banner")
       );
     })
     .sort((a, b) => {
@@ -90,19 +95,19 @@ const thumbHelper = (allThumbs, checkboxes) => {
     });
 };
 
-const Home = (props) => {
+const Home: NextPage = () => {
   // this initial query cached to apollo by server code above
   const { data } = useQuery(THUMB_QUERY);
 
   const { classes } = useStyles();
 
-  const checkboxes = useSelector((state) => {
+  const checkboxes = useAppSelector((state: IRootState) => {
     return state.app.nav.checkboxes;
-  });
+  }) as ICheckbox[];
 
   const displayThumbs = thumbHelper(data.projects, checkboxes);
 
-  const baseContentURL = useSelector((state) => {
+  const baseContentURL = useAppSelector((state: IRootState) => {
     return state.app.baseContentURL;
   });
 
@@ -110,7 +115,7 @@ const Home = (props) => {
 
   if (displayThumbs) {
     if (displayThumbs.length) {
-      content = displayThumbs.map((obj, i) => {
+      const thumbs = displayThumbs.map((obj, i) => {
         const url = `${baseContentURL}${obj.thumb}`;
         const alt = `${obj.client} - ${obj.brand} - ${obj.project}`;
         return (
@@ -118,7 +123,7 @@ const Home = (props) => {
             <Card elevation={6}>
               <Button
                 component={NextLinkComposed}
-                href={`/project/${obj.id}`}
+                to={`/project/${obj.id}`}
                 className={classes.gridItemButton}
               >
                 <Image src={url} alt={alt} width={128} height={128} />
@@ -127,6 +132,7 @@ const Home = (props) => {
           </Grid>
         );
       });
+      content = <>{thumbs}</>;
     } else {
       content = <Card className={classes.info}>Please make a selection</Card>;
     }
