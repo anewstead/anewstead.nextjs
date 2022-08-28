@@ -13,7 +13,7 @@ import React, { useEffect } from "react";
 import { Provider } from "react-redux";
 import { createEmotionSsrAdvancedApproach } from "tss-react/nextJs";
 
-import { useApollo } from "../lib/apollo-client";
+import { useApollo } from "../lib/apollo";
 import store, { INIT_THEME } from "../lib/store";
 import themes from "../lib/themes";
 
