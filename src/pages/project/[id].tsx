@@ -92,8 +92,9 @@ const Project: NextPage = () => {
   }
 
   let content = <></>;
+  console.log("projectData.view.type", projectData.view.type);
 
-  switch (`${projectData.view.type}s`) {
+  switch (`${projectData.view.type}`) {
     case "gallery":
       content = <Gallery projectData={projectData} />;
       break;
