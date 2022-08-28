@@ -1,11 +1,13 @@
 import { Container, Paper, Typography } from "@mui/material";
 import parse from "html-react-parser";
 import DOMPurify from "isomorphic-dompurify";
-import adBlocker from "just-detect-adblock";
+import { detectAnyAdblocker } from "just-detect-adblock";
 import Image from "next/image";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "tss-react/mui";
+
+import { useAppSelector } from "../lib/store";
+import { IMainData, IRootState } from "../lib/types";
 
 const useStyles = makeStyles()((theme) => {
   return {
@@ -29,17 +31,32 @@ const useStyles = makeStyles()((theme) => {
   };
 });
 
-const InFrame = (props) => {
+type Props = {
+  projectData: IMainData;
+};
+
+const InFrame: React.FC<Props> = (props) => {
   const { projectData } = props;
 
   const { classes } = useStyles();
 
-  const baseContentURL = useSelector((state) => {
+  const baseContentURL = useAppSelector((state: IRootState) => {
     return state.app.baseContentURL;
   });
 
+  const [adBlocked, setAdBlocked] = useState(false);
+  const checkAdBlock = projectData.type === "banner";
+
+  useEffect(() => {
+    detectAnyAdblocker().then((detected: boolean) => {
+      if (checkAdBlock) {
+        setAdBlocked(detected);
+      }
+    });
+  }, [checkAdBlock]);
+
   const iframeURL = `${baseContentURL}${projectData.view.href}`;
-  const stillURL = `${baseContentURL}${projectData.view.adblock}`;
+  const stillURL = `${baseContentURL}${projectData.view.still}`;
   const alt = `${projectData.brand} ${projectData.project}`;
 
   // safelySetInnerHTML :)
@@ -47,11 +64,7 @@ const InFrame = (props) => {
 
   let mainContent;
 
-  if (
-    process.browser &&
-    projectData.type === "banner" &&
-    adBlocker.isDetected()
-  ) {
+  if (process.browser && adBlocked) {
     // because this rewrites server rendered content on page load if adblocker is detected
     // we need to tell react the change is intentional by adding suppressHydrationWarning
     mainContent = (

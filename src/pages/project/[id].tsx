@@ -1,6 +1,7 @@
 import { gql } from "@apollo/client";
 import { useQuery } from "@apollo/react-hooks";
 import { useRouter } from "next/router";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next/types";
 import React from "react";
 
 import Gallery from "../../containers/gallery";
@@ -8,7 +9,8 @@ import InFrame from "../../containers/in-frame";
 import PageLayout from "../../containers/page-layout";
 import Video from "../../containers/video";
 import { initializeApollo } from "../../lib/apollo-client";
-import Error from "../_error";
+import { IMainData } from "../../lib/types";
+import NoMatch from "../404";
 
 const PROJECTS_QUERY = gql`
   query {
@@ -18,7 +20,7 @@ const PROJECTS_QUERY = gql`
   }
 `;
 
-const PROJECT_QUERY = (id) => {
+const PROJECT_QUERY = (id: string) => {
   return gql`
     query {
       project(id:${id}) {
@@ -43,11 +45,11 @@ const PROJECT_QUERY = (id) => {
 
 // server side
 //==================================================
-export const getStaticProps = async (ctx) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   const apolloClient = initializeApollo();
-  const id = ctx.params.id;
+  const id = context?.params?.id;
   await apolloClient.query({
-    query: PROJECT_QUERY(id),
+    query: PROJECT_QUERY(id as string),
   });
   return {
     props: {
@@ -56,12 +58,12 @@ export const getStaticProps = async (ctx) => {
   };
 };
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const apolloClient = initializeApollo();
   const res = await apolloClient.query({
     query: PROJECTS_QUERY,
   });
-  const paths = res.data.projects.map((item) => {
+  const paths = res.data.projects.map((item: IMainData) => {
     return {
       params: { id: item.id },
     };
@@ -70,9 +72,9 @@ export const getStaticPaths = async () => {
 };
 //==================================================
 
-const Project = (props) => {
+const Project: NextPage = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const id = router.query.id as string;
 
   // this initial query cached to apollo by server code above
   const { data } = useQuery(PROJECT_QUERY(id));
@@ -91,7 +93,7 @@ const Project = (props) => {
 
   let content = <></>;
 
-  switch (projectData.view.type) {
+  switch (`${projectData.view.type}s`) {
     case "gallery":
       content = <Gallery projectData={projectData} />;
       break;
@@ -105,8 +107,8 @@ const Project = (props) => {
       break;
 
     default:
-      const msg = `"unknown page template type: ${projectData.view.type}"`;
-      return <Error statusCode={msg}></Error>;
+      //404 page not found
+      return <NoMatch statusCode={404} />;
   }
 
   return (

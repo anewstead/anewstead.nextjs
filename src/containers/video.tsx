@@ -2,8 +2,10 @@ import { Container, Paper, Typography } from "@mui/material";
 import parse from "html-react-parser";
 import DOMPurify from "isomorphic-dompurify";
 import React from "react";
-import { useSelector } from "react-redux";
 import { makeStyles } from "tss-react/mui";
+
+import { useAppSelector } from "../lib/store";
+import { IMainData, IRootState } from "../lib/types";
 
 const useStyles = makeStyles()((theme) => {
   return {
@@ -20,12 +22,16 @@ const useStyles = makeStyles()((theme) => {
   };
 });
 
-const Video = (props) => {
+type Props = {
+  projectData: IMainData;
+};
+
+const Video: React.FC<Props> = (props) => {
   const { projectData } = props;
 
   const { classes } = useStyles();
 
-  const baseContentURL = useSelector((state) => {
+  const baseContentURL = useAppSelector((state: IRootState) => {
     return state.app.baseContentURL;
   });
 
@@ -42,8 +48,6 @@ const Video = (props) => {
     >
       <video
         className={classes.reactPlayer}
-        src={videoURL}
-        type="video/mp4"
         width="100%"
         height="auto"
         poster={posterURL}
@@ -51,7 +55,9 @@ const Video = (props) => {
         preload="none"
         controlsList="nodownload"
         disablePictureInPicture
-      />
+      >
+        <source src={videoURL} type="video/mp4" />
+      </video>
       <Paper className={classes.info}>
         <Typography
           variant="body2"

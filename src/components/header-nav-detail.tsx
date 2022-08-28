@@ -48,7 +48,14 @@ const useStyles = makeStyles()((theme) => {
   };
 });
 
-const HeaderNavDetail = (props) => {
+type IHeaderNavDetail = {
+  onThemeClick: () => unknown;
+  onBackClick: () => unknown;
+  titleText?: string;
+  subtitleText?: string;
+};
+
+const HeaderNavDetail: React.FC<IHeaderNavDetail> = (props) => {
   const { onThemeClick, onBackClick, titleText, subtitleText } = props;
 
   const { classes } = useStyles();

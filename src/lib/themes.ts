@@ -3,7 +3,7 @@ import { Theme, createTheme, responsiveFontSizes } from "@mui/material/styles";
 import { deepmerge } from "@mui/utils";
 
 // remember preference for next time user visits
-const storeColorTheme = (themeName) => {
+const storeColorTheme = (themeName: string) => {
   localStorage.setItem("theme", themeName);
 };
 
@@ -29,7 +29,7 @@ export const toggleColorTheme = () => {
   return themeName;
 };
 
-const globalOverrides = (theme) => {
+const globalOverrides = (theme: Theme) => {
   return {
     components: {
       MuiCssBaseline: {
@@ -59,10 +59,10 @@ const globalOverrides = (theme) => {
   };
 };
 
-// type IThemes = Record<string, Theme> & {
-//   light: Theme,
-//   dark: Theme,
-// };
+type IThemes = Record<string, Theme> & {
+  light: Theme;
+  dark: Theme;
+};
 
 const lightTheme = responsiveFontSizes(
   createTheme({
@@ -92,6 +92,6 @@ const darkTheme = responsiveFontSizes(
 const light = deepmerge(lightTheme, globalOverrides(lightTheme));
 const dark = deepmerge(darkTheme, globalOverrides(darkTheme));
 
-const themes = { light, dark };
+const themes: IThemes = { light, dark };
 
 export default themes;

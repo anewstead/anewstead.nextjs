@@ -14,7 +14,11 @@ const useStyles = makeStyles()((theme) => {
   };
 });
 
-const Footer = (props) => {
+type IFooter = {
+  brand: string;
+};
+
+const Footer: React.FC<IFooter> = (props) => {
   const { brand } = props;
 
   const { classes } = useStyles();

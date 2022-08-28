@@ -1,12 +1,12 @@
 import { Container, Paper, Typography } from "@mui/material";
 import parse from "html-react-parser";
 import DOMPurify from "isomorphic-dompurify";
-// import Image from 'next/image';
 import React from "react";
-import { useSelector } from "react-redux";
 import { makeStyles } from "tss-react/mui";
 
 import Carousel from "../components/carousel";
+import { useAppSelector } from "../lib/store";
+import { IMainData } from "../lib/types";
 
 const useStyles = makeStyles()((theme) => {
   return {
@@ -20,12 +20,16 @@ const useStyles = makeStyles()((theme) => {
   };
 });
 
-const Gallery = (props) => {
+type Props = {
+  projectData: IMainData;
+};
+
+const Gallery: React.FC<Props> = (props) => {
   const { projectData } = props;
 
   const { classes } = useStyles();
 
-  const baseContentURL = useSelector((state) => {
+  const baseContentURL = useAppSelector((state) => {
     return state.app.baseContentURL;
   });
 

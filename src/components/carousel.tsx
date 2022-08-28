@@ -2,7 +2,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { IconButton, useTheme } from "@mui/material";
 import React from "react";
 import { isMobile } from "react-device-detect";
-import Slider from "react-slick";
+import Slider, { Settings as SlickSettings } from "react-slick";
 import { makeStyles } from "tss-react/mui";
 
 const useStyles = makeStyles()((theme) => {
@@ -109,7 +109,12 @@ const useStyles = makeStyles()((theme) => {
   };
 });
 
-const PrevNextButton = (props) => {
+type IPrevNextButton = {
+  direction: string;
+  onClick?: () => void;
+};
+
+const PrevNextButton: React.FC<IPrevNextButton> = (props) => {
   const { direction, onClick } = props;
   const { classes } = useStyles();
   return (
@@ -127,22 +132,25 @@ const PrevNextButton = (props) => {
   );
 };
 
-// slides = array of display items e.g. img div
-const Carousel = (props) => {
+type ICarousel = {
+  slides: JSX.Element[];
+  settings?: SlickSettings;
+};
+
+const Carousel: React.FC<ICarousel> = (props) => {
   const { slides, settings } = props;
   const theme = useTheme();
   const { classes } = useStyles();
 
-  const defaults = {
+  const defaults: SlickSettings = {
     dots: true,
     lazyLoad: "progressive",
     adaptiveHeight: true,
     prevArrow: <PrevNextButton direction="prev" />,
     nextArrow: <PrevNextButton direction="next" />,
-    mobileFirst: true,
   };
 
-  const config = {
+  const config: SlickSettings = {
     ...defaults,
     ...settings,
   };

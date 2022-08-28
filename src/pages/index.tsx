@@ -1,14 +1,16 @@
 import { gql } from "@apollo/client";
 import { useQuery } from "@apollo/react-hooks";
-import { Button, Card, Container, Grid, Link } from "@mui/material";
+import { Button, Card, Container, Grid } from "@mui/material";
 import Image from "next/image";
+import { GetStaticProps, NextPage } from "next/types";
 import React from "react";
-import { useSelector } from "react-redux";
 import { makeStyles } from "tss-react/mui";
 
 import PageLayout from "../containers/page-layout";
 import { initializeApollo } from "../lib/apollo-client";
-import NextLinkComposed from "../lib/next-mui-link";
+import { NextLinkComposed } from "../lib/next-mui-link";
+import { useAppSelector } from "../lib/store";
+import { ICheckbox, IRootState, IThumb } from "../lib/types";
 
 const THUMB_QUERY = gql`
   query {
@@ -26,7 +28,7 @@ const THUMB_QUERY = gql`
   }
 `;
 
-export const getStaticProps = async (ctx) => {
+export const getStaticProps: GetStaticProps = async () => {
   const apolloClient = initializeApollo();
   await apolloClient.query({
     query: THUMB_QUERY,
@@ -64,18 +66,21 @@ const useStyles = makeStyles()((theme) => {
   };
 });
 
-const thumbHelper = (allThumbs, checkboxes) => {
+const thumbHelper = (
+  allThumbs: IThumb[],
+  checkboxes: ICheckbox[]
+): IThumb[] => {
   const showSites = checkboxes.find((cb) => {
     return cb.id === "site";
-  }).checked;
+  })?.checked;
 
   const showApps = checkboxes.find((cb) => {
     return cb.id === "app";
-  }).checked;
+  })?.checked;
 
   const showAds = checkboxes.find((cb) => {
     return cb.id === "banner";
-  }).checked;
+  })?.checked;
 
   return allThumbs
     .filter((obj) => {
@@ -90,19 +95,19 @@ const thumbHelper = (allThumbs, checkboxes) => {
     });
 };
 
-const Home = (props) => {
+const Home: NextPage = () => {
   // this initial query cached to apollo by server code above
   const { data } = useQuery(THUMB_QUERY);
 
   const { classes } = useStyles();
 
-  const checkboxes = useSelector((state) => {
+  const checkboxes = useAppSelector((state: IRootState) => {
     return state.app.nav.checkboxes;
-  });
+  }) as ICheckbox[];
 
   const displayThumbs = thumbHelper(data.projects, checkboxes);
 
-  const baseContentURL = useSelector((state) => {
+  const baseContentURL = useAppSelector((state: IRootState) => {
     return state.app.baseContentURL;
   });
 
@@ -110,7 +115,7 @@ const Home = (props) => {
 
   if (displayThumbs) {
     if (displayThumbs.length) {
-      content = displayThumbs.map((obj, i) => {
+      const thumbs = displayThumbs.map((obj, i) => {
         const url = `${baseContentURL}${obj.thumb}`;
         const alt = `${obj.client} - ${obj.brand} - ${obj.project}`;
         return (
@@ -118,7 +123,7 @@ const Home = (props) => {
             <Card elevation={6}>
               <Button
                 component={NextLinkComposed}
-                href={`/project/${obj.id}`}
+                to={`/project/${obj.id}`}
                 className={classes.gridItemButton}
               >
                 <Image src={url} alt={alt} width={128} height={128} />
@@ -127,6 +132,7 @@ const Home = (props) => {
           </Grid>
         );
       });
+      content = <>{thumbs}</>;
     } else {
       content = <Card className={classes.info}>Please make a selection</Card>;
     }

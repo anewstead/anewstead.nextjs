@@ -1,4 +1,5 @@
 import { Container, Paper, Typography } from "@mui/material";
+import { NextPage } from "next/types";
 import React from "react";
 import { makeStyles } from "tss-react/mui";
 
@@ -15,15 +16,11 @@ const useStyles = makeStyles()((theme) => {
   };
 });
 
-const About = () => {
+const About: NextPage = () => {
   const { classes } = useStyles();
 
-  const data = {
-    brand: "Andrew Newstead",
-  };
-
   return (
-    <PageLayout headerNav="detail" data={data}>
+    <PageLayout headerNavType="detail">
       <Container className={classes.aboutroot}>
         <Paper className={classes.paper}>
           <Typography variant="h4" component="h2">

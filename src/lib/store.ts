@@ -1,6 +1,12 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 import { detectColorTheme, toggleColorTheme } from "./themes";
+import type { IAppDispatch, IRootState } from "./types";
+
+// Use throughout your app instead of plain `useDispatch` and `useSelector`
+export const useAppDispatch: () => IAppDispatch = useDispatch;
+export const useAppSelector: TypedUseSelectorHook<IRootState> = useSelector;
 
 // ReduxToolKit createSlice() creates state, actions and reducers from one object
 // remember to export reducer functions as slice.actions
@@ -35,17 +41,21 @@ const slice = createSlice({
     // doesn't actually mutate the state because it uses the Immer library,
     // which detects changes to a "draft state" and produces a brand new
     // immutable state based off those changes
-    INIT_THEME: (state, action) => {
+    INIT_THEME: (state) => {
       state.theme = detectColorTheme();
     },
-    TOGGLE_THEME: (state, action) => {
+    TOGGLE_THEME: (state) => {
       state.theme = toggleColorTheme();
     },
     NAV_CHECKBOX_CHANGE: (state, action) => {
       const checkbox = state.nav.checkboxes.find((obj) => {
         return obj.id === action.payload.id;
       });
-      checkbox.checked = action.payload.checked;
+      if (!checkbox) {
+        throw new Error(`store: cannot find checkbox: ${action.payload.id}`);
+      } else {
+        checkbox.checked = action.payload.checked; //2 way bind
+      }
     },
   },
 });

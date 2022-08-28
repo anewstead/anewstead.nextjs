@@ -1,9 +1,10 @@
 import { Button, Container, Paper, Typography } from "@mui/material";
-import { Link as NextLink } from "next/link";
+import { NextPage } from "next/types";
 import React from "react";
 import { makeStyles } from "tss-react/mui";
 
 import PageLayout from "../containers/page-layout";
+import { NextLinkComposed } from "../lib/next-mui-link";
 
 const useStyles = makeStyles()((theme) => {
   return {
@@ -19,20 +20,23 @@ const useStyles = makeStyles()((theme) => {
     },
   };
 });
-const NoMatch = (props) => {
+
+type Props = {
+  statusCode?: number;
+};
+
+const NoMatch: NextPage<Props> = () => {
   const { classes } = useStyles();
 
   return (
-    <PageLayout>
+    <PageLayout headerNavType="detail">
       <Container className={classes.f04root}>
         <Paper className={classes.paper}>
           <Typography variant="h3">404 - Page Not Found</Typography>
-          <Typography variant="h4">
-            <code>PAGE</code>
-          </Typography>
+
           <Button
-            component={NextLink}
-            href="/"
+            component={NextLinkComposed}
+            to="/"
             className={classes.button}
             size="large"
           >

@@ -1,11 +1,12 @@
 import { Box, CssBaseline } from "@mui/material";
 import { StyledEngineProvider, ThemeProvider } from "@mui/material/styles";
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
 import { makeStyles } from "tss-react/mui";
 
 import Footer from "../components/footer";
+import { useAppSelector } from "../lib/store";
 import themes from "../lib/themes";
+import { IRootState } from "../lib/types";
 import HeaderNav from "./header-nav";
 
 const useStyles = makeStyles()((theme) => {
@@ -38,16 +39,23 @@ const useStyles = makeStyles()((theme) => {
   };
 });
 
-const PageLayout = (props) => {
+type Props = {
+  headerNavType: "thumbs" | "detail";
+  headerNavTitle?: string;
+  headerNavSubtitle?: string;
+  children: React.ReactNode;
+};
+
+const PageLayout: React.FC<Props> = (props) => {
   const { headerNavType, headerNavTitle, headerNavSubtitle, children } = props;
 
   const { classes } = useStyles();
 
-  const theme = useSelector((state) => {
+  const theme = useAppSelector((state: IRootState) => {
     return state.app.theme;
   });
 
-  const navBrand = useSelector((state) => {
+  const navBrand = useAppSelector((state: IRootState) => {
     return state.app.nav.brand;
   });
 
@@ -55,9 +63,7 @@ const PageLayout = (props) => {
   useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector("#jss-server-side");
-    if (jssStyles) {
-      jssStyles.parentElement.removeChild(jssStyles);
-    }
+    jssStyles?.parentElement?.removeChild(jssStyles);
   }, []);
 
   return (

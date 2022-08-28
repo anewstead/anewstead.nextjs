@@ -7,21 +7,21 @@ import {
   StyledEngineProvider,
   ThemeProvider,
 } from "@mui/material";
+import type { AppProps } from "next/app";
 import Head from "next/head";
 import React, { useEffect } from "react";
 import { Provider } from "react-redux";
-import { useSelector } from "react-redux";
 import { createEmotionSsrAdvancedApproach } from "tss-react/nextJs";
 
 import { useApollo } from "../lib/apollo-client";
 import store, { INIT_THEME } from "../lib/store";
-import themes, { useThemeDetector } from "../lib/themes";
+import themes from "../lib/themes";
 
 const { EmotionCacheProvider, withEmotionCache } =
   createEmotionSsrAdvancedApproach({ key: "css" });
 export { withEmotionCache };
 
-const App = (props) => {
+const App = (props: AppProps) => {
   const { Component, pageProps } = props;
   const apolloClient = useApollo(pageProps.initialApolloState);
 
@@ -37,7 +37,7 @@ const App = (props) => {
       </Head>
       <EmotionCacheProvider>
         <StyledEngineProvider injectFirst>
-          <ThemeProvider theme={themes["light"]}>
+          <ThemeProvider theme={themes.dark}>
             <CssBaseline />
             <ApolloProvider client={apolloClient}>
               <Component {...pageProps} />

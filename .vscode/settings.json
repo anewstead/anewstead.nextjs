@@ -1,5 +1,5 @@
 {
-  "telemetry.enableTelemetry": false,
+  "typescript.tsdk": "node_modules/typescript/lib",
 
   "files.exclude": {
     "node_modules": true,
@@ -9,6 +9,7 @@
     "storybook-static": true
   },
 
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": false,
   "editor.formatOnSave": true,
   "editor.renderWhitespace": "all",
@@ -16,13 +17,12 @@
     "source.fixAll.eslint": true,
     "source.fixAll.stylelint": true
   },
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
 
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
   "javascript.validate.enable": false,
-  "typescript.validate.enable": false,
+  "typescript.validate.enable": true,
 
   "html.format.enable": false,
   "json.format.enable": false,
@@ -30,8 +30,5 @@
   "typescript.format.enable": false,
 
   "eslint.alwaysShowStatus": true,
-  "eslint.enable": true,
-  "eslint.format.enable": true,
-
-  "sort-imports.on-save": true
+  "eslint.format.enable": true
 }
