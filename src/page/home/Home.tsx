@@ -4,38 +4,10 @@ import React from "react";
 
 import { NextLinkComposed } from "../../components/next-mui-link";
 import PageLayout from "../../containers/page-layout";
+import { thumbHelper } from "../../lib/helpers";
 import { useAppSelector } from "../../lib/store";
-import { ICheckbox, IMainData, IRootState, IThumb } from "../../lib/types";
+import { ICheckbox, IMainData, IRootState } from "../../lib/types";
 import useStyles from "./Home.style";
-
-const thumbHelper = (
-  allThumbs: IThumb[],
-  checkboxes: ICheckbox[]
-): IThumb[] => {
-  const showSites = checkboxes.find((cb) => {
-    return cb.id === "site";
-  })?.checked;
-
-  const showApps = checkboxes.find((cb) => {
-    return cb.id === "app";
-  })?.checked;
-
-  const showAds = checkboxes.find((cb) => {
-    return cb.id === "banner";
-  })?.checked;
-
-  return allThumbs
-    .filter((obj) => {
-      return (
-        (showSites && obj.type === "site") ||
-        (showApps && obj.type === "app") ||
-        (showAds && obj.type === "banner")
-      );
-    })
-    .sort((a, b) => {
-      return Number(b.id) - Number(a.id);
-    });
-};
 
 type Props = {
   projects: IMainData[];
@@ -46,15 +18,14 @@ const Home: React.FC<Props> = (props) => {
 
   const { classes } = useStyles();
 
+  const baseContentURL = useAppSelector((state: IRootState) => {
+    return state.app.baseContentURL;
+  });
   const checkboxes = useAppSelector((state: IRootState) => {
     return state.app.nav.checkboxes;
   }) as ICheckbox[];
 
   const displayThumbs = thumbHelper(projects, checkboxes);
-
-  const baseContentURL = useAppSelector((state: IRootState) => {
-    return state.app.baseContentURL;
-  });
 
   let content = <></>;
 

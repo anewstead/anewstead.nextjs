@@ -1,6 +1,7 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
+import initialState from "./initialState";
 import { detectColorTheme, toggleColorTheme } from "./themes";
 import type { IAppDispatch, IRootState } from "./types";
 
@@ -12,30 +13,7 @@ export const useAppSelector: TypedUseSelectorHook<IRootState> = useSelector;
 // remember to export reducer functions as slice.actions
 const slice = createSlice({
   name: "app",
-  initialState: {
-    baseContentURL: "https://anewstead-content.netlify.app",
-    theme: "light",
-    nav: {
-      brand: "Andrew Newstead",
-      checkboxes: [
-        {
-          id: "site",
-          label: "Websites",
-          checked: true,
-        },
-        {
-          id: "app",
-          label: "Apps",
-          checked: true,
-        },
-        {
-          id: "banner",
-          label: "Adverts",
-          checked: true,
-        },
-      ],
-    },
-  },
+  initialState,
   reducers: {
     // Redux Toolkit allows us to write "mutating" logic in reducers. It
     // doesn't actually mutate the state because it uses the Immer library,

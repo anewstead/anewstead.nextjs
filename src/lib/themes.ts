@@ -7,14 +7,18 @@ const storeColorTheme = (themeName: string) => {
   localStorage.setItem("theme", themeName);
 };
 
+// if nextjs SSR return default
 // if user has been here before return their pref
 // else try detect from browser preference
-export const detectColorTheme = () => {
+export const detectColorTheme = (): string => {
+  let themeName = "light";
+  if (typeof window === "undefined") {
+    return themeName;
+  }
   const lsTheme = localStorage.getItem("theme");
   if (lsTheme && (lsTheme === "light" || lsTheme === "dark")) {
     return lsTheme;
   }
-  let themeName = "light";
   if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
     themeName = "dark";
   }
@@ -22,7 +26,7 @@ export const detectColorTheme = () => {
   return themeName;
 };
 
-export const toggleColorTheme = () => {
+export const toggleColorTheme = (): string => {
   const lsTheme = localStorage.getItem("theme");
   const themeName = lsTheme === "dark" ? "light" : "dark";
   storeColorTheme(themeName);

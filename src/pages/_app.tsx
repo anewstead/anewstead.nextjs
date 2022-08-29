@@ -10,7 +10,7 @@ import {
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import React, { useEffect } from "react";
-import { Provider } from "react-redux";
+import { Provider as ReduxProvider } from "react-redux";
 import { createEmotionSsrAdvancedApproach } from "tss-react/nextJs";
 
 import { useApollo } from "../lib/apollo";
@@ -19,6 +19,7 @@ import themes from "../lib/themes";
 
 const { EmotionCacheProvider, withEmotionCache } =
   createEmotionSsrAdvancedApproach({ key: "css" });
+
 export { withEmotionCache };
 
 const App = (props: AppProps) => {
@@ -30,22 +31,23 @@ const App = (props: AppProps) => {
   }, []);
 
   return (
-    <Provider store={store}>
-      <Head>
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <title>Andrew Newstead</title>
-      </Head>
-      <EmotionCacheProvider>
-        <StyledEngineProvider injectFirst>
-          <ThemeProvider theme={themes.dark}>
-            <CssBaseline />
-            <ApolloProvider client={apolloClient}>
-              <Component {...pageProps} />
-            </ApolloProvider>
-          </ThemeProvider>
-        </StyledEngineProvider>
-      </EmotionCacheProvider>
-    </Provider>
+    <React.StrictMode>
+      <ReduxProvider store={store}>
+        <Head>
+          <title>Andrew Newstead</title>
+        </Head>
+        <ApolloProvider client={apolloClient}>
+          <EmotionCacheProvider>
+            <StyledEngineProvider injectFirst>
+              <ThemeProvider theme={themes.dark}>
+                <CssBaseline />
+                <Component {...pageProps} />
+              </ThemeProvider>
+            </StyledEngineProvider>
+          </EmotionCacheProvider>
+        </ApolloProvider>
+      </ReduxProvider>
+    </React.StrictMode>
   );
 };
 
