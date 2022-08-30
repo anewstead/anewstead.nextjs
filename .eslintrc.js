@@ -1,7 +1,13 @@
 module.exports = {
   root: true,
   parser: "@typescript-eslint/parser",
-  plugins: ["react", "react-hooks", "@typescript-eslint", "prettier"],
+  plugins: [
+    "react",
+    "react-hooks",
+    "@typescript-eslint",
+    "check-file",
+    "prettier",
+  ],
   extends: [
     "next/core-web-vitals",
     "airbnb-typescript",
@@ -24,6 +30,22 @@ module.exports = {
     project: "./tsconfig.json", // required by airbnb
   },
   rules: {
+    "@typescript-eslint/naming-convention": "warn",
+    "check-file/filename-naming-convention": [
+      "error",
+      {
+        "src/!(pages)/**/*.{js,ts}": "CAMEL_CASE",
+        "src/!(pages)/**/*.{jsx,tsx}": "PASCAL_CASE",
+        "src/pages/**/*.{js,ts,jsx,tsx}":
+          "?([|_|[a-z0-9])+([a-z0-9])*(-|[a-z0-9])?(])",
+        // glob: kebab-case and allow start with _ or [ and end with ]
+      },
+      { ignoreMiddleExtensions: true },
+    ],
+    "check-file/folder-naming-convention": [
+      "error",
+      { "src/**/": "KEBAB_CASE" },
+    ],
     "prettier/prettier": ["error", {}, { usePrettierrc: true }],
     "arrow-body-style": ["error", "always"],
     "arrow-parens": ["error", "always"],

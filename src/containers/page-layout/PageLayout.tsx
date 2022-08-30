@@ -11,7 +11,7 @@ type IPageLayout = {
   headerNavType: "thumbs" | "detail";
   headerNavTitle?: string;
   headerNavSubtitle?: string;
-  children?: React.ReactNode;
+  children: React.ReactNode;
 };
 
 const PageLayout = (props: IPageLayout) => {

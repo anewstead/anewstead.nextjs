@@ -11,7 +11,8 @@
     "start": "next start",
     "lint:js": "eslint --fix $PWD/'/src/**/*.{js,jsx,ts,tsx,json}'; prettier --write $PWD/'/src/**/*.{js,jsx,ts,tsx,json}'",
     "lint:style": "stylelint --fix $PWD/'/src/**/*.{css,scss,js,jsx,ts,tsx}'",
-    "lint": "npm run lint:js; npm run lint:style"
+    "lint": "npm run lint:js; npm run lint:style",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
@@ -42,6 +43,7 @@
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-next": "^12.2.5",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-check-file": "^1.2.2",
     "eslint-plugin-flowtype": "^8.0.3",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jest": "^26.8.7",
@@ -51,6 +53,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "graphql": "^16.6.0",
     "html-react-parser": "^3.0.4",
+    "husky": "^8.0.1",
     "import-sort-style-module": "^6.0.0",
     "import-sort-style-renke": "^6.0.0",
     "isomorphic-dompurify": "^0.22.0",

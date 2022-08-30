@@ -2,7 +2,7 @@ import { Button, Card, Container, Grid } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 
-import { NextLinkComposed } from "../../components/next-mui-link";
+import { NextLinkComposed } from "../../components/next-mui-link/Link";
 import PageLayout from "../../containers/page-layout";
 import { thumbHelper } from "../../lib/helpers";
 import { useAppSelector } from "../../lib/store";
