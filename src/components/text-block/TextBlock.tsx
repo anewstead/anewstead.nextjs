@@ -3,7 +3,7 @@ import parse from "html-react-parser";
 import DOMPurify from "isomorphic-dompurify";
 import React from "react";
 
-import useStyles from "./TextBlock.style";
+import useStyles from "./textBlock.style";
 
 type ITextBlock = {
   htmlText: string;

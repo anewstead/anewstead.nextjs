@@ -11,7 +11,7 @@ import {
 import { useTheme } from "@mui/material/styles";
 import React from "react";
 
-import useStyles from "./HeaderNavDetail.style";
+import useStyles from "./headerNavDetail.style";
 
 type IHeaderNavDetail = {
   onThemeClick: () => unknown;
@@ -20,7 +20,7 @@ type IHeaderNavDetail = {
   subtitleText?: string;
 };
 
-const HeaderNavDetail: React.FC<IHeaderNavDetail> = (props) => {
+const HeaderNavDetail = (props: IHeaderNavDetail) => {
   const { onThemeClick, onBackClick, titleText, subtitleText } = props;
 
   const { classes } = useStyles();

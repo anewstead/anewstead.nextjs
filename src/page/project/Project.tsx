@@ -9,15 +9,14 @@ import PageLayout from "../../containers/page-layout";
 import { useAppSelector } from "../../lib/store";
 import { IMainData, IRootState } from "../../lib/types";
 import NoMatch from "../no-match";
-import useStyles from "./Project.style";
+import useStyles from "./project.style";
 
 type Props = {
   data: IMainData;
 };
 
-const Project: React.FC<Props> = (props) => {
+const Project = (props: Props) => {
   const { data } = props;
-
   const { classes } = useStyles();
 
   const baseContentURL = useAppSelector((state: IRootState) => {

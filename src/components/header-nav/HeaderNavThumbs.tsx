@@ -20,7 +20,7 @@ import { useTheme } from "@mui/material/styles";
 import React, { useState } from "react";
 
 import { ICheckbox } from "../../lib/types";
-import useStyles from "./HeaderNavThumbs.style";
+import useStyles from "./headerNavThumbs.style";
 
 type IHeaderNavThumbs = {
   brandName?: string;
@@ -30,7 +30,7 @@ type IHeaderNavThumbs = {
   onCheckboxChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const HeaderNavThumbs: React.FC<IHeaderNavThumbs> = (props) => {
+const HeaderNavThumbs = (props: IHeaderNavThumbs) => {
   const {
     brandName,
     checkboxData,

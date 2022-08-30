@@ -1,13 +1,13 @@
 import { Container } from "@mui/material";
 import React from "react";
 
-import useStyles from "./Footer.style";
+import useStyles from "./footer.style";
 
 type IFooter = {
   brand: string;
 };
 
-const Footer: React.FC<IFooter> = (props) => {
+const Footer = (props: IFooter) => {
   const { brand } = props;
 
   const { classes } = useStyles();

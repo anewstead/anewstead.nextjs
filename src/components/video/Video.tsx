@@ -1,13 +1,13 @@
 import React from "react";
 
-import useStyles from "./Video.style";
+import useStyles from "./video.style";
 
 type IVideo = {
   videoURL: string;
   posterURL: string;
 };
 
-const Video: React.FC<IVideo> = (props) => {
+const Video = (props: IVideo) => {
   const { videoURL, posterURL } = props;
 
   const { classes } = useStyles();

@@ -5,7 +5,7 @@ import Footer from "../../components/footer";
 import HeaderNav from "../../components/header-nav";
 import { useAppSelector } from "../../lib/store";
 import { IRootState } from "../../lib/types";
-import useStyles from "./PageLayout.style";
+import useStyles from "./pageLayout.style";
 
 type IPageLayout = {
   headerNavType: "thumbs" | "detail";
@@ -14,7 +14,7 @@ type IPageLayout = {
   children?: React.ReactNode;
 };
 
-const PageLayout: React.FC<IPageLayout> = (props) => {
+const PageLayout = (props: IPageLayout) => {
   const { headerNavType, headerNavTitle, headerNavSubtitle, children } = props;
 
   const { classes } = useStyles();

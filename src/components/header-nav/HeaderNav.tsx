@@ -17,7 +17,7 @@ type Props = {
   subtitleText?: string;
 };
 
-const HeaderNav: React.FC<Props> = (props) => {
+const HeaderNav = (props: Props) => {
   const { navType, titleText, subtitleText } = props;
 
   const dispatch = useDispatch();

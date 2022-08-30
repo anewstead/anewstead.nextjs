@@ -2,9 +2,9 @@ import { Container, Paper, Typography } from "@mui/material";
 import React from "react";
 
 import PageLayout from "../../containers/page-layout";
-import useStyles from "./About.style";
+import useStyles from "./about.style";
 
-const About: React.FC = () => {
+const About = () => {
   const { classes } = useStyles();
 
   return (

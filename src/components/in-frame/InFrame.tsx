@@ -4,7 +4,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 import TextBlock from "../text-block";
-import useStyles from "./InFrame.style";
+import useStyles from "./inFrame.style";
 
 type IInFrame = {
   title: string;
@@ -15,7 +15,7 @@ type IInFrame = {
   checkAdBlock: boolean;
 };
 
-const InFrame: React.FC<IInFrame> = (props) => {
+const InFrame = (props: IInFrame) => {
   const { title, width, height, iframeURL, failOverImageURL, checkAdBlock } =
     props;
 

@@ -7,15 +7,14 @@ import PageLayout from "../../containers/page-layout";
 import { thumbHelper } from "../../lib/helpers";
 import { useAppSelector } from "../../lib/store";
 import { ICheckbox, IMainData, IRootState } from "../../lib/types";
-import useStyles from "./Home.style";
+import useStyles from "./home.style";
 
 type Props = {
   projects: IMainData[];
 };
 
-const Home: React.FC<Props> = (props) => {
+const Home = (props: Props) => {
   const { projects } = props;
-
   const { classes } = useStyles();
 
   const baseContentURL = useAppSelector((state: IRootState) => {

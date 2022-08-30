@@ -5,14 +5,14 @@ import { IconButton, useTheme } from "@mui/material";
 import React from "react";
 import Slider, { Settings as SlickSettings } from "react-slick";
 
-import useStyles from "./Carousel.style";
+import useStyles from "./carousel.style";
 
 type IPrevNextButton = {
   direction: string;
   onClick?: () => void;
 };
 
-const PrevNextButton: React.FC<IPrevNextButton> = (props) => {
+const PrevNextButton = (props: IPrevNextButton) => {
   const { direction, onClick } = props;
   const { classes } = useStyles();
   return (
@@ -35,7 +35,7 @@ type ICarousel = {
   settings?: SlickSettings;
 };
 
-const Carousel: React.FC<ICarousel> = (props) => {
+const Carousel = (props: ICarousel) => {
   const { slides, settings } = props;
   const theme = useTheme();
   const { classes } = useStyles();

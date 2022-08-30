@@ -1,26 +1,11 @@
 import { Button, Container, Paper, Typography } from "@mui/material";
 import React from "react";
-import { makeStyles } from "tss-react/mui";
 
 import { NextLinkComposed } from "../../components/next-mui-link";
 import PageLayout from "../../containers/page-layout";
+import useStyles from "./noMatch.style";
 
-const useStyles = makeStyles()((theme) => {
-  return {
-    f04root: {
-      marginTop: theme.spacing(4),
-    },
-    paper: {
-      padding: theme.spacing(4),
-    },
-    button: {
-      marginTop: theme.spacing(4),
-      border: `solid 1px ${theme.palette.text.primary}`,
-    },
-  };
-});
-
-const NoMatch: React.FC = () => {
+const NoMatch = () => {
   const { classes } = useStyles();
 
   return (
