@@ -2,11 +2,7 @@
 import "slick-carousel/slick/slick.css";
 
 import { ApolloProvider } from "@apollo/react-hooks";
-import {
-  CssBaseline,
-  StyledEngineProvider,
-  ThemeProvider,
-} from "@mui/material";
+import { StyledEngineProvider } from "@mui/material";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import React, { useEffect } from "react";
@@ -15,7 +11,6 @@ import { createEmotionSsrAdvancedApproach } from "tss-react/nextJs";
 
 import { useApollo } from "../lib/apollo";
 import store, { INIT_THEME } from "../lib/store";
-import themes from "../lib/themes";
 
 const { EmotionCacheProvider, withEmotionCache } =
   createEmotionSsrAdvancedApproach({ key: "css" });
@@ -39,10 +34,7 @@ const App = (props: AppProps) => {
         <ApolloProvider client={apolloClient}>
           <EmotionCacheProvider>
             <StyledEngineProvider injectFirst>
-              <ThemeProvider theme={themes.dark}>
-                <CssBaseline />
-                <Component {...pageProps} />
-              </ThemeProvider>
+              <Component {...pageProps} />
             </StyledEngineProvider>
           </EmotionCacheProvider>
         </ApolloProvider>

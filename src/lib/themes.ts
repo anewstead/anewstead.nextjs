@@ -2,34 +2,43 @@ import { blueGrey, grey } from "@mui/material/colors";
 import { Theme, createTheme, responsiveFontSizes } from "@mui/material/styles";
 import { deepmerge } from "@mui/utils";
 
-// remember preference for next time user visits
-const storeColorTheme = (themeName: string) => {
+const DARK = "dark";
+const LIGHT = "light";
+export const DEFAULT_THEME = LIGHT;
+
+type IThemeName = typeof DARK | typeof LIGHT;
+
+const storeThemeName = (themeName: IThemeName) => {
   localStorage.setItem("theme", themeName);
 };
 
-// if nextjs SSR return default
+const retreiveThemeName = (): IThemeName | null => {
+  return localStorage.getItem("theme") as IThemeName;
+};
+
+// if nextjs SSR (no window) return default
 // if user has been here before return their pref
 // else try detect from browser preference
-export const detectColorTheme = (): string => {
-  let themeName = "light";
+export const initTheme = (): string => {
   if (typeof window === "undefined") {
-    return themeName;
+    return DEFAULT_THEME;
   }
-  const lsTheme = localStorage.getItem("theme");
-  if (lsTheme && (lsTheme === "light" || lsTheme === "dark")) {
+  const lsTheme = retreiveThemeName();
+  if (lsTheme) {
     return lsTheme;
   }
   if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    themeName = "dark";
+    storeThemeName(DARK);
+    return DARK;
   }
-  storeColorTheme(themeName);
-  return themeName;
+  storeThemeName(DEFAULT_THEME);
+  return DEFAULT_THEME;
 };
 
-export const toggleColorTheme = (): string => {
-  const lsTheme = localStorage.getItem("theme");
-  const themeName = lsTheme === "dark" ? "light" : "dark";
-  storeColorTheme(themeName);
+export const toggleTheme = (): IThemeName => {
+  const lsTheme = retreiveThemeName();
+  const themeName = lsTheme === DARK ? LIGHT : DARK;
+  storeThemeName(themeName);
   return themeName;
 };
 
@@ -63,15 +72,10 @@ const globalOverrides = (theme: Theme) => {
   };
 };
 
-type IThemes = Record<string, Theme> & {
-  light: Theme;
-  dark: Theme;
-};
-
 const lightTheme = responsiveFontSizes(
   createTheme({
     palette: {
-      mode: "light",
+      mode: LIGHT,
       background: {
         paper: blueGrey[50],
         default: grey[300],
@@ -83,7 +87,7 @@ const lightTheme = responsiveFontSizes(
 const darkTheme = responsiveFontSizes(
   createTheme({
     palette: {
-      mode: "dark",
+      mode: DARK,
       background: {
         paper: blueGrey[800],
         default: grey[800],
@@ -92,6 +96,11 @@ const darkTheme = responsiveFontSizes(
   }),
   { breakpoints: ["xs", "sm"], factor: 2 }
 );
+
+type IThemes = Record<string, Theme> & {
+  light: Theme;
+  dark: Theme;
+};
 
 const light = deepmerge(lightTheme, globalOverrides(lightTheme));
 const dark = deepmerge(darkTheme, globalOverrides(darkTheme));

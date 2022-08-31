@@ -1,10 +1,10 @@
-import { detectColorTheme } from "./themes";
+import { DEFAULT_THEME } from "./themes";
 import { IState } from "./types";
 
 const initialState: IState = {
   baseContentURL: "https://anewstead-content.netlify.app/",
   displayThumbs: [],
-  theme: detectColorTheme(),
+  theme: DEFAULT_THEME,
   nav: {
     brand: "Andrew Newstead",
     checkboxes: [
