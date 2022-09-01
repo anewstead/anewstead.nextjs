@@ -9,6 +9,7 @@ import React, { useEffect } from "react";
 import { Provider as ReduxProvider } from "react-redux";
 import { createEmotionSsrAdvancedApproach } from "tss-react/nextJs";
 
+import ThemeWrapper from "../containers/theme-wrapper";
 import { useApollo } from "../lib/apollo";
 import store, { INIT_THEME } from "../lib/store";
 
@@ -34,7 +35,9 @@ const App = (props: AppProps) => {
         <ApolloProvider client={apolloClient}>
           <EmotionCacheProvider>
             <StyledEngineProvider injectFirst>
-              <Component {...pageProps} />
+              <ThemeWrapper>
+                <Component {...pageProps} />
+              </ThemeWrapper>
             </StyledEngineProvider>
           </EmotionCacheProvider>
         </ApolloProvider>

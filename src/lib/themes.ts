@@ -8,40 +8,6 @@ export const DEFAULT_THEME = LIGHT;
 
 type IThemeName = typeof DARK | typeof LIGHT;
 
-const storeThemeName = (themeName: IThemeName) => {
-  localStorage.setItem("theme", themeName);
-};
-
-const retreiveThemeName = (): IThemeName | null => {
-  return localStorage.getItem("theme") as IThemeName;
-};
-
-// if nextjs SSR (no window) return default
-// if user has been here before return their pref
-// else try detect from browser preference
-export const initTheme = (): string => {
-  if (typeof window === "undefined") {
-    return DEFAULT_THEME;
-  }
-  const lsTheme = retreiveThemeName();
-  if (lsTheme) {
-    return lsTheme;
-  }
-  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    storeThemeName(DARK);
-    return DARK;
-  }
-  storeThemeName(DEFAULT_THEME);
-  return DEFAULT_THEME;
-};
-
-export const toggleTheme = (): IThemeName => {
-  const lsTheme = retreiveThemeName();
-  const themeName = lsTheme === DARK ? LIGHT : DARK;
-  storeThemeName(themeName);
-  return themeName;
-};
-
 const globalOverrides = (theme: Theme) => {
   return {
     components: {
@@ -84,6 +50,7 @@ const lightTheme = responsiveFontSizes(
   }),
   { breakpoints: ["xs", "sm"] }
 );
+
 const darkTheme = responsiveFontSizes(
   createTheme({
     palette: {
@@ -106,5 +73,36 @@ const light = deepmerge(lightTheme, globalOverrides(lightTheme));
 const dark = deepmerge(darkTheme, globalOverrides(darkTheme));
 
 const themes: IThemes = { light, dark };
+
+const storeThemeName = (themeName: IThemeName) => {
+  localStorage.setItem("theme", themeName);
+};
+
+const retreiveThemeName = (): IThemeName | null => {
+  return localStorage.getItem("theme") as IThemeName;
+};
+
+export const initThemeName = (): string => {
+  if (typeof window === "undefined") {
+    return DEFAULT_THEME; // SSR
+  }
+  let themeName: IThemeName = DEFAULT_THEME;
+  const lsTheme = retreiveThemeName();
+  if (lsTheme) {
+    themeName = lsTheme; // returning user
+  }
+  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    themeName = DARK; // firsttime user system pref is dark
+  }
+  storeThemeName(themeName);
+  return themeName;
+};
+
+export const toggleThemeName = (): IThemeName => {
+  const lsTheme = retreiveThemeName();
+  const themeName = lsTheme === DARK ? LIGHT : DARK;
+  storeThemeName(themeName);
+  return themeName;
+};
 
 export default themes;

@@ -2,7 +2,7 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 import initialState from "./initialState";
-import { initTheme, toggleTheme } from "./themes";
+import { initThemeName, toggleThemeName } from "./themes";
 import type { IAppDispatch, IRootState } from "./types";
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
@@ -20,10 +20,10 @@ const slice = createSlice({
     // which detects changes to a "draft state" and produces a brand new
     // immutable state based off those changes
     INIT_THEME: (state) => {
-      state.theme = initTheme();
+      state.themeName = initThemeName();
     },
     TOGGLE_THEME: (state) => {
-      state.theme = toggleTheme();
+      state.themeName = toggleThemeName();
     },
     NAV_CHECKBOX_CHANGE: (state, action) => {
       const checkbox = state.nav.checkboxes.find((obj) => {

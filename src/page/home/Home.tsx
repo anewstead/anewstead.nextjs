@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 
 import { NextLinkComposed } from "../../components/next-mui-link/Link";
-import PageLayout from "../../containers/page-layout";
+import AppLayout from "../../containers/app-layout";
 import { thumbHelper } from "../../lib/helpers";
 import { useAppSelector } from "../../lib/store";
 import { ICheckbox, IMainData, IRootState } from "../../lib/types";
@@ -54,13 +54,13 @@ const Home = (props: Props) => {
   }
 
   return (
-    <PageLayout headerNavType="thumbs">
+    <AppLayout headerNavType="thumbs">
       <Container className={classes.indexRoot}>
         <Grid container spacing={2} justifyContent="center">
           {content}
         </Grid>
       </Container>
-    </PageLayout>
+    </AppLayout>
   );
 };
 

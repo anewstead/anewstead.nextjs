@@ -4,7 +4,7 @@ import { IState } from "./types";
 const initialState: IState = {
   baseContentURL: "https://anewstead-content.netlify.app/",
   displayThumbs: [],
-  theme: DEFAULT_THEME,
+  themeName: DEFAULT_THEME,
   nav: {
     brand: "Andrew Newstead",
     checkboxes: [

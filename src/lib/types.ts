@@ -47,7 +47,7 @@ export type IMainData = {
 export type IState = {
   baseContentURL: string;
   displayThumbs: IThumb[];
-  theme: string;
+  themeName: string;
   nav: {
     brand: string;
     checkboxes: ICheckbox[];

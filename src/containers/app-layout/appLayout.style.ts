@@ -31,4 +31,8 @@ const useStyles = makeStyles()((theme: Theme) => {
   };
 });
 
+export const foo = (theme: Theme) => {
+  console.log("foo", theme);
+};
+
 export default useStyles;

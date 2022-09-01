@@ -1,14 +1,14 @@
 import { Container, Paper, Typography } from "@mui/material";
 import React from "react";
 
-import PageLayout from "../../containers/page-layout";
+import AppLayout from "../../containers/app-layout";
 import useStyles from "./about.style";
 
 const About = () => {
   const { classes } = useStyles();
 
   return (
-    <PageLayout headerNavType="detail">
+    <AppLayout headerNavType="detail">
       <Container className={classes.root}>
         <Paper className={classes.paper}>
           <Typography variant="h4" component="h2">
@@ -47,7 +47,7 @@ const About = () => {
           </Typography>
         </Paper>
       </Container>
-    </PageLayout>
+    </AppLayout>
   );
 };
 

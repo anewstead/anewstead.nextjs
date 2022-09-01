@@ -5,7 +5,7 @@ import Carousel from "../../components/carousel";
 import InFrame from "../../components/in-frame";
 import TextBlock from "../../components/text-block";
 import Video from "../../components/video";
-import PageLayout from "../../containers/page-layout";
+import AppLayout from "../../containers/app-layout";
 import { useAppSelector } from "../../lib/store";
 import { IMainData, IRootState } from "../../lib/types";
 import NoMatch from "../no-match";
@@ -80,7 +80,7 @@ const Project = (props: Props) => {
   }
 
   return (
-    <PageLayout
+    <AppLayout
       headerNavType="detail"
       headerNavTitle={titleText}
       headerNavSubtitle={subtitleText}
@@ -89,7 +89,7 @@ const Project = (props: Props) => {
         {content}
         <TextBlock htmlText={data.info} />
       </Container>
-    </PageLayout>
+    </AppLayout>
   );
 };
 
