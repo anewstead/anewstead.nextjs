@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 import { useQuery } from "@apollo/react-hooks";
-import { GetStaticProps, NextPage } from "next/types";
+import type { GetStaticProps, NextPage } from "next/types";
 import React from "react";
 
 import { initializeApollo } from "../lib/apollo";

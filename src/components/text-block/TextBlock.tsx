@@ -8,7 +8,7 @@ import useStyles from "./textBlock.style";
 type ITextBlock = {
   htmlText: string;
 };
-const TextBlock: React.FC<ITextBlock> = (props) => {
+const TextBlock = (props: ITextBlock) => {
   const { htmlText } = props;
 
   const { classes } = useStyles();

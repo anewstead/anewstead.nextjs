@@ -7,7 +7,7 @@ import TextBlock from "../../components/text-block";
 import Video from "../../components/video";
 import AppLayout from "../../containers/app-layout";
 import { useAppSelector } from "../../lib/store";
-import { IMainData, IRootState } from "../../lib/types";
+import type { IMainData, IRootState } from "../../lib/types";
 import NoMatch from "../no-match";
 import useStyles from "./project.style";
 
@@ -41,7 +41,7 @@ const Project = (props: Props) => {
       const slides = data.view.stills.map((item: string, i: number) => {
         const url = `${baseContentURL}${item}`;
         const alt = `${data.brand} ${data.project} image ${i}`;
-        // eslint-disable-next-line @next/next/no-img-element
+        // eslint-disable-next-line @next/next/no-img-element, react/no-array-index-key
         return <img src={url} alt={`${alt} ${i}`} key={i} />;
       });
       content = <Carousel slides={slides} />;
@@ -56,8 +56,8 @@ const Project = (props: Props) => {
     }
 
     case "iframe": {
-      const width = data.view.width;
-      const height = data.view.height;
+      const { width } = data.view;
+      const { height } = data.view;
       const iframeURL = `${baseContentURL}${data.view.href}`;
       const failOverImageURL = `${baseContentURL}${data.view.still}`;
       const title = `${data.brand} ${data.project}`;

@@ -6,7 +6,7 @@ import { NextLinkComposed } from "../../components/next-mui-link/Link";
 import AppLayout from "../../containers/app-layout";
 import { thumbHelper } from "../../lib/helpers";
 import { useAppSelector } from "../../lib/store";
-import { ICheckbox, IMainData, IRootState } from "../../lib/types";
+import type { ICheckbox, IMainData, IRootState } from "../../lib/types";
 import useStyles from "./home.style";
 
 type Props = {
@@ -30,11 +30,11 @@ const Home = (props: Props) => {
 
   if (displayThumbs) {
     if (displayThumbs.length) {
-      const thumbs = displayThumbs.map((obj, i) => {
+      const thumbs = displayThumbs.map((obj) => {
         const url = `${baseContentURL}${obj.thumb}`;
         const alt = `${obj.client} - ${obj.brand} - ${obj.project}`;
         return (
-          <Grid item key={i} className={classes.gridItem}>
+          <Grid item key={obj.id} className={classes.gridItem}>
             <Card elevation={6}>
               <Button
                 component={NextLinkComposed}

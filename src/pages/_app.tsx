@@ -1,4 +1,4 @@
-//global css import
+// global css import
 import "slick-carousel/slick/slick.css";
 
 import { ApolloProvider } from "@apollo/react-hooks";

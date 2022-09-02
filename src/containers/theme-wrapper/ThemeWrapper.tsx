@@ -8,7 +8,7 @@ import React from "react";
 
 import { useAppSelector } from "../../lib/store";
 import themes from "../../lib/themes";
-import { IRootState } from "../../lib/types";
+import type { IRootState } from "../../lib/types";
 
 type Props = {
   children: React.ReactNode;

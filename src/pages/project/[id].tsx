@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 import { useQuery } from "@apollo/react-hooks";
 import { useRouter } from "next/router";
-import { GetStaticPaths, GetStaticProps, NextPage } from "next/types";
+import type { GetStaticPaths, GetStaticProps, NextPage } from "next/types";
 import React from "react";
 
 import { initializeApollo } from "../../lib/apollo";
@@ -39,8 +39,6 @@ const PROJECT_QUERY = (id: string) => {
   `;
 };
 
-// server side
-//==================================================
 export const getStaticProps: GetStaticProps = async (context) => {
   const apolloClient = initializeApollo();
   const id = context?.params?.id;
@@ -66,13 +64,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
   });
   return { paths, fallback: false };
 };
-//==================================================
 
 const ProjectPage: NextPage = () => {
   const router = useRouter();
   const id = router.query.id as string;
 
-  // this initial query cached to apollo by server code above
+  // this initial query cached to apollo by SSR code above
   const { data } = useQuery(PROJECT_QUERY(id));
 
   return <Project data={data.project} />;

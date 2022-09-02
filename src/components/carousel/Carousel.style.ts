@@ -17,7 +17,7 @@ const useStyles = makeStyles()((theme: Theme) => {
       marginBottom: theme.spacing(4),
       "& .slick-dots": {
         position: "absolute",
-        display: "flex !important", //because slick sets block via js
+        display: "flex !important", // because slick sets block via js
         width: "100%",
         justifyContent: "center",
         listStyle: "none",
@@ -62,10 +62,10 @@ const useStyles = makeStyles()((theme: Theme) => {
       },
       "& .slick-slide": {
         "& > div > *": {
-          display: "block !important", //because slick sets inline-block via js
+          display: "block !important", // because slick sets inline-block via js
         },
         "& img": {
-          width: "100%", //make sure image scales to carousel width
+          width: "100%", // make sure image scales to carousel width
         },
       },
     },
@@ -77,22 +77,30 @@ const useStyles = makeStyles()((theme: Theme) => {
       padding: theme.spacing(2),
       color: theme.palette.text.primary,
       opacity: "0",
-      "&:hover, &:focus-within": {
+      "&:hover, &:focus-visible": {
         opacity: `${isMobile ? "0" : "1"}`,
       },
       "& div:first-of-type": {
-        position: "absolute",
-        backgroundColor: theme.palette.background.default,
-        top: "0",
-        left: "0",
-        height: "100%",
-        width: "100%",
-        opacity: "0.2",
+        padding: "12px",
+        display: "flex",
+        position: "relative",
+        "&:before": {
+          content: '""',
+          borderRadius: "36px",
+          width: "100%",
+          height: "100%",
+          backgroundColor: theme.palette.background.paper,
+          position: "absolute",
+          top: "0",
+          left: "0",
+          opacity: "0.6",
+        },
       },
-      "& .MuiIconButton-root": {
-        top: "50%",
-        transform: "translateY(-50%)",
-        opacity: "0.8",
+      "& .MuiSvgIcon-root": {
+        zIndex: "1",
+      },
+      "& .MuiTouchRipple-root": {
+        opacity: "0.1",
         backgroundColor: theme.palette.background.paper,
       },
     },

@@ -1,4 +1,4 @@
-import { NextPage } from "next/types";
+import type { NextPage } from "next/types";
 import React from "react";
 
 import About from "../../page/about";

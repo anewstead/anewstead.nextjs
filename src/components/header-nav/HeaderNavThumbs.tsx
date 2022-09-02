@@ -19,7 +19,7 @@ import {
 import { useTheme } from "@mui/material/styles";
 import React, { useState } from "react";
 
-import { ICheckbox } from "../../lib/types";
+import type { ICheckbox } from "../../lib/types";
 import useStyles from "./headerNavThumbs.style";
 
 type IHeaderNavThumbs = {
@@ -43,10 +43,10 @@ const HeaderNavThumbs = (props: IHeaderNavThumbs) => {
   const theme = useTheme();
   const isSM = useMediaQuery(theme.breakpoints.down("md"));
 
-  const checkboxes = checkboxData.map((cb, i) => {
+  const checkboxes = checkboxData.map((cb) => {
     return (
       <FormControlLabel
-        key={`cb${i}`}
+        key={cb.id}
         label={cb.label}
         control={
           <Checkbox

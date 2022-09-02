@@ -1,5 +1,5 @@
 import { DEFAULT_THEME } from "./themes";
-import { IState } from "./types";
+import type { IState } from "./types";
 
 const initialState: IState = {
   baseContentURL: "https://anewstead-content.netlify.app/",

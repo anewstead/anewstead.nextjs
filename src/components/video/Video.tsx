@@ -13,20 +13,19 @@ const Video = (props: IVideo) => {
   const { classes } = useStyles();
 
   return (
-    <>
-      <video
-        className={classes.root}
-        width="100%"
-        height="auto"
-        poster={posterURL}
-        controls
-        preload="none"
-        controlsList="nodownload"
-        disablePictureInPicture
-      >
-        <source src={videoURL} type="video/mp4" />
-      </video>
-    </>
+    // eslint-disable-next-line jsx-a11y/media-has-caption
+    <video
+      className={classes.root}
+      width="100%"
+      height="auto"
+      poster={posterURL}
+      controls
+      preload="none"
+      controlsList="nodownload"
+      disablePictureInPicture
+    >
+      <source src={videoURL} type="video/mp4" />
+    </video>
   );
 };
 

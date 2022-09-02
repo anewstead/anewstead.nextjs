@@ -4,7 +4,7 @@ import React from "react";
 import Footer from "../../components/footer";
 import HeaderNav from "../../components/header-nav";
 import { useAppSelector } from "../../lib/store";
-import { IRootState } from "../../lib/types";
+import type { IRootState } from "../../lib/types";
 import useStyles from "./appLayout.style";
 
 type IAppLayout = {

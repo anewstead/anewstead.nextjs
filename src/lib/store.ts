@@ -1,3 +1,9 @@
+/* eslint-disable no-param-reassign */
+/**
+ * Redux Toolkit allows "mutating" logic for state in reducers via Immer library.
+ * so we allow eslint param-reassign
+ */
+
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
@@ -15,10 +21,6 @@ const slice = createSlice({
   name: "app",
   initialState,
   reducers: {
-    // Redux Toolkit allows us to write "mutating" logic in reducers. It
-    // doesn't actually mutate the state because it uses the Immer library,
-    // which detects changes to a "draft state" and produces a brand new
-    // immutable state based off those changes
     INIT_THEME: (state) => {
       state.themeName = initThemeName();
     },
@@ -32,7 +34,7 @@ const slice = createSlice({
       if (!checkbox) {
         throw new Error(`store: cannot find checkbox: ${action.payload.id}`);
       } else {
-        checkbox.checked = action.payload.checked; //2 way bind
+        checkbox.checked = action.payload.checked; // 2 way bind
       }
     },
   },

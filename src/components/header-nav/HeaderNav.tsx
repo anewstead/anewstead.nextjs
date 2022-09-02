@@ -7,7 +7,7 @@ import {
   TOGGLE_THEME,
   useAppSelector,
 } from "../../lib/store";
-import { ICheckbox, IRootState } from "../../lib/types";
+import type { ICheckbox, IRootState } from "../../lib/types";
 import HeaderNavDetail from "./HeaderNavDetail";
 import HeaderNavThumbs from "./HeaderNavThumbs";
 

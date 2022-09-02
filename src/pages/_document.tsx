@@ -17,7 +17,7 @@ class MyDocument extends Document {
 
           <link rel="manifest" href="/manifest.json" />
           <link rel="icon" href="/favicon.ico" />
-          <link rel="shortcut" href="/favicon.ico" />
+          <link rel="shortcut icon" href="/favicon.ico" />
           <link rel="apple-touch-icon" sizes="192x192" href="/logo192.png" />
 
           {/* eslint-disable-next-line @next/next/no-page-custom-font */}

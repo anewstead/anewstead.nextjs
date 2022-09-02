@@ -1,4 +1,4 @@
-import { ICheckbox, IMainData } from "./types";
+import type { ICheckbox, IMainData } from "./types";
 
 export const thumbHelper = (
   mainData: IMainData[],
