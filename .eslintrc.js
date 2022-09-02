@@ -12,13 +12,7 @@
 module.exports = {
   root: true,
   parser: "@typescript-eslint/parser",
-  plugins: [
-    "file-progress",
-    "react",
-    "@typescript-eslint",
-    "check-file",
-    "prettier",
-  ],
+  plugins: ["react", "@typescript-eslint", "check-file", "prettier"],
   extends: [
     "next/core-web-vitals",
     "airbnb",
@@ -37,8 +31,6 @@ module.exports = {
     project: "./tsconfig.json", // required by airbnb
   },
   rules: {
-    "file-progress/activate": 1,
-
     "@typescript-eslint/naming-convention": "warn",
     "check-file/filename-naming-convention": [
       "error",
