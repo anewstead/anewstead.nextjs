@@ -1,22 +1,26 @@
+/**
+ * eslint airbnb uses:
+ * - eslint-plugin-import
+ * - eslint-plugin-react
+ * - eslint-plugin-react-hooks
+ * - eslint-plugin-jsx-a11y
+ */
 module.exports = {
   root: true,
   parser: "@typescript-eslint/parser",
   plugins: [
+    "file-progress",
     "react",
-    "react-hooks",
     "@typescript-eslint",
     "check-file",
     "prettier",
   ],
   extends: [
     "next/core-web-vitals",
-    "airbnb-typescript",
     "airbnb/hooks",
+    "airbnb-typescript",
     "eslint:recommended",
-    "plugin:import/recommended",
     "plugin:import/typescript",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
   ],
@@ -30,6 +34,7 @@ module.exports = {
     project: "./tsconfig.json", // required by airbnb
   },
   rules: {
+    "file-progress/activate": 1,
     "@typescript-eslint/naming-convention": "warn",
     "check-file/filename-naming-convention": [
       "error",
@@ -46,7 +51,7 @@ module.exports = {
       "error",
       { "src/**/": "KEBAB_CASE" },
     ],
-    "prettier/prettier": ["error", {}, { usePrettierrc: true }],
+    "prettier/prettier": ["warn", {}, { usePrettierrc: true }],
     "arrow-body-style": ["error", "always"],
     "arrow-parens": ["error", "always"],
     curly: "error",
