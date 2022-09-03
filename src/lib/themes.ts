@@ -1,5 +1,5 @@
-import { blueGrey, grey } from "@mui/material/colors";
 import { Theme, createTheme, responsiveFontSizes } from "@mui/material/styles";
+import { blueGrey, grey } from "@mui/material/colors";
 import { deepmerge } from "@mui/utils";
 
 const DARK = "dark";

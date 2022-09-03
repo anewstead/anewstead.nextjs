@@ -1,10 +1,10 @@
+import React from "react";
+import type { GetStaticProps, NextPage } from "next/types";
 import { gql } from "@apollo/client";
 import { useQuery } from "@apollo/react-hooks";
-import type { GetStaticProps, NextPage } from "next/types";
-import React from "react";
 
-import { initializeApollo } from "../lib/apollo";
 import Home from "../page/home";
+import { initializeApollo } from "../lib/apollo";
 
 const THUMB_QUERY = gql`
   query {

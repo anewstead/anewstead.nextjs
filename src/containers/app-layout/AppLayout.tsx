@@ -1,11 +1,11 @@
-import { Box } from "@mui/material";
 import React from "react";
+import { Box } from "@mui/material";
 
 import Footer from "../../components/footer";
 import HeaderNav from "../../components/header-nav";
-import { useAppSelector } from "../../lib/store";
-import type { IRootState } from "../../lib/types";
 import useStyles from "./appLayout.style";
+import type { IRootState } from "../../lib/types";
+import { useAppSelector } from "../../lib/store";
 
 type IAppLayout = {
   headerNavType: "thumbs" | "detail";

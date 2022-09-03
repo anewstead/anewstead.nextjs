@@ -3,12 +3,12 @@
  * i.e cannot consume redux at the same level the redux provider is set (_app)
  */
 
-import { CssBaseline, ThemeProvider } from "@mui/material";
 import React from "react";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 
-import { useAppSelector } from "../../lib/store";
 import themes from "../../lib/themes";
 import type { IRootState } from "../../lib/types";
+import { useAppSelector } from "../../lib/store";
 
 type Props = {
   children: React.ReactNode;

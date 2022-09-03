@@ -4,12 +4,12 @@
  * so we allow eslint param-reassign
  */
 
-import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 import initialState from "./initialState";
-import { initThemeName, toggleThemeName } from "./themes";
 import type { IAppDispatch, IRootState } from "./types";
+import { initThemeName, toggleThemeName } from "./themes";
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch: () => IAppDispatch = useDispatch;

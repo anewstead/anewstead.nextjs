@@ -1,9 +1,9 @@
 import "slick-carousel/slick/slick.css";
 
 import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
-import { Button, useTheme } from "@mui/material";
 import React from "react";
 import Slider, { Settings as SlickSettings } from "react-slick";
+import { Button, useTheme } from "@mui/material";
 
 import useStyles from "./carousel.style";
 

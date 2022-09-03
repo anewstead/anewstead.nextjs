@@ -1,5 +1,6 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import SettingsBrightnessIcon from "@mui/icons-material/SettingsBrightness";
+import React, { useState } from "react";
 import {
   Accordion,
   AccordionDetails,
@@ -17,10 +18,9 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import React, { useState } from "react";
 
-import type { ICheckbox } from "../../lib/types";
 import useStyles from "./headerNavThumbs.style";
+import type { ICheckbox } from "../../lib/types";
 
 type IHeaderNavThumbs = {
   brandName?: string;

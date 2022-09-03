@@ -1,7 +1,7 @@
-import { Paper, Typography } from "@mui/material";
-import parse from "html-react-parser";
 import DOMPurify from "isomorphic-dompurify";
 import React from "react";
+import parse from "html-react-parser";
+import { Paper, Typography } from "@mui/material";
 
 import useStyles from "./textBlock.style";
 

@@ -1,5 +1,5 @@
-import type { NextPage } from "next/types";
 import React from "react";
+import type { NextPage } from "next/types";
 
 import NoMatch from "../page/no-match";
 

@@ -1,15 +1,15 @@
-import { Container } from "@mui/material";
 import React from "react";
+import { Container } from "@mui/material";
 
+import AppLayout from "../../containers/app-layout";
 import Carousel from "../../components/carousel";
 import InFrame from "../../components/in-frame";
+import NoMatch from "../no-match";
 import TextBlock from "../../components/text-block";
 import Video from "../../components/video";
-import AppLayout from "../../containers/app-layout";
-import { useAppSelector } from "../../lib/store";
-import type { IMainData, IRootState } from "../../lib/types";
-import NoMatch from "../no-match";
 import useStyles from "./project.style";
+import type { IMainData, IRootState } from "../../lib/types";
+import { useAppSelector } from "../../lib/store";
 
 type Props = {
   data: IMainData;

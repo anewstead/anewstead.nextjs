@@ -1,9 +1,9 @@
-import { Button, Container, Paper, Typography } from "@mui/material";
 import React from "react";
+import { Button, Container, Paper, Typography } from "@mui/material";
 
-import { NextLinkComposed } from "../../components/next-mui-link/Link";
 import AppLayout from "../../containers/app-layout";
 import useStyles from "./noMatch.style";
+import { NextLinkComposed } from "../../components/next-mui-link/Link";
 
 const NoMatch = () => {
   const { classes } = useStyles();

@@ -1,15 +1,15 @@
-import { useRouter } from "next/router";
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 
+import HeaderNavDetail from "./HeaderNavDetail";
+import HeaderNavThumbs from "./HeaderNavThumbs";
+import type { ICheckbox, IRootState } from "../../lib/types";
 import {
   NAV_CHECKBOX_CHANGE,
   TOGGLE_THEME,
   useAppSelector,
 } from "../../lib/store";
-import type { ICheckbox, IRootState } from "../../lib/types";
-import HeaderNavDetail from "./HeaderNavDetail";
-import HeaderNavThumbs from "./HeaderNavThumbs";
 
 type Props = {
   navType: "thumbs" | "detail";

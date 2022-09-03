@@ -1,5 +1,5 @@
-import { Container, Paper, Typography } from "@mui/material";
 import React from "react";
+import { Container, Paper, Typography } from "@mui/material";
 
 import AppLayout from "../../containers/app-layout";
 import useStyles from "./about.style";

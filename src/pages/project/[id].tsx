@@ -1,12 +1,12 @@
+import React from "react";
+import type { GetStaticPaths, GetStaticProps, NextPage } from "next/types";
 import { gql } from "@apollo/client";
 import { useQuery } from "@apollo/react-hooks";
 import { useRouter } from "next/router";
-import type { GetStaticPaths, GetStaticProps, NextPage } from "next/types";
-import React from "react";
 
-import { initializeApollo } from "../../lib/apollo";
-import { IMainData } from "../../lib/types";
 import Project from "../../page/project";
+import { IMainData } from "../../lib/types";
+import { initializeApollo } from "../../lib/apollo";
 
 const PROJECTS_QUERY = gql`
   query {

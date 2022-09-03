@@ -1,7 +1,7 @@
-import { Paper } from "@mui/material";
-import { detectAnyAdblocker } from "just-detect-adblock";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import { Paper } from "@mui/material";
+import { detectAnyAdblocker } from "just-detect-adblock";
 
 import TextBlock from "../text-block";
 import useStyles from "./inFrame.style";

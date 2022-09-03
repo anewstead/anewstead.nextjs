@@ -1,17 +1,17 @@
 // global css import
 import "slick-carousel/slick/slick.css";
 
-import { ApolloProvider } from "@apollo/react-hooks";
-import { StyledEngineProvider } from "@mui/material";
-import type { AppProps } from "next/app";
 import Head from "next/head";
 import React, { useEffect } from "react";
+import { ApolloProvider } from "@apollo/react-hooks";
+import type { AppProps } from "next/app";
 import { Provider as ReduxProvider } from "react-redux";
+import { StyledEngineProvider } from "@mui/material";
 import { createEmotionSsrAdvancedApproach } from "tss-react/nextJs";
 
 import ThemeWrapper from "../containers/theme-wrapper";
-import { useApollo } from "../lib/apollo";
 import store, { INIT_THEME } from "../lib/store";
+import { useApollo } from "../lib/apollo";
 
 const { EmotionCacheProvider, withEmotionCache } =
   createEmotionSsrAdvancedApproach({ key: "css" });

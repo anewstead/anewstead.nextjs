@@ -1,13 +1,13 @@
-import { Button, Card, Container, Grid } from "@mui/material";
 import Image from "next/image";
 import React from "react";
+import { Button, Card, Container, Grid } from "@mui/material";
 
-import { NextLinkComposed } from "../../components/next-mui-link/Link";
 import AppLayout from "../../containers/app-layout";
+import useStyles from "./home.style";
+import type { ICheckbox, IMainData, IRootState } from "../../lib/types";
+import { NextLinkComposed } from "../../components/next-mui-link/Link";
 import { thumbHelper } from "../../lib/helpers";
 import { useAppSelector } from "../../lib/store";
-import type { ICheckbox, IMainData, IRootState } from "../../lib/types";
-import useStyles from "./home.style";
 
 type Props = {
   projects: IMainData[];
