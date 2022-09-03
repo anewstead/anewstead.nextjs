@@ -64,6 +64,7 @@ module.exports = {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-no-useless-fragment": "off",
+    "react/no-unknown-property": ["error", { ignore: ["css"] }],
 
     "react/function-component-definition": [
       "warn",

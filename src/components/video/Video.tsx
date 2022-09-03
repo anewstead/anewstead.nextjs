@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import React from "react";
 
 import useStyles from "./video.style";
@@ -21,7 +22,7 @@ const Video = (props: IVideo) => {
       poster={posterURL}
       controls
       preload="none"
-      controlsList="nodownload"
+      controlsList="nodownload noplaybackrate"
       disablePictureInPicture
     >
       <source src={videoURL} type="video/mp4" />

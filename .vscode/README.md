@@ -1,26 +1,18 @@
-### shared `workspace` settings.
+### distributed workspace settings.
 
-this is intended to be minimum for code formatting with some performance helpers
+do not set personal preferences here,
+e.g. editor themes should be set locally in "user" prefs
 
-personal preferences should created in `user` settings and not shared.
+VSCode is the preferd editor with the following extension installed
+If you use other IDE you should have similar extension/functionality
 
-e.g. do not set code editor themes here
+- https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
+- https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+- https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+- https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint
+- https://marketplace.visualstudio.com/items?itemName=wengerk.highlight-bad-chars
 
-Formatting options closly follow recommended prettier, eslint, stylelint
+# Notes
 
-Rationale is to format code for maximium readability
-
-this does mean some automatic reformatting of shorthand notations,
-
-all code gets minified in production release so this doesn't not effect final filesize
-
-### notes:
-
-telemetry:off vscode performance optimisation
-
-files.exclude: vscode performance optimisation - dont show, watch, and keep re-caching large large file/folders unnesessarily
-
-editor: minimum for shared code formatting purpose
-
-disables vscode standard lint in favor of eslint, stylelint and prettier
-lints on save
+excludes large folder from vscode explorer to greatly improve CPU usage
+you rarely if ever need look directly in these

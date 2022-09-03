@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Container } from "@mui/material";
 
 import AppLayout from "../../containers/app-layout";
@@ -41,8 +41,13 @@ const Project = (props: Props) => {
       const slides = data.view.stills.map((item: string, i: number) => {
         const url = `${baseContentURL}${item}`;
         const alt = `${data.brand} ${data.project} image ${i}`;
-        // eslint-disable-next-line @next/next/no-img-element, react/no-array-index-key
-        return <img src={url} alt={`${alt} ${i}`} key={i} />;
+        return (
+          // eslint-disable-next-line react/no-array-index-key
+          <Fragment key={i}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={url} alt={`${alt} ${i}`} />
+          </Fragment>
+        );
       });
       content = <Carousel slides={slides} />;
       break;
