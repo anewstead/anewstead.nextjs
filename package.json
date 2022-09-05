@@ -83,8 +83,7 @@
     "webpack": "^5.74.0"
   },
   "engines": {
-    "npm": "8.15.0",
-    "node": "16.17.0"
+    "node": "16"
   },
   "browserslist": [
     "last 2 versions",
