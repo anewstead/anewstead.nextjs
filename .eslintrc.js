@@ -28,28 +28,32 @@ module.exports = {
     node: true,
   },
   parserOptions: {
-    project: "./tsconfig.json", // required by airbnb
+    project: "./tsconfig.json",
   },
   rules: {
     "@typescript-eslint/naming-convention": "warn",
+
+    "arrow-body-style": ["error", "always"],
+    "arrow-parens": ["error", "always"],
+
     "check-file/filename-naming-convention": [
       "error",
       {
-        "src/!(pages)/**/*.{js,ts}": "CAMEL_CASE",
+        // camelCase
+        "src/!(pages)/**/*.{js,ts,css,scss}": "CAMEL_CASE",
+        // PascalCase
         "src/!(pages)/**/*.{jsx,tsx}": "PASCAL_CASE",
+        // glob for nextjs pages: kebab-case and start with '_' or '[' and end with ']'
         "src/pages/**/*.{js,ts,jsx,tsx}":
           "?([|_|[a-z0-9])+([a-z0-9])*(-|[a-z0-9])?(])",
-        // glob for nextjs pages: kebab-case + start with '_' or '[' and end with ']'
       },
       { ignoreMiddleExtensions: true },
     ],
     "check-file/folder-naming-convention": [
       "error",
-      { "src/**/": "KEBAB_CASE" },
+      { "src/**/": "KEBAB_CASE" }, // kebab-case
     ],
 
-    "arrow-body-style": ["error", "always"],
-    "arrow-parens": ["error", "always"],
     curly: "error",
     "import/prefer-default-export": "off",
     "no-confusing-arrow": ["error", { allowParens: true }],
@@ -57,20 +61,18 @@ module.exports = {
     "prefer-arrow-callback": "error",
     "prefer-template": "error",
 
-    "react/prop-types": "off",
-    "react/require-default-props": "off",
-    "react/jsx-props-no-spreading": "off",
-
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "react/jsx-no-useless-fragment": "off",
-    "react/no-unknown-property": ["error", { ignore: ["css"] }],
+    "prettier/prettier": ["warn", {}, { usePrettierrc: true }],
 
     "react/function-component-definition": [
       "warn",
       { namedComponents: "arrow-function" },
     ],
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-no-useless-fragment": "off",
+    "react/prop-types": "off",
+    "react/require-default-props": "off",
 
-    "prettier/prettier": ["warn", {}, { usePrettierrc: true }],
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "error",
   },
 };

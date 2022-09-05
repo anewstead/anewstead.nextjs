@@ -22,7 +22,6 @@ const PrevNextButton = (props: Props) => {
         direction === "prev" ? classes.prevButton : classes.nextButton
       }`}
       onClick={onClick}
-      onKeyPress={onClick}
       aria-label={`${direction}`}
     >
       <div className="carousel-slidebutton-icon-wrapper">
