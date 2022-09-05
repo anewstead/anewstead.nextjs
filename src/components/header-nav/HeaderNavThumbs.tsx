@@ -94,11 +94,11 @@ const HeaderNavThumbs = (props: IHeaderNavThumbs) => {
     </IconButton>
   );
 
-  const [expanded, setExpanded] = useState("");
+  const [expanded, setExpanded] = useState<string | false>(false);
 
   const expansionPanelOnChange = (panel: string) => {
-    return (newExpanded: string) => {
-      setExpanded(newExpanded ? panel : "");
+    return (event: React.SyntheticEvent, isExpanded: boolean) => {
+      setExpanded(isExpanded ? panel : false);
     };
   };
 
@@ -116,9 +116,7 @@ const HeaderNavThumbs = (props: IHeaderNavThumbs) => {
                 <Accordion
                   square
                   expanded={expanded === "panel1"}
-                  onChange={() => {
-                    expansionPanelOnChange("panel1");
-                  }}
+                  onChange={expansionPanelOnChange("panel1")}
                   className={classes.expansionPanel}
                 >
                   <AccordionSummary
