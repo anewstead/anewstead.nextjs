@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "@mui/material";
 
-import useStyles from "./footer.style";
+import useStyles from "./Footer.style";
 
 type IFooter = {
   brand: string;

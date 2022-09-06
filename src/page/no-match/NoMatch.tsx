@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Container, Paper, Typography } from "@mui/material";
 
 import AppLayout from "../../containers/app-layout";
-import useStyles from "./noMatch.style";
+import useStyles from "./NoMatch.style";
 import { NextLinkComposed } from "../../components/next-mui-link/Link";
 
 const NoMatch = () => {

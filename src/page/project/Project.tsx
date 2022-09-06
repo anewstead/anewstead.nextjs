@@ -7,7 +7,7 @@ import InFrame from "../../components/in-frame";
 import NoMatch from "../no-match";
 import TextBlock from "../../components/text-block";
 import Video from "../../components/video";
-import useStyles from "./project.style";
+import useStyles from "./Project.style";
 import type { IMainData, IRootState } from "../../lib/types";
 import { useAppSelector } from "../../lib/store";
 

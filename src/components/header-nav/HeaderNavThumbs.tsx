@@ -19,7 +19,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-import useStyles from "./headerNavThumbs.style";
+import useStyles from "./HeaderNavThumbs.style";
 import type { ICheckbox } from "../../lib/types";
 
 type IHeaderNavThumbs = {

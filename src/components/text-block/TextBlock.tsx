@@ -3,7 +3,7 @@ import React from "react";
 import parse from "html-react-parser";
 import { Paper, Typography } from "@mui/material";
 
-import useStyles from "./textBlock.style";
+import useStyles from "./TextBlock.style";
 
 type ITextBlock = {
   htmlText: string;

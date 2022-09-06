@@ -4,7 +4,7 @@ import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRound
 import React from "react";
 import { Button } from "@mui/material";
 
-import useStyles from "./prevNextButton.style";
+import useStyles from "./PrevNextButton.style";
 
 type Props = {
   direction: string;

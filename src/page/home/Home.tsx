@@ -3,7 +3,7 @@ import React from "react";
 import { Button, Card, Container, Grid } from "@mui/material";
 
 import AppLayout from "../../containers/app-layout";
-import useStyles from "./home.style";
+import useStyles from "./Home.style";
 import type { ICheckbox, IMainData, IRootState } from "../../lib/types";
 import { NextLinkComposed } from "../../components/next-mui-link/Link";
 import { thumbHelper } from "../../lib/helpers";

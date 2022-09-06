@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 
 import Footer from "../../components/footer";
 import HeaderNav from "../../components/header-nav";
-import useStyles from "./appLayout.style";
+import useStyles from "./AppLayout.style";
 import type { IRootState } from "../../lib/types";
 import { useAppSelector } from "../../lib/store";
 

@@ -5,7 +5,7 @@ import Slider, { Settings as SlickSettings } from "react-slick";
 import { useTheme } from "@mui/material";
 
 import PrevNextButton from "./PrevNextButton";
-import useStyles from "./carousel.style";
+import useStyles from "./Carousel.style";
 
 type ICarousel = {
   slides: JSX.Element[];

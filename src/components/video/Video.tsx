@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 import React from "react";
 
-import useStyles from "./video.style";
+import useStyles from "./Video.style";
 
 type IVideo = {
   videoURL: string;

@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-import useStyles from "./headerNavDetail.style";
+import useStyles from "./HeaderNavDetail.style";
 
 type IHeaderNavDetail = {
   onThemeClick: () => unknown;

@@ -1,0 +1,3 @@
+# shared config for iniitial setup only
+[core]
+    ignorecase = false
