@@ -14,8 +14,7 @@
     "lint:style": "stylelint --fix $PWD/'/src/**/*.{css,scss,js,jsx,ts,tsx}' --cache",
     "lint": "npm run lint:js; npm run lint:style; npm run prettier;",
     "prepare": "husky install",
-    "postinstall": "git config core.ignorecase false",
-    "tmp":"echo;echo 'yo';echo"
+    "postinstall": "git config core.ignorecase false"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
