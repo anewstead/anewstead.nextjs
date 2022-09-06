@@ -1,27 +1,15 @@
-import { Container, Paper, Typography } from "@mui/material";
-import { NextPage } from "next/types";
 import React from "react";
-import { makeStyles } from "tss-react/mui";
+import { Container, Paper, Typography } from "@mui/material";
 
-import PageLayout from "../containers/page-layout";
+import AppLayout from "../../containers/app-layout";
+import useStyles from "./about.style";
 
-const useStyles = makeStyles()((theme) => {
-  return {
-    aboutroot: {
-      marginTop: theme.spacing(4),
-    },
-    paper: {
-      padding: theme.spacing(4),
-    },
-  };
-});
-
-const About: NextPage = () => {
+const About = () => {
   const { classes } = useStyles();
 
   return (
-    <PageLayout headerNavType="detail">
-      <Container className={classes.aboutroot}>
+    <AppLayout headerNavType="detail">
+      <Container className={classes.root}>
         <Paper className={classes.paper}>
           <Typography variant="h4" component="h2">
             About
@@ -59,7 +47,7 @@ const About: NextPage = () => {
           </Typography>
         </Paper>
       </Container>
-    </PageLayout>
+    </AppLayout>
   );
 };
 

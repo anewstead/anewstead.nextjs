@@ -1,4 +1,5 @@
 import HomeIcon from "@mui/icons-material/Home";
+import React from "react";
 import SettingsBrightnessIcon from "@mui/icons-material/SettingsBrightness";
 import {
   AppBar,
@@ -9,44 +10,8 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import React from "react";
-import { makeStyles } from "tss-react/mui";
 
-const useStyles = makeStyles()((theme) => {
-  return {
-    appBar: {
-      backgroundColor: theme.palette.background.paper,
-      color: theme.palette.text.primary,
-    },
-    brand: {
-      display: "flex",
-      alignItems: "center",
-    },
-    gridRoot: {
-      minHeight: "80px",
-    },
-    gridBack: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "flex-start",
-    },
-    gridTitle: {
-      display: "flex",
-      alignItems: "flex-end",
-      flexGrow: 4,
-      justifyContent: "center",
-      flexDirection: "column",
-      [theme.breakpoints.up("sm")]: {
-        alignItems: "center",
-      },
-    },
-    gridToggle: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "flex-end",
-    },
-  };
-});
+import useStyles from "./headerNavDetail.style";
 
 type IHeaderNavDetail = {
   onThemeClick: () => unknown;
@@ -55,7 +20,7 @@ type IHeaderNavDetail = {
   subtitleText?: string;
 };
 
-const HeaderNavDetail: React.FC<IHeaderNavDetail> = (props) => {
+const HeaderNavDetail = (props: IHeaderNavDetail) => {
   const { onThemeClick, onBackClick, titleText, subtitleText } = props;
 
   const { classes } = useStyles();

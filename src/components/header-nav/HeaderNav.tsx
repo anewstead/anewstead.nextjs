@@ -1,15 +1,15 @@
-import { useRouter } from "next/router";
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 
-import HeaderNavDetail from "../components/header-nav-detail";
-import HeaderNavThumbs from "../components/header-nav-thumbs";
+import HeaderNavDetail from "./HeaderNavDetail";
+import HeaderNavThumbs from "./HeaderNavThumbs";
+import type { ICheckbox, IRootState } from "../../lib/types";
 import {
   NAV_CHECKBOX_CHANGE,
   TOGGLE_THEME,
   useAppSelector,
-} from "../lib/store";
-import { ICheckbox, IRootState } from "../lib/types";
+} from "../../lib/store";
 
 type Props = {
   navType: "thumbs" | "detail";
@@ -17,7 +17,7 @@ type Props = {
   subtitleText?: string;
 };
 
-const HeaderNav: React.FC<Props> = (props) => {
+const HeaderNav = (props: Props) => {
   const { navType, titleText, subtitleText } = props;
 
   const dispatch = useDispatch();
@@ -45,7 +45,10 @@ const HeaderNav: React.FC<Props> = (props) => {
   };
 
   const checkboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const payload = { id: e.target.id, checked: e.target.checked };
+    const payload = {
+      id: e.currentTarget.id,
+      checked: e.currentTarget.checked,
+    };
     dispatch(NAV_CHECKBOX_CHANGE(payload));
   };
 

@@ -6,7 +6,8 @@
     "package-lock.json": true,
     "build": true,
     "dist": true,
-    "storybook-static": true
+    "storybook-static": true,
+    ".next": true
   },
 
   "editor.defaultFormatter": "esbenp.prettier-vscode",

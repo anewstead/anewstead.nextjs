@@ -1,16 +1,12 @@
+import React from "react";
+import type { GetStaticPaths, GetStaticProps, NextPage } from "next/types";
 import { gql } from "@apollo/client";
 import { useQuery } from "@apollo/react-hooks";
 import { useRouter } from "next/router";
-import { GetStaticPaths, GetStaticProps, NextPage } from "next/types";
-import React from "react";
 
-import Gallery from "../../containers/gallery";
-import InFrame from "../../containers/in-frame";
-import PageLayout from "../../containers/page-layout";
-import Video from "../../containers/video";
-import { initializeApollo } from "../../lib/apollo-client";
+import Project from "../../page/project";
 import { IMainData } from "../../lib/types";
-import NoMatch from "../404";
+import { initializeApollo } from "../../lib/apollo";
 
 const PROJECTS_QUERY = gql`
   query {
@@ -43,8 +39,6 @@ const PROJECT_QUERY = (id: string) => {
   `;
 };
 
-// server side
-//==================================================
 export const getStaticProps: GetStaticProps = async (context) => {
   const apolloClient = initializeApollo();
   const id = context?.params?.id;
@@ -70,57 +64,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
   });
   return { paths, fallback: false };
 };
-//==================================================
 
-const Project: NextPage = () => {
+const ProjectPage: NextPage = () => {
   const router = useRouter();
   const id = router.query.id as string;
 
-  // this initial query cached to apollo by server code above
+  // this initial query cached to apollo by SSR code above
   const { data } = useQuery(PROJECT_QUERY(id));
-  const projectData = data.project;
 
-  const titleText = projectData.client;
-
-  let subtitleText = "";
-  if (projectData.brand && projectData.project) {
-    subtitleText = `${projectData.brand} - ${projectData.project}`;
-  } else if (projectData.brand) {
-    subtitleText = projectData.brand;
-  } else if (projectData.project) {
-    subtitleText = projectData.project;
-  }
-
-  let content = <></>;
-  console.log("projectData.view.type", projectData.view.type);
-
-  switch (`${projectData.view.type}`) {
-    case "gallery":
-      content = <Gallery projectData={projectData} />;
-      break;
-
-    case "video":
-      content = <Video projectData={projectData} />;
-      break;
-
-    case "iframe":
-      content = <InFrame projectData={projectData} />;
-      break;
-
-    default:
-      //404 page not found
-      return <NoMatch statusCode={404} />;
-  }
-
-  return (
-    <PageLayout
-      headerNavType="detail"
-      headerNavTitle={titleText}
-      headerNavSubtitle={subtitleText}
-    >
-      {content}
-    </PageLayout>
-  );
+  return <Project data={data.project} />;
 };
 
-export default Project;
+export default ProjectPage;

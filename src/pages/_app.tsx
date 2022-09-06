@@ -1,24 +1,21 @@
-//global css import
+// global css import
 import "slick-carousel/slick/slick.css";
 
-import { ApolloProvider } from "@apollo/react-hooks";
-import {
-  CssBaseline,
-  StyledEngineProvider,
-  ThemeProvider,
-} from "@mui/material";
-import type { AppProps } from "next/app";
 import Head from "next/head";
 import React, { useEffect } from "react";
-import { Provider } from "react-redux";
+import { ApolloProvider } from "@apollo/react-hooks";
+import type { AppProps } from "next/app";
+import { Provider as ReduxProvider } from "react-redux";
+import { StyledEngineProvider } from "@mui/material";
 import { createEmotionSsrAdvancedApproach } from "tss-react/nextJs";
 
-import { useApollo } from "../lib/apollo-client";
+import ThemeWrapper from "../containers/theme-wrapper";
 import store, { INIT_THEME } from "../lib/store";
-import themes from "../lib/themes";
+import { useApollo } from "../lib/apollo";
 
 const { EmotionCacheProvider, withEmotionCache } =
   createEmotionSsrAdvancedApproach({ key: "css" });
+
 export { withEmotionCache };
 
 const App = (props: AppProps) => {
@@ -30,22 +27,22 @@ const App = (props: AppProps) => {
   }, []);
 
   return (
-    <Provider store={store}>
-      <Head>
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <title>Andrew Newstead</title>
-      </Head>
-      <EmotionCacheProvider>
-        <StyledEngineProvider injectFirst>
-          <ThemeProvider theme={themes.dark}>
-            <CssBaseline />
-            <ApolloProvider client={apolloClient}>
-              <Component {...pageProps} />
-            </ApolloProvider>
-          </ThemeProvider>
-        </StyledEngineProvider>
-      </EmotionCacheProvider>
-    </Provider>
+    <React.StrictMode>
+      <ReduxProvider store={store}>
+        <Head>
+          <title>Andrew Newstead</title>
+        </Head>
+        <ApolloProvider client={apolloClient}>
+          <EmotionCacheProvider>
+            <StyledEngineProvider injectFirst>
+              <ThemeWrapper>
+                <Component {...pageProps} />
+              </ThemeWrapper>
+            </StyledEngineProvider>
+          </EmotionCacheProvider>
+        </ApolloProvider>
+      </ReduxProvider>
+    </React.StrictMode>
   );
 };
 

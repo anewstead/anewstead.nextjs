@@ -1,5 +1,6 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import SettingsBrightnessIcon from "@mui/icons-material/SettingsBrightness";
+import React, { useState } from "react";
 import {
   Accordion,
   AccordionDetails,
@@ -17,53 +18,9 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import React, { useState } from "react";
-import { makeStyles } from "tss-react/mui";
 
-import { ICheckbox } from "../lib/types";
-
-const useStyles = makeStyles()((theme) => {
-  return {
-    appBar: {
-      backgroundColor: theme.palette.background.paper,
-      color: theme.palette.text.primary,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    brandButton: {
-      // textAlign: "left",
-    },
-    gridBrand: {
-      display: "flex",
-      alignItems: "center",
-    },
-    gridRoot: {
-      minHeight: "80px",
-    },
-    gridToggle: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "flex-end",
-      maxHeight: "80px",
-    },
-    gridCheckboxesOpen: {
-      display: "flex",
-      justifyContent: "center",
-    },
-    expansionPanel: {
-      backgroundColor: "unset",
-      boxShadow: "unset",
-      width: "100%",
-    },
-    expansionPanelSummaryContent: {
-      margin: "0 !important",
-    },
-    expansionPanelSummaryRoot: {
-      minHeight: "80px !important",
-    },
-  };
-});
+import useStyles from "./headerNavThumbs.style";
+import type { ICheckbox } from "../../lib/types";
 
 type IHeaderNavThumbs = {
   brandName?: string;
@@ -73,7 +30,7 @@ type IHeaderNavThumbs = {
   onCheckboxChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const HeaderNavThumbs: React.FC<IHeaderNavThumbs> = (props) => {
+const HeaderNavThumbs = (props: IHeaderNavThumbs) => {
   const {
     brandName,
     checkboxData,
@@ -86,10 +43,10 @@ const HeaderNavThumbs: React.FC<IHeaderNavThumbs> = (props) => {
   const theme = useTheme();
   const isSM = useMediaQuery(theme.breakpoints.down("md"));
 
-  const checkboxes = checkboxData.map((cb, i) => {
+  const checkboxes = checkboxData.map((cb) => {
     return (
       <FormControlLabel
-        key={`cb${i}`}
+        key={cb.id}
         label={cb.label}
         control={
           <Checkbox
@@ -137,11 +94,11 @@ const HeaderNavThumbs: React.FC<IHeaderNavThumbs> = (props) => {
     </IconButton>
   );
 
-  const [expanded, setExpanded] = useState("");
+  const [expanded, setExpanded] = useState<string | false>(false);
 
   const expansionPanelOnChange = (panel: string) => {
-    return (newExpanded: string) => {
-      setExpanded(newExpanded ? panel : "");
+    return (event: React.SyntheticEvent, isExpanded: boolean) => {
+      setExpanded(isExpanded ? panel : false);
     };
   };
 
@@ -159,9 +116,7 @@ const HeaderNavThumbs: React.FC<IHeaderNavThumbs> = (props) => {
                 <Accordion
                   square
                   expanded={expanded === "panel1"}
-                  onChange={() => {
-                    expansionPanelOnChange("panel1");
-                  }}
+                  onChange={expansionPanelOnChange("panel1")}
                   className={classes.expansionPanel}
                 >
                   <AccordionSummary

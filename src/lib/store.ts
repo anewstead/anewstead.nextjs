@@ -1,8 +1,15 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+/* eslint-disable no-param-reassign */
+/**
+ * Redux Toolkit allows "mutating" logic for state in reducers via Immer library.
+ * so we allow eslint param-reassign
+ */
 
-import { detectColorTheme, toggleColorTheme } from "./themes";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
+
+import initialState from "./initialState";
 import type { IAppDispatch, IRootState } from "./types";
+import { initThemeName, toggleThemeName } from "./themes";
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch: () => IAppDispatch = useDispatch;
@@ -12,40 +19,13 @@ export const useAppSelector: TypedUseSelectorHook<IRootState> = useSelector;
 // remember to export reducer functions as slice.actions
 const slice = createSlice({
   name: "app",
-  initialState: {
-    baseContentURL: "https://anewstead-content.netlify.app",
-    theme: "light",
-    nav: {
-      brand: "Andrew Newstead",
-      checkboxes: [
-        {
-          id: "site",
-          label: "Websites",
-          checked: true,
-        },
-        {
-          id: "app",
-          label: "Apps",
-          checked: true,
-        },
-        {
-          id: "banner",
-          label: "Adverts",
-          checked: true,
-        },
-      ],
-    },
-  },
+  initialState,
   reducers: {
-    // Redux Toolkit allows us to write "mutating" logic in reducers. It
-    // doesn't actually mutate the state because it uses the Immer library,
-    // which detects changes to a "draft state" and produces a brand new
-    // immutable state based off those changes
     INIT_THEME: (state) => {
-      state.theme = detectColorTheme();
+      state.themeName = initThemeName();
     },
     TOGGLE_THEME: (state) => {
-      state.theme = toggleColorTheme();
+      state.themeName = toggleThemeName();
     },
     NAV_CHECKBOX_CHANGE: (state, action) => {
       const checkbox = state.nav.checkboxes.find((obj) => {
@@ -54,7 +34,7 @@ const slice = createSlice({
       if (!checkbox) {
         throw new Error(`store: cannot find checkbox: ${action.payload.id}`);
       } else {
-        checkbox.checked = action.payload.checked; //2 way bind
+        checkbox.checked = action.payload.checked; // 2 way bind
       }
     },
   },

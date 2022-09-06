@@ -1,5 +1,7 @@
 // https://github.com/vercel/next.js/tree/canary/examples/with-apollo-and-redux
 
+import isEqual from "lodash/isEqual";
+import merge from "deepmerge";
 import {
   ApolloClient,
   HttpLink,
@@ -7,8 +9,6 @@ import {
   NormalizedCacheObject,
 } from "@apollo/client";
 import { concatPagination } from "@apollo/client/utilities";
-import merge from "deepmerge";
-import isEqual from "lodash/isEqual";
 import { useMemo } from "react";
 
 type InitialState = NormalizedCacheObject | null;
@@ -35,14 +35,13 @@ function createApolloClient() {
 }
 
 export function initializeApollo(initialState: InitialState = null) {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  const _apolloClient = apolloClient ?? createApolloClient();
+  const myApolloClient = apolloClient ?? createApolloClient();
 
   // If your page has Next.js data fetching methods that use Apollo Client, the initial state
   // get hydrated here
   if (initialState) {
     // Get existing cache, loaded during client side data fetching
-    const existingCache = _apolloClient.extract();
+    const existingCache = myApolloClient.extract();
 
     // Merge the existing cache into data passed from getStaticProps/getServerSideProps
     const data = merge(initialState, existingCache, {
@@ -60,18 +59,18 @@ export function initializeApollo(initialState: InitialState = null) {
     });
 
     // Restore the cache with the merged data
-    _apolloClient.cache.restore(data);
+    myApolloClient.cache.restore(data);
   }
   // For SSG and SSR always create a new Apollo Client
   if (typeof window === "undefined") {
-    return _apolloClient;
+    return myApolloClient;
   }
   // Create the Apollo Client once in the client
   if (!apolloClient) {
-    apolloClient = _apolloClient;
+    apolloClient = myApolloClient;
   }
 
-  return _apolloClient;
+  return myApolloClient;
 }
 
 export function useApollo(initialState: InitialState) {
