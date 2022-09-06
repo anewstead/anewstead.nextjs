@@ -3,11 +3,13 @@
 
   "files.exclude": {
     "node_modules": true,
-    "package-lock.json": true,
     "build": true,
     "dist": true,
     "storybook-static": true,
-    ".next": true
+    ".next": true,
+    ".eslintcache": true,
+    ".stylelintcache": true,
+    ".husky": true
   },
 
   "editor.defaultFormatter": "esbenp.prettier-vscode",

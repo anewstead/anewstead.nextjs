@@ -33,7 +33,7 @@
 
 ## eslint:
 
-- almost default
+- extends airbnb (extensive and well regarded)
 - minimal rules added to reinforce prettier and react
 - enforce folder/file name conventions
 
