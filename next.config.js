@@ -1,14 +1,14 @@
 /** @type {import('next').NextConfig} */
 
-const withPWA = require('next-pwa')({
-  dest: 'public',
+const withPWA = require("next-pwa")({
+  dest: "public",
   disable: true,
   register: false,
 });
 
 const nextConfig = {
   images: {
-    domains: ['anewstead-content.netlify.app'],
+    domains: ["anewstead-content.netlify.app"],
   },
   reactStrictMode: true,
   swcMinify: true,
