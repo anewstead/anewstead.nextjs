@@ -7,6 +7,8 @@ function changed {
 
 if changed 'package-lock.json'; then
   echo;
-  echo "📦 IMPORTANT! package-lock.json changed. Run npm install to bring your dependencies up to date.";
+  echo "📦 IMPORTANT! package-lock.json changed.";
+  echo "Running npm install to bring your dependencies up to date.";
+  npm install
   echo;
 fi
