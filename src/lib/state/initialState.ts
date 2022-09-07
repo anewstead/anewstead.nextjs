@@ -1,4 +1,4 @@
-import { DEFAULT_THEME } from "./themes";
+import { DEFAULT_THEME } from "../theme/theme";
 import type { IState } from "./types";
 
 const initialState: IState = {

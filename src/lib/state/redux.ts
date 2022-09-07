@@ -9,7 +9,7 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 import initialState from "./initialState";
 import type { IAppDispatch, IRootState } from "./types";
-import { initThemeName, toggleThemeName } from "./themes";
+import { initThemeName, toggleThemeName } from "../theme/theme";
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch: () => IAppDispatch = useDispatch;

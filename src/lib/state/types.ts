@@ -1,4 +1,5 @@
-import store from "./store";
+import store from "./redux";
+import { IThemeName } from "../theme/theme";
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type IRootState = ReturnType<typeof store.getState>;
@@ -47,7 +48,7 @@ export type IMainData = {
 export type IState = {
   baseContentURL: string;
   displayThumbs: IThumb[];
-  themeName: string;
+  themeName: IThemeName;
   nav: {
     brand: string;
     checkboxes: ICheckbox[];

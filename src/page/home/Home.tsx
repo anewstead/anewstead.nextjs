@@ -4,10 +4,10 @@ import { Button, Card, Container, Grid } from "@mui/material";
 
 import AppLayout from "../../containers/app-layout";
 import useStyles from "./home.style";
-import type { ICheckbox, IMainData, IRootState } from "../../lib/types";
+import type { ICheckbox, IMainData, IRootState } from "../../lib/state/types";
 import { NextLinkComposed } from "../../components/next-mui-link/Link";
-import { thumbHelper } from "../../lib/helpers";
-import { useAppSelector } from "../../lib/store";
+import { thumbHelper } from "../../lib/state/helpers";
+import { useAppSelector } from "../../lib/state/redux";
 
 type Props = {
   projects: IMainData[];
