@@ -2,7 +2,7 @@ import "slick-carousel/slick/slick.css";
 
 import React from "react";
 import Slider, { Settings as SlickSettings } from "react-slick";
-import { useTheme } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 
 import PrevNextButton from "./PrevNextButton";
 import useStyles from "./carousel.style";
@@ -34,11 +34,11 @@ const Carousel = (props: ICarousel) => {
   const bmargin = config.dots ? theme.spacing(6) : theme.spacing(4);
 
   return (
-    <div className={classes.root} style={{ marginBottom: bmargin }}>
+    <Box className={classes.root} style={{ marginBottom: bmargin }}>
       <Slider {...config} className={classes.slider}>
         {slides}
       </Slider>
-    </div>
+    </Box>
   );
 };
 

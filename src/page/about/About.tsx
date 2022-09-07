@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Paper, Typography } from "@mui/material";
+import { Box, Container, Paper, Typography } from "@mui/material";
 
 import AppLayout from "../../containers/app-layout";
 import useStyles from "./about.style";
@@ -18,7 +18,7 @@ const About = () => {
           <Typography
             variant="body2"
             gutterBottom
-            component="div"
+            component={Box}
             align="justify"
           >
             <p>Frontend/UI/UX developer</p>
