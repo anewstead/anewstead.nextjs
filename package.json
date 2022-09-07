@@ -12,7 +12,8 @@
     "pretty": "prettier --write $PWD/'/src/**/*.{js,jsx,ts,tsx,json}' --loglevel warn --cache",
     "lint:js": "eslint --fix $PWD/'/src/**/*.{js,jsx,ts,tsx,json}' --cache",
     "lint:style": "stylelint --fix $PWD/'/src/**/*.{css,scss,js,jsx,ts,tsx}' --cache",
-    "lint": "npm run lint:js; npm run lint:style; npm run pretty;",
+    "lint:html": "prettier --write $PWD/'{src,public}/**/*.{htm,html,hbs}' --no-error-on-unmatched-pattern",
+    "lint": "npm run lint:js; npm run lint:style; npm run lint:html; npm run pretty;",
     "prepare": "husky install; git config core.ignorecase false;"
   },
   "dependencies": {
