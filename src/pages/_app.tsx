@@ -10,8 +10,8 @@ import { StyledEngineProvider } from "@mui/material";
 import { createEmotionSsrAdvancedApproach } from "tss-react/nextJs";
 
 import ThemeWrapper from "../containers/theme-wrapper";
-import store, { INIT_THEME } from "../lib/state/redux";
-import { useApollo } from "../lib/state/apollo";
+import store, { INIT_THEME } from "../app/state/redux";
+import { useApollo } from "../app/state/apollo";
 
 const { EmotionCacheProvider, withEmotionCache } =
   createEmotionSsrAdvancedApproach({ key: "css" });

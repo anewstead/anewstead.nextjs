@@ -7,9 +7,9 @@
 import React from "react";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 
-import themes from "../../lib/theme/theme";
-import type { IRootState } from "../../lib/state/types";
-import { useAppSelector } from "../../lib/state/redux";
+import themes from "../../app/theme/theme";
+import type { IRootState } from "../../app/state/types";
+import { useAppSelector } from "../../app/state/redux";
 
 type Props = {
   children: React.ReactNode;

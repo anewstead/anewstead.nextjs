@@ -4,12 +4,12 @@ import { useRouter } from "next/router";
 
 import HeaderNavDetail from "./HeaderNavDetail";
 import HeaderNavThumbs from "./HeaderNavThumbs";
-import type { ICheckbox, IRootState } from "../../lib/state/types";
+import type { ICheckbox, IRootState } from "../../app/state/types";
 import {
   NAV_CHECKBOX_CHANGE,
   TOGGLE_THEME,
   useAppSelector,
-} from "../../lib/state/redux";
+} from "../../app/state/redux";
 
 type Props = {
   navType: "thumbs" | "detail";

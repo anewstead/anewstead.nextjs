@@ -8,8 +8,8 @@ import NoMatch from "../no-match";
 import TextBlock from "../../components/text-block";
 import Video from "../../components/video";
 import useStyles from "./project.style";
-import type { IMainData, IRootState } from "../../lib/state/types";
-import { useAppSelector } from "../../lib/state/redux";
+import type { IMainData, IRootState } from "../../app/state/types";
+import { useAppSelector } from "../../app/state/redux";
 
 type Props = {
   data: IMainData;

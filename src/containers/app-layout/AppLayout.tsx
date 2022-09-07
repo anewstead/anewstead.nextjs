@@ -4,8 +4,8 @@ import { Box } from "@mui/material";
 import Footer from "../../components/footer";
 import HeaderNav from "../../components/header-nav";
 import useStyles from "./appLayout.style";
-import type { IRootState } from "../../lib/state/types";
-import { useAppSelector } from "../../lib/state/redux";
+import type { IRootState } from "../../app/state/types";
+import { useAppSelector } from "../../app/state/redux";
 
 type IAppLayout = {
   headerNavType: "thumbs" | "detail";
