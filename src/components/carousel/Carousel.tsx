@@ -1,5 +1,3 @@
-import "slick-carousel/slick/slick.css";
-
 import React from "react";
 import Slider, { Settings as SlickSettings } from "react-slick";
 import { Box, useTheme } from "@mui/material";

@@ -1,5 +1,3 @@
-import "slick-carousel/slick/slick.css";
-
 import { Theme } from "@mui/material";
 import { isMobile } from "react-device-detect";
 import { makeStyles } from "tss-react/mui";

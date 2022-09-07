@@ -24,7 +24,7 @@
 
 ## git:
 
-- filesnames are case sensitve
+- filenames are case sensitve
 
 ## git hooks (husky):
 
