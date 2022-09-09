@@ -1,5 +1,5 @@
-import store from "./redux";
-import { IThemeName } from "../theme/theme";
+import type store from "./redux";
+import type { IThemeName } from "../theme/theme";
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type IRootState = ReturnType<typeof store.getState>;

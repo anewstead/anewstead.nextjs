@@ -4,12 +4,20 @@
  * note however that the EmotionCacheProvider must still be at _app level
  */
 
-import React from "react";
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import React, { useEffect } from "react";
+import {
+  CssBaseline,
+  StyledEngineProvider,
+  ThemeProvider,
+} from "@mui/material";
 
 import themes from "../../app/theme/theme";
+import {
+  INIT_THEME,
+  useAppDispatch,
+  useAppSelector,
+} from "../../app/state/redux";
 import type { IRootState } from "../../app/state/types";
-import { useAppSelector } from "../../app/state/redux";
 
 type Props = {
   children: React.ReactNode;
@@ -18,15 +26,23 @@ type Props = {
 const ThemeWrapper = (props: Props) => {
   const { children } = props;
 
+  const dispatch = useAppDispatch();
+
   const themeName = useAppSelector((state: IRootState) => {
     return state.app.themeName;
   });
 
+  useEffect(() => {
+    dispatch(INIT_THEME());
+  }, [dispatch]);
+
   return (
-    <ThemeProvider theme={themes[themeName]}>
-      <CssBaseline />
-      {children}
-    </ThemeProvider>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={themes[themeName]}>
+        <CssBaseline />
+        {children}
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
 };
 

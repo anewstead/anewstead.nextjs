@@ -1,5 +1,6 @@
-import { Theme, createTheme, responsiveFontSizes } from "@mui/material/styles";
+import type { Theme } from "@mui/material/styles";
 import { blueGrey, grey } from "@mui/material/colors";
+import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
 export const DARK = "dark";
 export const LIGHT = "light";

@@ -1,6 +1,7 @@
 import React from "react";
-import Slider, { Settings as SlickSettings } from "react-slick";
+import Slider from "react-slick";
 import { Box, useTheme } from "@mui/material";
+import type { Settings as SlickSettings } from "react-slick";
 
 import PrevNextButton from "./PrevNextButton";
 import useStyles from "./carousel.style";

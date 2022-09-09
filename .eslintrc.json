@@ -9,29 +9,31 @@
  * airbnb-typescript uses:
  * - @typescript-eslint/eslint-plugin
  */
-module.exports = {
-  root: true,
-  parser: "@typescript-eslint/parser",
-  plugins: ["react", "@typescript-eslint", "check-file", "prettier"],
-  extends: [
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["react", "@typescript-eslint", "check-file", "json", "prettier"],
+  "extends": [
     "next/core-web-vitals",
     "airbnb",
     "airbnb/hooks",
     "airbnb-typescript",
-    "prettier",
+    "plugin:json/recommended",
+    "prettier"
   ],
 
-  env: {
-    browser: true,
-    jasmine: true,
-    jest: true,
-    node: true,
+  "env": {
+    "browser": true,
+    "jasmine": true,
+    "jest": true,
+    "node": true
   },
-  parserOptions: {
-    project: "./tsconfig.json",
+  "parserOptions": {
+    "project": "./tsconfig.json"
   },
-  rules: {
+  "rules": {
     "@typescript-eslint/naming-convention": "warn",
+    "@typescript-eslint/consistent-type-imports": "warn",
 
     "arrow-body-style": ["error", "always"],
     "arrow-parens": ["error", "always"],
@@ -44,28 +46,30 @@ module.exports = {
         // PascalCase
         "src/!(pages)/**/*.{jsx,tsx}": "PASCAL_CASE",
         // glob for nextjs pages: kebab-case and start with '_' or '[' and end with ']'
-        "src/pages/**/*.{js,ts,jsx,tsx}":
-          "?([|_|[a-z0-9])+([a-z0-9])*(-|[a-z0-9])?(])",
+        "src/pages/**/*.{js,ts,jsx,tsx}": "?([|_|[a-z0-9])+([a-z0-9])*(-|[a-z0-9])?(])"
       },
-      { ignoreMiddleExtensions: true },
+      { "ignoreMiddleExtensions": true }
     ],
     "check-file/folder-naming-convention": [
       "error",
-      { "src/**/": "KEBAB_CASE" }, // kebab-case
+      { "src/**/": "KEBAB_CASE" } // kebab-case
     ],
 
-    curly: "error",
+    "curly": "error",
     "import/prefer-default-export": "off",
-    "no-confusing-arrow": ["error", { allowParens: true }],
+
+    "json/*": ["error", { "allowComments": true }],
+
+    "no-confusing-arrow": ["error", { "allowParens": true }],
     "no-mixed-operators": "error",
     "prefer-arrow-callback": "error",
     "prefer-template": "error",
 
-    "prettier/prettier": ["warn", {}, { usePrettierrc: true }],
+    "prettier/prettier": ["warn", {}, { "usePrettierrc": true }],
 
     "react/function-component-definition": [
       "warn",
-      { namedComponents: "arrow-function" },
+      { "namedComponents": "arrow-function" }
     ],
     "react/jsx-props-no-spreading": "off",
     "react/jsx-no-useless-fragment": "off",
@@ -73,6 +77,6 @@ module.exports = {
     "react/require-default-props": "off",
 
     "react-hooks/exhaustive-deps": "warn",
-    "react-hooks/rules-of-hooks": "error",
-  },
-};
+    "react-hooks/rules-of-hooks": "error"
+  }
+}

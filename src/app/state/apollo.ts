@@ -2,12 +2,8 @@
 
 import isEqual from "lodash/isEqual";
 import merge from "deepmerge";
-import {
-  ApolloClient,
-  HttpLink,
-  InMemoryCache,
-  NormalizedCacheObject,
-} from "@apollo/client";
+import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
+import type { NormalizedCacheObject } from "@apollo/client";
 import { concatPagination } from "@apollo/client/utilities";
 import { useMemo } from "react";
 

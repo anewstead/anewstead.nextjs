@@ -15,9 +15,11 @@ https://github.com/mui/material-ui/blob/6ba3522921da7cd3bef8065954f62456e1b73fed
  */
 
 import * as React from "react";
+import MuiLink from "@mui/material/Link";
+import NextLink from "next/link";
 import clsx from "clsx";
-import MuiLink, { LinkProps as MuiLinkProps } from "@mui/material/Link";
-import NextLink, { LinkProps as NextLinkProps } from "next/link";
+import type { LinkProps as MuiLinkProps } from "@mui/material/Link";
+import type { LinkProps as NextLinkProps } from "next/link";
 import { styled } from "@mui/material/styles";
 import { useRouter } from "next/router";
 

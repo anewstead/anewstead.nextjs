@@ -22,6 +22,15 @@
     "strictNullChecks": true,
     "incremental": true
   },
-  "include": ["next.config.js", ".eslintrc.js", "additional.d.ts", "src/**/*"],
-  "exclude": ["node_modules"]
+
+  // tell parser to also check json and dot files in src
+  "include": [
+    "next.config.js",
+    "src/**/*",
+    "src/**/*.json",
+    "src/**/.*.js",
+    "src/**/.*.json",
+    "**/*.d.ts"
+  ],
+  "exclude": ["node_modules", "package.json", "package-lock.json"]
 }

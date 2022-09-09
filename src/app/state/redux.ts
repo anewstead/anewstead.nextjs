@@ -1,11 +1,11 @@
-/* eslint-disable no-param-reassign */
 /**
  * Redux Toolkit allows "mutating" logic for state in reducers via Immer library.
  * so we allow eslint param-reassign
  */
 
-import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import type { TypedUseSelectorHook } from "react-redux";
 import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { useDispatch, useSelector } from "react-redux";
 
 import initialState from "./initialState";
 import type { IAppDispatch, IRootState } from "./types";

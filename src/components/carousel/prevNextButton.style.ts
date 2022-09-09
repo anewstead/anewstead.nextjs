@@ -1,4 +1,4 @@
-import { Theme } from "@mui/material";
+import type { Theme } from "@mui/material";
 import { isMobile } from "react-device-detect";
 import { makeStyles } from "tss-react/mui";
 
