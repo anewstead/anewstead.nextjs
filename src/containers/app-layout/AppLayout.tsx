@@ -4,8 +4,7 @@ import { Box } from "@mui/material";
 import Footer from "../../components/footer";
 import HeaderNav from "../../components/header-nav";
 import useStyles from "./appLayout.style";
-import type { IRootState } from "../../app/state/types";
-import { useAppSelector } from "../../app/state/redux";
+import { BRAND } from "../../app/const";
 
 type IAppLayout = {
   headerNavType: "thumbs" | "detail";
@@ -17,10 +16,6 @@ type IAppLayout = {
 const AppLayout = (props: IAppLayout) => {
   const { headerNavType, headerNavTitle, headerNavSubtitle, children } = props;
 
-  const navBrand = useAppSelector((state: IRootState) => {
-    return state.app.nav.brand;
-  });
-
   const { classes } = useStyles();
 
   return (
@@ -31,7 +26,7 @@ const AppLayout = (props: IAppLayout) => {
         subtitleText={headerNavSubtitle}
       />
       <main className={classes.main}>{children}</main>
-      <Footer brand={navBrand} />
+      <Footer brand={BRAND} />
     </Box>
   );
 };

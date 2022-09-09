@@ -1,3 +1,4 @@
+import type { Theme } from "@mui/material";
 import { deepmerge } from "@mui/utils";
 
 import {
@@ -14,7 +15,13 @@ export type IThemeName = typeof DARK | typeof LIGHT;
 
 const light = deepmerge(lightTheme, globalOverrides(lightTheme));
 const dark = deepmerge(darkTheme, globalOverrides(darkTheme));
-const themes = { light, dark };
+
+type IThemes = Record<string, Theme> & {
+  light: Theme;
+  dark: Theme;
+};
+
+const themes: IThemes = { light, dark };
 
 const storeThemeName = (themeName: IThemeName) => {
   localStorage.setItem("theme", themeName);

@@ -2,10 +2,11 @@
 
 ## Code
 
-- nextjs, react (hooks), Progressive Web App ready
+- NextJS, React (hooks)
 - Apollo, graphQL, Redux
 - materialUI
 - @emotion with tss-react
+- Progressive Web App ready
 
 ## Structure
 

@@ -1,5 +1,5 @@
 /**
- * ThemeProvider cannot go at _app level as we requires a value from redux
+ * ThemeProvider cannot go at _app level as requires a value from redux
  * i.e can only consume redux below the class that sets the redux provider
  * note however that the EmotionCacheProvider must still be at _app level
  */
@@ -11,13 +11,10 @@ import {
   ThemeProvider,
 } from "@mui/material";
 
-import themes from "../../app/theme/theme";
-import {
-  INIT_THEME,
-  useAppDispatch,
-  useAppSelector,
-} from "../../app/state/redux";
-import type { IRootState } from "../../app/state/types";
+import theme from "../../app/theme/theme";
+import { INIT_THEME } from "../../app/state/slice/theme";
+import type { RootState } from "../../app/state/store";
+import { useAppDispatch, useAppSelector } from "../../app/state/store";
 
 type Props = {
   children: React.ReactNode;
@@ -28,8 +25,8 @@ const ThemeWrapper = (props: Props) => {
 
   const dispatch = useAppDispatch();
 
-  const themeName = useAppSelector((state: IRootState) => {
-    return state.app.themeName;
+  const themeName = useAppSelector((state: RootState) => {
+    return state.theme.themeName;
   });
 
   useEffect(() => {
@@ -38,7 +35,7 @@ const ThemeWrapper = (props: Props) => {
 
   return (
     <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={themes[themeName]}>
+      <ThemeProvider theme={theme[themeName]}>
         <CssBaseline />
         {children}
       </ThemeProvider>

@@ -4,12 +4,12 @@ import { useRouter } from "next/router";
 
 import HeaderNavDetail from "./HeaderNavDetail";
 import HeaderNavThumbs from "./HeaderNavThumbs";
-import type { ICheckbox, IRootState } from "../../app/state/types";
-import {
-  NAV_CHECKBOX_CHANGE,
-  TOGGLE_THEME,
-  useAppSelector,
-} from "../../app/state/redux";
+import { BRAND } from "../../app/const";
+import type { ICheckbox } from "../../app/state/slice/homeState";
+import { NAV_CHECKBOX_CHANGE } from "../../app/state/slice/home";
+import type { RootState } from "../../app/state/store";
+import { TOGGLE_THEME } from "../../app/state/slice/theme";
+import { useAppSelector } from "../../app/state/store";
 
 type Props = {
   navType: "thumbs" | "detail";
@@ -23,12 +23,8 @@ const HeaderNav = (props: Props) => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const navBrand = useAppSelector((state: IRootState) => {
-    return state.app.nav.brand;
-  });
-
-  const navCheckboxes = useAppSelector((state: IRootState) => {
-    return state.app.nav.checkboxes;
+  const navCheckboxes = useAppSelector((state: RootState) => {
+    return state.home.nav.checkboxes;
   });
 
   const backClick = () => {
@@ -45,9 +41,9 @@ const HeaderNav = (props: Props) => {
   };
 
   const checkboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, checked } = e.currentTarget;
     const payload = {
-      id: e.currentTarget.id,
-      checked: e.currentTarget.checked,
+      checkbox: { id, checked },
     };
     dispatch(NAV_CHECKBOX_CHANGE(payload));
   };
@@ -57,7 +53,7 @@ const HeaderNav = (props: Props) => {
     case "thumbs":
       nav = (
         <HeaderNavThumbs
-          brandName={navBrand}
+          brandName={BRAND}
           checkboxData={navCheckboxes as ICheckbox[]}
           onBrandClick={brandClick}
           onThemeClick={themeClick}

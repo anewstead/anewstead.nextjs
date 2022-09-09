@@ -9,8 +9,8 @@ import { Provider as ReduxProvider } from "react-redux";
 import { createEmotionSsrAdvancedApproach } from "tss-react/nextJs";
 
 import ThemeWrapper from "../containers/theme-wrapper";
-import store from "../app/state/redux";
-import { useApollo } from "../app/state/apollo";
+import store from "../app/state/store";
+import { useApollo } from "../app/service/apollo";
 
 const { EmotionCacheProvider, withEmotionCache } =
   createEmotionSsrAdvancedApproach({ key: "css" });

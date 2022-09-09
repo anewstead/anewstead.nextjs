@@ -7,6 +7,8 @@ import type { NormalizedCacheObject } from "@apollo/client";
 import { concatPagination } from "@apollo/client/utilities";
 import { useMemo } from "react";
 
+import { BASE_GRAPHQL_URL } from "../const";
+
 type InitialState = NormalizedCacheObject | null;
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | undefined;
@@ -15,7 +17,7 @@ function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === "undefined",
     link: new HttpLink({
-      uri: "https://anewstead-content.netlify.app/graphql", // Server URL (must be absolute)
+      uri: BASE_GRAPHQL_URL, // Server URL (must be absolute)
       credentials: "same-origin", // Additional fetch() options like `credentials` or `headers`
     }),
     cache: new InMemoryCache({

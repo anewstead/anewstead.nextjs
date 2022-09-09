@@ -4,7 +4,7 @@ import { gql } from "@apollo/client";
 import { useQuery } from "@apollo/react-hooks";
 
 import Home from "../page/home";
-import { initializeApollo } from "../app/state/apollo";
+import { initializeApollo } from "../app/service/apollo";
 
 const THUMB_QUERY = gql`
   query {
