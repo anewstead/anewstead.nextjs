@@ -11,9 +11,6 @@ import useStyles from "./project.style";
 import { BASE_CONTENT_URL, BASE_VIDEO_URL } from "../../app/const";
 import type { IMainData } from "../../app/state/slice/mainDataState";
 
-// import type { RootState } from "../../app/state/store";
-// import { useAppSelector } from "../../app/state/store";
-
 type Props = {
   data: IMainData;
 };
@@ -35,7 +32,7 @@ const Project = (props: Props) => {
 
   let content = <></>;
 
-  switch (`${data.view.type}`) {
+  switch (data.view.type) {
     case "gallery": {
       const slides = data.view.stills.map((item: string, i: number) => {
         const url = `${BASE_CONTENT_URL}${item}`;

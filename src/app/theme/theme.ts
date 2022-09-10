@@ -13,6 +13,7 @@ export const DEFAULT_THEME = LIGHT;
 
 export type IThemeName = typeof DARK | typeof LIGHT;
 
+// these variable must == the const string used as theme mode
 const light = deepmerge(lightTheme, globalOverrides(lightTheme));
 const dark = deepmerge(darkTheme, globalOverrides(darkTheme));
 
@@ -23,12 +24,14 @@ type IThemes = Record<string, Theme> & {
 
 const themes: IThemes = { light, dark };
 
+const LS_THEME = "theme";
+
 const storeThemeName = (themeName: IThemeName) => {
-  localStorage.setItem("theme", themeName);
+  localStorage.setItem(LS_THEME, themeName);
 };
 
 const retreiveThemeName = (): IThemeName | null => {
-  return localStorage.getItem("theme") as IThemeName;
+  return localStorage.getItem(LS_THEME) as IThemeName;
 };
 
 export const initThemeName = (): IThemeName => {

@@ -5,7 +5,7 @@ import { Box, Button } from "@mui/material";
 import useStyles from "./prevNextButton.style";
 
 type Props = {
-  direction: string;
+  direction: "prev" | "next";
   onClick?: () => void;
 };
 
