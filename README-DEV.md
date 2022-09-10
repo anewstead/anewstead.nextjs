@@ -2,11 +2,16 @@
 
 ## Code
 
-- nextjs, react (hooks), Progressive Web App ready
-- Apollo, graphQL
+- NextJS, React (hooks)
+- Apollo, graphQL, Redux
 - materialUI
 - @emotion with tss-react
-- classes in 'pages' folder are for routing and SSR only, actual page is in 'page'
+- Progressive Web App ready
+
+## Structure
+
+- the 'pages' folder is reserved by nextjs, so:
+- classes in 'pages' are for routes and SSR code only, actual page content is located in 'page' folder
 
 ## IDE/Editor
 
@@ -20,7 +25,7 @@
 
 ## git:
 
-- filesnames are case sensitve
+- filenames are case sensitve
 
 ## git hooks (husky):
 

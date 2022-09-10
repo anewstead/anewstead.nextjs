@@ -1,13 +1,16 @@
 import Image from "next/image";
-import React from "react";
+import React, { useMemo } from "react";
 import { Button, Card, Container, Grid } from "@mui/material";
 
 import AppLayout from "../../containers/app-layout";
 import useStyles from "./home.style";
-import type { ICheckbox, IMainData, IRootState } from "../../lib/types";
+import { BASE_CONTENT_URL } from "../../app/const";
+import type { ICheckbox } from "../../app/state/slice/homeState";
+import type { IMainData } from "../../app/state/slice/mainDataState";
 import { NextLinkComposed } from "../../components/next-mui-link/Link";
-import { thumbHelper } from "../../lib/helpers";
-import { useAppSelector } from "../../lib/store";
+import type { RootState } from "../../app/state/store";
+import { thumbHelper } from "../../app/state/slice/homeHelpers";
+import { useAppSelector } from "../../app/state/store";
 
 type Props = {
   projects: IMainData[];
@@ -17,21 +20,20 @@ const Home = (props: Props) => {
   const { projects } = props;
   const { classes } = useStyles();
 
-  const baseContentURL = useAppSelector((state: IRootState) => {
-    return state.app.baseContentURL;
-  });
-  const checkboxes = useAppSelector((state: IRootState) => {
-    return state.app.nav.checkboxes;
+  const checkboxes = useAppSelector((state: RootState) => {
+    return state.home.nav.checkboxes;
   }) as ICheckbox[];
 
-  const displayThumbs = thumbHelper(projects, checkboxes);
+  const displayThumbs = useMemo(() => {
+    return thumbHelper(projects, checkboxes);
+  }, [projects, checkboxes]);
 
   let content = <></>;
 
   if (displayThumbs) {
     if (displayThumbs.length) {
       const thumbs = displayThumbs.map((obj) => {
-        const url = `${baseContentURL}${obj.thumb}`;
+        const url = `${BASE_CONTENT_URL}${obj.thumb}`;
         const alt = `${obj.client} - ${obj.brand} - ${obj.project}`;
         return (
           <Grid item key={obj.id} className={classes.gridItem}>

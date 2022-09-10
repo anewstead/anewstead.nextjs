@@ -1,13 +1,11 @@
-import "slick-carousel/slick/slick.css";
-
 import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
 import React from "react";
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 import useStyles from "./prevNextButton.style";
 
 type Props = {
-  direction: string;
+  direction: "prev" | "next";
   onClick?: () => void;
 };
 
@@ -24,9 +22,9 @@ const PrevNextButton = (props: Props) => {
       onClick={onClick}
       aria-label={`${direction}`}
     >
-      <div className="carousel-slidebutton-icon-wrapper">
+      <Box className="carousel-slidebutton-icon-wrapper">
         <ArrowBackIosNewRoundedIcon fontSize="large" />
-      </div>
+      </Box>
     </Button>
   );
 };

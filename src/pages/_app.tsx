@@ -2,16 +2,15 @@
 import "slick-carousel/slick/slick.css";
 
 import Head from "next/head";
-import React, { useEffect } from "react";
+import React from "react";
 import { ApolloProvider } from "@apollo/react-hooks";
 import type { AppProps } from "next/app";
 import { Provider as ReduxProvider } from "react-redux";
-import { StyledEngineProvider } from "@mui/material";
 import { createEmotionSsrAdvancedApproach } from "tss-react/nextJs";
 
 import ThemeWrapper from "../containers/theme-wrapper";
-import store, { INIT_THEME } from "../lib/store";
-import { useApollo } from "../lib/apollo";
+import store from "../app/state/store";
+import { useApollo } from "../app/service/apollo";
 
 const { EmotionCacheProvider, withEmotionCache } =
   createEmotionSsrAdvancedApproach({ key: "css" });
@@ -22,10 +21,6 @@ const App = (props: AppProps) => {
   const { Component, pageProps } = props;
   const apolloClient = useApollo(pageProps.initialApolloState);
 
-  useEffect(() => {
-    store.dispatch(INIT_THEME());
-  }, []);
-
   return (
     <React.StrictMode>
       <ReduxProvider store={store}>
@@ -34,11 +29,9 @@ const App = (props: AppProps) => {
         </Head>
         <ApolloProvider client={apolloClient}>
           <EmotionCacheProvider>
-            <StyledEngineProvider injectFirst>
-              <ThemeWrapper>
-                <Component {...pageProps} />
-              </ThemeWrapper>
-            </StyledEngineProvider>
+            <ThemeWrapper>
+              <Component {...pageProps} />
+            </ThemeWrapper>
           </EmotionCacheProvider>
         </ApolloProvider>
       </ReduxProvider>

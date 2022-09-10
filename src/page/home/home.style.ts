@@ -1,4 +1,4 @@
-import { Theme } from "@mui/material";
+import type { Theme } from "@mui/material";
 import { makeStyles } from "tss-react/mui";
 
 const useStyles = makeStyles()((theme: Theme) => {
@@ -9,11 +9,11 @@ const useStyles = makeStyles()((theme: Theme) => {
     },
     gridItem: {
       "& img": {
-        width: 80,
-        height: 80,
+        width: "80px !important",
+        height: "80px !important",
         [theme.breakpoints.up("sm")]: {
-          width: 128,
-          height: 128,
+          width: "128px !important",
+          height: "128px !important",
         },
       },
     },

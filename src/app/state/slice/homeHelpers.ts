@@ -1,7 +1,12 @@
-import type { ICheckbox, IMainData } from "./types";
+// import type { ICheckbox } from "../types";
+import type { ICheckbox } from "./homeState";
+import type { IMainData } from "./mainDataState";
 
+/**
+ * filters which thumbs to show depending on which checkboxes are checked
+ */
 export const thumbHelper = (
-  mainData: IMainData[],
+  allThumbs: IMainData[],
   checkboxes: ICheckbox[]
 ): IMainData[] => {
   const showSites = checkboxes.find((cb) => {
@@ -16,7 +21,7 @@ export const thumbHelper = (
     return cb.id === "banner";
   })?.checked;
 
-  return mainData
+  return allThumbs
     .filter((obj) => {
       return (
         (showSites && obj.type === "site") ||
