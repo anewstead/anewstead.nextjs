@@ -6,9 +6,9 @@ import HeaderNavDetail from "./HeaderNavDetail";
 import HeaderNavThumbs from "./HeaderNavThumbs";
 import { BRAND } from "../../app/const";
 import type { ICheckbox } from "../../app/state/slice/homeState";
-import { NAV_CHECKBOX_CHANGE } from "../../app/state/slice/home";
+import { NAV_CHECKBOX_CHANGE } from "../../app/state/home/slice";
 import type { RootState } from "../../app/state/store";
-import { TOGGLE_THEME } from "../../app/state/slice/theme";
+import { TOGGLE_THEME } from "../../app/state/theme/slice";
 import { useAppSelector } from "../../app/state/store";
 
 type Props = {

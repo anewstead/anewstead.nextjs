@@ -1,6 +1,6 @@
 // import type { ICheckbox } from "../types";
-import type { ICheckbox } from "./homeState";
-import type { IMainData } from "./mainDataState";
+import type { ICheckbox } from "./state";
+import type { IMainData } from "../main-data/state";
 
 /**
  * filters which thumbs to show depending on which checkboxes are checked

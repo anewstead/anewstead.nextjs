@@ -5,11 +5,11 @@ import { Button, Card, Container, Grid } from "@mui/material";
 import AppLayout from "../../containers/app-layout";
 import useStyles from "./home.style";
 import { BASE_CONTENT_URL } from "../../app/const";
-import type { ICheckbox } from "../../app/state/slice/homeState";
-import type { IMainData } from "../../app/state/slice/mainDataState";
+import type { ICheckbox } from "../../app/state/home/state";
+import type { IMainData } from "../../app/state/main-data/state";
 import { NextLinkComposed } from "../../components/next-mui-link/Link";
 import type { RootState } from "../../app/state/store";
-import { thumbHelper } from "../../app/state/slice/homeHelpers";
+import { thumbHelper } from "../../app/state/home/helpers";
 import { useAppSelector } from "../../app/state/store";
 
 type Props = {

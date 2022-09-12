@@ -1,4 +1,4 @@
-import type { IProjectType } from "./mainDataState";
+import type { IProjectType } from "../main-data/state";
 
 export type IProjectLabel = "Websites" | "Apps" | "Adverts";
 
