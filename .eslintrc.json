@@ -65,8 +65,6 @@
     "prefer-arrow-callback": "error",
     "prefer-template": "error",
 
-    "prettier/prettier": ["warn", {}, { "usePrettierrc": true }],
-
     "react/function-component-definition": [
       "warn",
       { "namedComponents": "arrow-function" }
