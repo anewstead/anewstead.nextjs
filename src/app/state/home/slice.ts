@@ -27,4 +27,4 @@ const slice = createSlice({
 
 export const { NAV_CHECKBOX_CHANGE } = slice.actions;
 
-export default slice.reducer;
+export const homeReducer = slice.reducer;

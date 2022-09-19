@@ -2,8 +2,8 @@ import type { TypedUseSelectorHook } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 
-import home from "./home/slice";
-import theme from "./theme/slice";
+import { homeReducer } from "./home/slice";
+import { themeReducer } from "./theme/slice";
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
@@ -15,8 +15,8 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 const store = configureStore({
   reducer: {
-    home,
-    theme,
+    home: homeReducer,
+    theme: themeReducer,
   },
 });
 

@@ -18,4 +18,4 @@ const slice = createSlice({
 
 export const { INIT_THEME, TOGGLE_THEME } = slice.actions;
 
-export default slice.reducer;
+export const themeReducer = slice.reducer;
