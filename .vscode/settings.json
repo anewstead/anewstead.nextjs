@@ -21,6 +21,11 @@
     "source.fixAll.stylelint": true
   },
 
+  "[markdown]": {
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": false
+  },
+
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,

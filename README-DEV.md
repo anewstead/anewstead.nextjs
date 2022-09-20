@@ -10,8 +10,9 @@
 
 ## Structure
 
-- the 'pages' folder is reserved by nextjs, so:
-- classes in 'pages' are for routes and SSR code only, actual page content is located in 'page' folder
+In a nextJs app we separate the concerns of SSR specific code into 'src/pages',
+these then instanciate namesake page content/layout from 'src/page' passing through any SSR realted data.
+src/pages/home (gets SSR data) > instanciates src/page/home (layout)
 
 ## IDE/Editor
 
