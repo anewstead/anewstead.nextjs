@@ -2,8 +2,10 @@ import type { Theme } from "@mui/material/styles";
 import { blueGrey, grey } from "@mui/material/colors";
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
-export const DARK = "dark";
-export const LIGHT = "light";
+export type IThemeName = "light" | "dark";
+
+export const LIGHT: IThemeName = "light";
+export const DARK: IThemeName = "dark";
 
 export const globalOverrides = (theme: Theme) => {
   return {

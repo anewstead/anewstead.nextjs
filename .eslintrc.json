@@ -1,18 +1,18 @@
 /**
- * next/core-web-vitals uses:
- * - eslint:recommended
- * eslint airbnb uses:
+ * airbnb requires/uses:
+ * - eslint
  * - eslint-plugin-import
  * - eslint-plugin-react
  * - eslint-plugin-react-hooks
  * - eslint-plugin-jsx-a11y
  * airbnb-typescript uses:
  * - @typescript-eslint/eslint-plugin
+ * - @typescript-eslint/parser
  */
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": ["react", "@typescript-eslint", "check-file", "json", "prettier"],
+  "plugins": ["react", "@typescript-eslint", "check-file", "json"],
   "extends": [
     "next/core-web-vitals",
     "airbnb",
@@ -64,8 +64,6 @@
     "no-mixed-operators": "error",
     "prefer-arrow-callback": "error",
     "prefer-template": "error",
-
-    "prettier/prettier": ["warn", {}, { "usePrettierrc": true }],
 
     "react/function-component-definition": [
       "warn",

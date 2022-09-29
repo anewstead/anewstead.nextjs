@@ -1,7 +1,7 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 
-import { initialState } from "./homeState";
+import { initialState } from "./state";
 
 type NCCPayload = {
   checkbox: { id: string; checked: boolean };
@@ -27,4 +27,4 @@ const slice = createSlice({
 
 export const { NAV_CHECKBOX_CHANGE } = slice.actions;
 
-export default slice.reducer;
+export const homeReducer = slice.reducer;

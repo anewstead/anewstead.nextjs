@@ -10,14 +10,19 @@ import { createEmotionSsrAdvancedApproach } from "tss-react/nextJs";
 
 import ThemeWrapper from "../containers/theme-wrapper";
 import store from "../app/state/store";
+import type { InitialState } from "../app/service/apollo";
 import { useApollo } from "../app/service/apollo";
 
 const { EmotionCacheProvider, withEmotionCache } =
   createEmotionSsrAdvancedApproach({ key: "css" });
 
+type AppPropsExtended = {
+  initialApolloState: InitialState;
+};
+
 export { withEmotionCache };
 
-const App = (props: AppProps) => {
+const App = (props: AppProps<AppPropsExtended>) => {
   const { Component, pageProps } = props;
   const apolloClient = useApollo(pageProps.initialApolloState);
 

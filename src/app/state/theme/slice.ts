@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { initThemeName, toggleThemeName } from "../../theme/theme";
-import { initialState } from "./themeState";
+import { initialState } from "./state";
 
 const slice = createSlice({
   name: "theme",
@@ -18,4 +18,4 @@ const slice = createSlice({
 
 export const { INIT_THEME, TOGGLE_THEME } = slice.actions;
 
-export default slice.reducer;
+export const themeReducer = slice.reducer;
