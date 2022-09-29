@@ -10,9 +10,9 @@
 
 ## Structure
 
-In a nextJs app we separate the concerns of SSR specific code into 'src/pages',
-these then instanciate namesake page content/layout from 'src/page' passing through any SSR realted data.
-src/pages/home (gets SSR data) > instanciates src/page/home (layout)
+The 'pages' folder is reserved by nextjs for routes and SSR functions, so ensure we clearly separate concerns in the code:    
+'pages' files define routes, handle SSR realted code ONLY, instanciate namesake layout from 'page' folder passing through SSR data.  
+E.G. src/pages/about (gets SSR data) > instanciates src/page/about (layout)  
 
 ## IDE/Editor
 
