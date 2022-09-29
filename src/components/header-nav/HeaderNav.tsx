@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import HeaderNavDetail from "./HeaderNavDetail";
 import HeaderNavThumbs from "./HeaderNavThumbs";
 import { BRAND } from "../../app/const";
-import type { ICheckbox } from "../../app/state/slice/homeState";
+import type { ICheckbox } from "../../app/state/home/state";
 import { NAV_CHECKBOX_CHANGE } from "../../app/state/home/slice";
 import type { RootState } from "../../app/state/store";
 import { TOGGLE_THEME } from "../../app/state/theme/slice";

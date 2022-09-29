@@ -9,7 +9,7 @@ import { useMemo } from "react";
 
 import { BASE_GRAPHQL_URL } from "../const";
 
-type InitialState = NormalizedCacheObject | null;
+export type InitialState = NormalizedCacheObject | null;
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | undefined;
 
