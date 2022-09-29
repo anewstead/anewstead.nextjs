@@ -10,19 +10,14 @@
 
 ## Structure
 
-The 'pages' folder is reserved by nextjs for routes and SSR functions, so ensure we clearly separate concerns in the code:    
-'pages' files define routes, handle SSR realted code ONLY, instanciate namesake layout from 'page' folder passing through SSR data.  
-E.G. src/pages/about (gets SSR data) > instanciates src/page/about (layout)  
+The 'pages' folder is reserved by nextjs for routes and only place to run SSR functions, so ensure we clearly separate concerns in the code:    
+'pages' files define routes, handle SSR related code ONLY, instantiate namesake layout from 'page' folder passing through SSR data.  
+E.G. src/pages/about (gets SSR data) > instantiates src/page/about (layout)  
 
 ## IDE/Editor
 
-- VSCode was used to create so is preferd.
-- Important; see /.vscode/README.md
-
-## npm/packages
-
-- Dependencies: production code
-- DevDependencies: dev environment e.g. compiler, linting
+- VSCode was used to create so for simplicity is preferred. 
+- Important; see /.vscode/README.md 
 
 ## git:
 
