@@ -8,8 +8,7 @@
     "storybook-static": true,
     ".next": true,
     ".eslintcache": true,
-    ".stylelintcache": true,
-    ".husky": true
+    ".stylelintcache": true
   },
 
   "editor.defaultFormatter": "esbenp.prettier-vscode",
