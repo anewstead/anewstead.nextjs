@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Container } from "@mui/material";
 
-import AppLayout from "../../containers/app-layout";
+import AppLayout from "../../wrappers/app-wrapper";
 import Carousel from "../../components/carousel";
 import InFrame from "../../components/in-frame";
 import NoMatch from "../no-match";

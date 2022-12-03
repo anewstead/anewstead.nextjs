@@ -8,7 +8,7 @@ import type { AppProps } from "next/app";
 import { Provider as ReduxProvider } from "react-redux";
 import { createEmotionSsrAdvancedApproach } from "tss-react/nextJs";
 
-import ThemeWrapper from "../containers/theme-wrapper";
+import ThemeWrapper from "../wrappers/theme-wrapper";
 import store from "../app/state/store";
 import type { InitialState } from "../app/service/apollo";
 import { useApollo } from "../app/service/apollo";
