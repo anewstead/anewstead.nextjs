@@ -84,9 +84,6 @@
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-processor-styled-components": "^1.10.0"
   },
-  "engines": {
-    "node": "16"
-  },
   "browserslist": [
     "last 2 versions",
     ">0.2%",
