@@ -11,7 +11,7 @@ import {
   ThemeProvider,
 } from "@mui/material";
 
-import theme from "../../core/theme/theme";
+import theme from "./theme.style";
 import { INIT_THEME } from "../../core/state/theme/slice";
 import type { RootState } from "../../core/state/store";
 import { useAppDispatch, useAppSelector } from "../../core/state/store";

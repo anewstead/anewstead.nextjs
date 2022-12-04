@@ -1,8 +1,4 @@
-import type { Theme } from "@mui/material";
-import { deepmerge } from "@mui/utils";
-
 import type { IThemeName } from "./theme.style";
-import { darkTheme, globalOverrides, lightTheme } from "./theme.style";
 
 export const DEFAULT_THEME: IThemeName = "light";
 
@@ -38,17 +34,3 @@ export const toggleThemeName = (): IThemeName => {
   storeThemeName(themeName);
   return themeName;
 };
-
-// ----------
-
-// these variable must == IThemeName == the const string used as theme mode
-const light = deepmerge(lightTheme, globalOverrides(lightTheme));
-const dark = deepmerge(darkTheme, globalOverrides(darkTheme));
-
-type IThemes = Record<IThemeName, Theme> & {
-  light: Theme;
-  dark: Theme;
-};
-
-const themes: IThemes = { light, dark };
-export default themes;

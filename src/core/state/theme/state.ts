@@ -1,5 +1,5 @@
-import { DEFAULT_THEME } from "../../theme/theme";
-import type { IThemeName } from "../../theme/theme.style";
+import { DEFAULT_THEME } from "../../../wrappers/theme-wrapper/helpers";
+import type { IThemeName } from "../../../wrappers/theme-wrapper/theme.style";
 
 type IThemeState = {
   themeName: IThemeName;
