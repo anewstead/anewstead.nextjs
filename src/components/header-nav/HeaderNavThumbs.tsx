@@ -20,7 +20,7 @@ import {
 import { useTheme } from "@mui/material/styles";
 
 import useStyles from "./headerNavThumbs.style";
-import type { ICheckbox } from "../../app/state/home/state";
+import type { ICheckbox } from "../../core/state/home/state";
 
 type IHeaderNavThumbs = {
   brandName?: string;

@@ -3,17 +3,17 @@ import { Box } from "@mui/material";
 
 import Footer from "../../components/footer";
 import HeaderNav from "../../components/header-nav";
-import useStyles from "./appLayout.style";
-import { BRAND } from "../../app/const";
+import useStyles from "./pageLayout.style";
+import { BRAND } from "../../core/const";
 
-type IAppLayout = {
+type Props = {
   headerNavType: "thumbs" | "detail";
   headerNavTitle?: string;
   headerNavSubtitle?: string;
   children: React.ReactNode;
 };
 
-const AppLayout = (props: IAppLayout) => {
+const PageLayout = (props: Props) => {
   const { headerNavType, headerNavTitle, headerNavSubtitle, children } = props;
 
   const { classes } = useStyles();
@@ -31,4 +31,4 @@ const AppLayout = (props: IAppLayout) => {
   );
 };
 
-export default AppLayout;
+export default PageLayout;

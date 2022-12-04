@@ -1,15 +1,15 @@
 import React, { Fragment } from "react";
 import { Container } from "@mui/material";
 
-import AppLayout from "../../containers/app-layout";
+import AppLayout from "../../layout/page-layout";
 import Carousel from "../../components/carousel";
 import InFrame from "../../components/in-frame";
 import NoMatch from "../no-match";
 import TextBlock from "../../components/text-block";
 import Video from "../../components/video";
 import useStyles from "./project.style";
-import { BASE_CONTENT_URL, BASE_VIDEO_URL } from "../../app/const";
-import type { IMainData } from "../../app/state/main-data/state";
+import { BASE_CONTENT_URL, BASE_VIDEO_URL } from "../../core/const";
+import type { IMainData } from "../../core/state/main-data/state";
 
 type Props = {
   data: IMainData;

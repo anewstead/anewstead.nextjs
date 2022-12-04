@@ -11,10 +11,10 @@ import {
   ThemeProvider,
 } from "@mui/material";
 
-import theme from "../../app/theme/theme";
-import { INIT_THEME } from "../../app/state/theme/slice";
-import type { RootState } from "../../app/state/store";
-import { useAppDispatch, useAppSelector } from "../../app/state/store";
+import theme from "./theme.style";
+import { INIT_THEME } from "../../core/state/theme/slice";
+import type { RootState } from "../../core/state/store";
+import { useAppDispatch, useAppSelector } from "../../core/state/store";
 
 type Props = {
   children: React.ReactNode;

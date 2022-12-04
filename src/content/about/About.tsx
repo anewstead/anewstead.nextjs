@@ -1,9 +1,9 @@
 import React from "react";
 import { Box, Container, Paper, Typography } from "@mui/material";
 
-import AppLayout from "../../containers/app-layout";
+import AppLayout from "../../layout/page-layout";
 import useStyles from "./about.style";
-import { BRAND } from "../../app/const";
+import { BRAND } from "../../core/const";
 
 const About = () => {
   const { classes } = useStyles();

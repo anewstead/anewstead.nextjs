@@ -2,15 +2,15 @@ import Image from "next/image";
 import React, { useMemo } from "react";
 import { Button, Card, Container, Grid } from "@mui/material";
 
-import AppLayout from "../../containers/app-layout";
+import AppLayout from "../../layout/page-layout";
 import useStyles from "./home.style";
-import { BASE_CONTENT_URL } from "../../app/const";
-import type { ICheckbox } from "../../app/state/home/state";
-import type { IMainData } from "../../app/state/main-data/state";
+import { BASE_CONTENT_URL } from "../../core/const";
+import type { ICheckbox } from "../../core/state/home/state";
+import type { IMainData } from "../../core/state/main-data/state";
 import { NextLinkComposed } from "../../components/next-mui-link/Link";
-import type { RootState } from "../../app/state/store";
-import { thumbHelper } from "../../app/state/home/helpers";
-import { useAppSelector } from "../../app/state/store";
+import type { RootState } from "../../core/state/store";
+import { thumbHelper } from "../../core/state/home/helpers";
+import { useAppSelector } from "../../core/state/store";
 
 type Props = {
   projects: IMainData[];
