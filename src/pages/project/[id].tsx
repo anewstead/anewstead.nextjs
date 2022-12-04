@@ -4,9 +4,9 @@ import { gql } from "@apollo/client";
 import { useQuery } from "@apollo/react-hooks";
 import { useRouter } from "next/router";
 
-import Project from "../../layout/project";
-import type { IMainData } from "../../app/state/main-data/state";
-import { initializeApollo } from "../../app/service/apollo";
+import Project from "../../content/project";
+import type { IMainData } from "../../core/state/main-data/state";
+import { initializeApollo } from "../../core/services/apollo";
 
 const PROJECTS_QUERY = gql`
   query {

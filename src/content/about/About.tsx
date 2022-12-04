@@ -3,7 +3,7 @@ import { Box, Container, Paper, Typography } from "@mui/material";
 
 import AppLayout from "../../wrappers/app-wrapper";
 import useStyles from "./about.style";
-import { BRAND } from "../../app/const";
+import { BRAND } from "../../core/const";
 
 const About = () => {
   const { classes } = useStyles();

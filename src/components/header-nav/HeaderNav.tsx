@@ -4,12 +4,12 @@ import { useRouter } from "next/router";
 
 import HeaderNavDetail from "./HeaderNavDetail";
 import HeaderNavThumbs from "./HeaderNavThumbs";
-import { BRAND } from "../../app/const";
-import type { ICheckbox } from "../../app/state/home/state";
-import { NAV_CHECKBOX_CHANGE } from "../../app/state/home/slice";
-import type { RootState } from "../../app/state/store";
-import { TOGGLE_THEME } from "../../app/state/theme/slice";
-import { useAppSelector } from "../../app/state/store";
+import { BRAND } from "../../core/const";
+import type { ICheckbox } from "../../core/state/home/state";
+import { NAV_CHECKBOX_CHANGE } from "../../core/state/home/slice";
+import type { RootState } from "../../core/state/store";
+import { TOGGLE_THEME } from "../../core/state/theme/slice";
+import { useAppSelector } from "../../core/state/store";
 
 type Props = {
   navType: "thumbs" | "detail";

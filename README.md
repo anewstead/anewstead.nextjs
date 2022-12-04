@@ -20,19 +20,15 @@ Portfolio web app:
 - Progressive Web App ready
 
 ## Structure
+#### "pages" & "content" folders
+In Nextjs the 'src/pages' folder is reserved to define routes and handle SSR related code.  
+Separating concerns of actual content & layout from this keeps code much cleaner.  
+So files in 'pages' instansiate namesake 'content' passing through SSR data.  
+E.G. mysite.com/about = src/pages/about (SSR data) > instantiates src/content/about  
 
-"pages" & "layout" folders  
-In Nextjs routes (URLs) are defined by the contents of the resevered folder 'src/pages'.  
-In a non-NextJs App i.e. React with Router, we may as well retain this folder for routing too. 
-It can help make things easier if we ever need to swap from one to the other,  
-but more importantly we clearly separate concerns of routing from layout.  
-
-In a nextJs 'src/pages' along with routing also handle SSR related logic, 
-these 'pages' instansiate namesake 'layout' passing through SSR data.  
-E.G. mysite.com/about = src/pages/about (SSR data) > instantiates src/layout/about  
-
-In a non-nextJS app we should follow:  
-E.G. pages/routes.js > instansiates layout/(home, about etc)  
+In a non-NextJs App (React with Router), we simply retain this folder setup.  
+If nothing else it makes things easier if we ever need to repurpose from one to the other,   
+E.G. pages/routes.js > instansiates content/(home, about etc)  
 
 ## IDE/Editor
 

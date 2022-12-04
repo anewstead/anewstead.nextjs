@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 import Footer from "../../components/footer";
 import HeaderNav from "../../components/header-nav";
 import useStyles from "./appWrapper.style";
-import { BRAND } from "../../app/const";
+import { BRAND } from "../../core/const";
 
 type IAppWrapper = {
   headerNavType: "thumbs" | "detail";
