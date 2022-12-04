@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Container, Paper, Typography } from "@mui/material";
 
-import AppLayout from "../../wrappers/app-wrapper";
+import AppLayout from "../../layout/page-layout";
 import useStyles from "./about.style";
 import { BRAND } from "../../core/const";
 

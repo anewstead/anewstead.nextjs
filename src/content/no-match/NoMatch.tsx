@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Container, Paper, Typography } from "@mui/material";
 
-import AppLayout from "../../wrappers/app-wrapper";
+import AppLayout from "../../layout/page-layout";
 import useStyles from "./noMatch.style";
 import { NextLinkComposed } from "../../components/next-mui-link/Link";
 

@@ -2,7 +2,7 @@ import Image from "next/image";
 import React, { useMemo } from "react";
 import { Button, Card, Container, Grid } from "@mui/material";
 
-import AppLayout from "../../wrappers/app-wrapper";
+import AppLayout from "../../layout/page-layout";
 import useStyles from "./home.style";
 import { BASE_CONTENT_URL } from "../../core/const";
 import type { ICheckbox } from "../../core/state/home/state";
