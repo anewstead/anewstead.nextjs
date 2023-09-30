@@ -6,6 +6,7 @@
   "author": "Andrew Newstead",
   "license": "MIT",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "next",
     "build": "next build",
     "start": "next start",
