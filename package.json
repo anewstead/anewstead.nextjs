@@ -74,7 +74,7 @@
     "import-sort-style-eslint": "^6.0.0",
     "import-sort-style-module": "^6.0.0",
     "import-sort-style-renke": "^6.0.0",
-    "postcss": "^8.4.16",
+    "postcss": "^8.4.31",
     "postcss-jsx": "^0.36.4",
     "postcss-syntax": "^0.36.2",
     "prettier": "^2.7.1",
